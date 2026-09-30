@@ -1,8 +1,8 @@
 # Reweighted Gaussian-mixture NPMLE: Lean 4 companion
 
-This package contains Lean 4 proofs of the main exact-regularization theorem
-and supporting results for **Exact Sparsity without Penalization: Randomly
-Reweighted NPMLEs for Gaussian Mixtures**, by Hansheng Jiang.
+The primary document is **[`paper.tex`](docs/manuscript/paper.tex)**. This
+package contains Lean 4 proofs of its main exact-regularization theorem and
+supporting results.
 
 The main declaration is
 [`ReweightedNPMLE.gaussian_exact_regularization_main`](ReweightedNPMLE/GaussianMainTheorem.lean#L56).
@@ -57,7 +57,8 @@ run after upload; a future GitHub Actions run is not claimed as completed.
   earlier full development audit; read it with the release review.
 - [Frozen manuscript snapshots](docs/manuscript/README.md): byte-for-byte copies
   of `paper.tex`, `paper_v2.tex`, and `paper_v3.tex` as of 29 September 2026,
-  with SHA-256 hashes. The original `paper.tex` is the primary release reference.
+  with SHA-256 hashes. The original [`paper.tex`](docs/manuscript/paper.tex)
+  is the primary release reference.
 - [Reference provenance](docs/PAPER_REFERENCE.md): identifies the older bundled
   snapshot and the current release reference.
 

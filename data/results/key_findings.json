@@ -1,0 +1,705 @@
+{
+  "number_of_scenario_n_cells": 11,
+  "balanced_risk_ratio_range": [
+    1.0011230675285512,
+    1.020291525151449
+  ],
+  "balanced_average_cell_risk_ratio": 1.0128549724275506,
+  "tiny_risk_ratio_range": [
+    0.9999846702213051,
+    1.0000177565600707
+  ],
+  "bb_risk_ratio_range": [
+    1.5989669858056859,
+    2.1902608677001676
+  ],
+  "balanced_hellinger_to_ordinary_range": [
+    8.311053729258634e-06,
+    0.00017648081128264256
+  ],
+  "tiny_hellinger_to_ordinary_range": [
+    1.4332758272927909e-13,
+    9.59578901683004e-10
+  ],
+  "balanced_ordinary_loglik_gap_range": [
+    0.03449451860486984,
+    0.096402019765469
+  ],
+  "balanced_mean_support_difference_range": [
+    -0.125,
+    0.025
+  ],
+  "balanced_overall_same_support_fraction": 0.9032608695652173,
+  "tiny_overall_same_support_fraction": 1.0,
+  "max_kkt_gap_all_fits": 1.8526120864059688e-06,
+  "max_kkt_gap_1d": 4.836105216288189e-07,
+  "max_kkt_gap_2d": 1.8526120864059688e-06,
+  "path_n": 500,
+  "path_ordinary_hellinger_risk": 0.0026621304909485,
+  "path_ordinary_support": 3,
+  "path_slopes_on_medians_alpha_ge_10": {
+    "weight_max_deviation": -0.502695316534644,
+    "hellinger_to_ordinary": -1.0159189444635195,
+    "ordinary_loglik_gap": -1.0157636422143914,
+    "logfit_sq_sum": -1.0121909787329892
+  },
+  "path_targets": {
+    "BB-scale": {
+      "alpha": 1.0,
+      "weight_max_deviation": {
+        "median": 5.578019691881404,
+        "q10": 4.235824547747964,
+        "q90": 6.304711665253948
+      },
+      "support": {
+        "median": 3.0,
+        "q10": 3.0,
+        "q90": 4.0
+      },
+      "hellinger_to_ordinary": {
+        "median": 0.0019456763162473,
+        "q10": 0.0007013491805356601,
+        "q90": 0.00429678211854932
+      },
+      "ordinary_loglik_gap": {
+        "median": 2.029614379572763,
+        "q10": 0.7257752228796562,
+        "q90": 4.510909929542232
+      },
+      "logfit_sq_sum": {
+        "median": 3.7010015992661485,
+        "q10": 1.3422738519394801,
+        "q90": 7.707738004375053
+      },
+      "hellinger_to_truth": {
+        "median": 0.0044829227447546,
+        "q10": 0.00207166311319027,
+        "q90": 0.00790515676896097
+      },
+      "wasserstein_to_ordinary": {
+        "median": 0.1825248780961266,
+        "q10": 0.1199969176775252,
+        "q90": 0.3094450293571069
+      }
+    },
+    "balanced": {
+      "alpha": 59.76169946547972,
+      "weight_max_deviation": {
+        "median": 0.4104072049157289,
+        "q10": 0.37096913482411786,
+        "q90": 0.4986699753082028
+      },
+      "support": {
+        "median": 3.0,
+        "q10": 3.0,
+        "q90": 3.0
+      },
+      "hellinger_to_ordinary": {
+        "median": 4.399281920659558e-05,
+        "q10": 2.0140374966653993e-05,
+        "q90": 7.546799820915914e-05
+      },
+      "ordinary_loglik_gap": {
+        "median": 0.04528920340590045,
+        "q10": 0.02267823255986053,
+        "q90": 0.0780925025949045
+      },
+      "logfit_sq_sum": {
+        "median": 0.0853817123307368,
+        "q10": 0.03824458805026488,
+        "q90": 0.15053101561414858
+      },
+      "hellinger_to_truth": {
+        "median": 0.0026644630501734,
+        "q10": 0.00232252609211068,
+        "q90": 0.00330747500944843
+      },
+      "wasserstein_to_ordinary": {
+        "median": 0.030801363040149098,
+        "q10": 0.01583044142614888,
+        "q90": 0.038580290610454655
+      }
+    },
+    "tiny": {
+      "alpha": 125000000.0,
+      "weight_max_deviation": {
+        "median": 0.0002889558515462,
+        "q10": 0.00026403610463127,
+        "q90": 0.00033436282862665
+      },
+      "support": {
+        "median": 3.0,
+        "q10": 3.0,
+        "q90": 3.0
+      },
+      "hellinger_to_ordinary": {
+        "median": 1.5197630634713577e-11,
+        "q10": 7.741834044557914e-12,
+        "q90": 3.1251545485489584e-11
+      },
+      "ordinary_loglik_gap": {
+        "median": 1.650198555580573e-08,
+        "q10": 7.793278200551867e-09,
+        "q90": 3.372570063220337e-08
+      },
+      "logfit_sq_sum": {
+        "median": 3.065771563715884e-08,
+        "q10": 1.484011111574158e-08,
+        "q90": 5.97462425520644e-08
+      },
+      "hellinger_to_truth": {
+        "median": 0.0026621079041753,
+        "q10": 0.0026618791005672197,
+        "q90": 0.00266239848487987
+      },
+      "wasserstein_to_ordinary": {
+        "median": 1.721632423936884e-05,
+        "q10": 1.1674013069322785e-05,
+        "q90": 2.848338802920995e-05
+      }
+    }
+  },
+  "balanced_risk_ratio_bootstrap_ci": [
+    {
+      "scenario": "square_2d",
+      "n": 250,
+      "ratio": 1.0092733098886035,
+      "lower_0.025": 0.99239936646852,
+      "upper_0.975": 1.0270468305787708
+    },
+    {
+      "scenario": "square_2d",
+      "n": 500,
+      "ratio": 1.015818494436234,
+      "lower_0.025": 1.0028623799917302,
+      "upper_0.975": 1.0290991946384986
+    },
+    {
+      "scenario": "square_2d",
+      "n": 1000,
+      "ratio": 1.0132305756271252,
+      "lower_0.025": 1.0006359280063999,
+      "upper_0.975": 1.0261999860899707
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 200,
+      "ratio": 1.0029119031085416,
+      "lower_0.025": 0.9814444889426518,
+      "upper_0.975": 1.0241938523540082
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 500,
+      "ratio": 1.0189867631150977,
+      "lower_0.025": 0.9974986956981667,
+      "upper_0.975": 1.0416353285039395
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 1000,
+      "ratio": 1.020291525151449,
+      "lower_0.025": 1.0036970111998176,
+      "upper_0.975": 1.036013305695659
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 2000,
+      "ratio": 1.0011230675285512,
+      "lower_0.025": 0.9830605974688543,
+      "upper_0.975": 1.0193325443264283
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 200,
+      "ratio": 1.0200671604955618,
+      "lower_0.025": 0.9962366246490365,
+      "upper_0.975": 1.045899478179316
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 500,
+      "ratio": 1.0144351590731886,
+      "lower_0.025": 0.9934684441963523,
+      "upper_0.975": 1.0356280457181015
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 1000,
+      "ratio": 1.005810100505721,
+      "lower_0.025": 0.9880972522657978,
+      "upper_0.975": 1.022964712190828
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 2000,
+      "ratio": 1.0194566377729835,
+      "lower_0.025": 1.0054759660761015,
+      "upper_0.975": 1.033697353927172
+    }
+  ],
+  "cell_summaries": [
+    {
+      "scenario": "square_2d",
+      "n": 250,
+      "method": "BB",
+      "risk_ratio_of_means": 1.8076288710383241,
+      "mean_paired_excess_risk": 0.01372579706653069,
+      "se_paired_excess_risk": 0.0015158088573133436,
+      "mean_hellinger_to_ordinary": 0.013494984524841908,
+      "mean_ordinary_loglik_gap": 7.344714349064643,
+      "mean_logfit_sq_sum": 12.746426873502767,
+      "mean_support_difference": -0.425,
+      "fraction_same_support_as_ordinary": 0.35,
+      "max_kkt_gap": 1.4204614862123321e-07
+    },
+    {
+      "scenario": "square_2d",
+      "n": 250,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0092733098886035,
+      "mean_paired_excess_risk": 0.0001576015596153499,
+      "se_paired_excess_risk": 0.0001477464391334263,
+      "mean_hellinger_to_ordinary": 0.00017648081128264256,
+      "mean_ordinary_loglik_gap": 0.096402019765469,
+      "mean_logfit_sq_sum": 0.16799886319614016,
+      "mean_support_difference": 0.025,
+      "fraction_same_support_as_ordinary": 0.75,
+      "max_kkt_gap": 9.91656772031391e-07
+    },
+    {
+      "scenario": "square_2d",
+      "n": 250,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 0.9999883190713486,
+      "mean_paired_excess_risk": -1.985194709725477e-07,
+      "se_paired_excess_risk": 2.6854276255913863e-07,
+      "mean_hellinger_to_ordinary": 9.59578901683004e-10,
+      "mean_ordinary_loglik_gap": 5.102279828861356e-07,
+      "mean_logfit_sq_sum": 9.131639063055882e-07,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 7.368998191648046e-07
+    },
+    {
+      "scenario": "square_2d",
+      "n": 500,
+      "method": "BB",
+      "risk_ratio_of_means": 1.8421126743559393,
+      "mean_paired_excess_risk": 0.006664068465413409,
+      "se_paired_excess_risk": 0.0005932762437451456,
+      "mean_hellinger_to_ordinary": 0.006641441353720051,
+      "mean_ordinary_loglik_gap": 7.573894392872904,
+      "mean_logfit_sq_sum": 12.997506039161113,
+      "mean_support_difference": -0.3,
+      "fraction_same_support_as_ordinary": 0.3,
+      "max_kkt_gap": 1.7580017082075017e-06
+    },
+    {
+      "scenario": "square_2d",
+      "n": 500,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.015818494436234,
+      "mean_paired_excess_risk": 0.00012517984012465756,
+      "se_paired_excess_risk": 5.310612281410284e-05,
+      "mean_hellinger_to_ordinary": 7.053422510679399e-05,
+      "mean_ordinary_loglik_gap": 0.0791183886818885,
+      "mean_logfit_sq_sum": 0.13546515958937805,
+      "mean_support_difference": -0.125,
+      "fraction_same_support_as_ordinary": 0.7,
+      "max_kkt_gap": 4.143359533248514e-07
+    },
+    {
+      "scenario": "square_2d",
+      "n": 500,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000015950681276,
+      "mean_paired_excess_risk": 1.2622590220040704e-08,
+      "se_paired_excess_risk": 5.917781880679871e-08,
+      "mean_hellinger_to_ordinary": 4.625082130600306e-10,
+      "mean_ordinary_loglik_gap": 6.469047661994409e-08,
+      "mean_logfit_sq_sum": 8.087308413624612e-07,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.7246348686938973e-06
+    },
+    {
+      "scenario": "square_2d",
+      "n": 1000,
+      "method": "BB",
+      "risk_ratio_of_means": 1.9872452108536118,
+      "mean_paired_excess_risk": 0.004151302881021146,
+      "se_paired_excess_risk": 0.0003537288080321426,
+      "mean_hellinger_to_ordinary": 0.0035284714914496198,
+      "mean_ordinary_loglik_gap": 7.8632995503184135,
+      "mean_logfit_sq_sum": 13.391876560881297,
+      "mean_support_difference": -0.65,
+      "fraction_same_support_as_ordinary": 0.2,
+      "max_kkt_gap": 7.076929253724273e-07
+    },
+    {
+      "scenario": "square_2d",
+      "n": 1000,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0132305756271252,
+      "mean_paired_excess_risk": 5.563372312635758e-05,
+      "se_paired_excess_risk": 2.646385750244746e-05,
+      "mean_hellinger_to_ordinary": 2.8206686949977358e-05,
+      "mean_ordinary_loglik_gap": 0.06205294733232446,
+      "mean_logfit_sq_sum": 0.10930005149261521,
+      "mean_support_difference": -0.125,
+      "fraction_same_support_as_ordinary": 0.7,
+      "max_kkt_gap": 1.8526120864059688e-06
+    },
+    {
+      "scenario": "square_2d",
+      "n": 1000,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000013368831795,
+      "mean_paired_excess_risk": 5.6215081450656635e-09,
+      "se_paired_excess_risk": 8.942123609754871e-09,
+      "mean_hellinger_to_ordinary": 6.0293534112273304e-12,
+      "mean_ordinary_loglik_gap": 7.744915819785092e-09,
+      "mean_logfit_sq_sum": 2.0332321814318602e-08,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.1577683416419404e-06
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 200,
+      "method": "BB",
+      "risk_ratio_of_means": 1.7522373084704415,
+      "mean_paired_excess_risk": 0.00476405642180151,
+      "se_paired_excess_risk": 0.0004965075805346652,
+      "mean_hellinger_to_ordinary": 0.005472914741126461,
+      "mean_ordinary_loglik_gap": 2.3413475873637335,
+      "mean_logfit_sq_sum": 4.342399367861039,
+      "mean_support_difference": -0.09,
+      "fraction_same_support_as_ordinary": 0.69,
+      "max_kkt_gap": 1.8915938237995533e-07
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 200,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0029119031085416,
+      "mean_paired_excess_risk": 1.844161483045803e-05,
+      "se_paired_excess_risk": 7.00033075130127e-05,
+      "mean_hellinger_to_ordinary": 0.00013971581340481936,
+      "mean_ordinary_loglik_gap": 0.059120081226616286,
+      "mean_logfit_sq_sum": 0.1074894781877997,
+      "mean_support_difference": -0.06,
+      "fraction_same_support_as_ordinary": 0.9,
+      "max_kkt_gap": 6.545696384918642e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 200,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 0.9999846702213051,
+      "mean_paired_excess_risk": -9.70862915389742e-08,
+      "se_paired_excess_risk": 1.919937824909155e-07,
+      "mean_hellinger_to_ordinary": 7.954284897556e-10,
+      "mean_ordinary_loglik_gap": 3.3507822138290067e-07,
+      "mean_logfit_sq_sum": 6.149684702338784e-07,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 9.377369436514017e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 500,
+      "method": "BB",
+      "risk_ratio_of_means": 1.9703798049704144,
+      "mean_paired_excess_risk": 0.0027047331580377443,
+      "se_paired_excess_risk": 0.00029898911896818973,
+      "mean_hellinger_to_ordinary": 0.0027487119914534185,
+      "mean_ordinary_loglik_gap": 2.86069159202527,
+      "mean_logfit_sq_sum": 5.245621925678469,
+      "mean_support_difference": -0.07,
+      "fraction_same_support_as_ordinary": 0.59,
+      "max_kkt_gap": 5.753558030008322e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 500,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0189867631150977,
+      "mean_paired_excess_risk": 5.2921678190508984e-05,
+      "se_paired_excess_risk": 3.1446642031778216e-05,
+      "mean_hellinger_to_ordinary": 4.56579069177963e-05,
+      "mean_ordinary_loglik_gap": 0.04752722465587677,
+      "mean_logfit_sq_sum": 0.08909437823299093,
+      "mean_support_difference": 0.01,
+      "fraction_same_support_as_ordinary": 0.93,
+      "max_kkt_gap": 3.19587763808471e-07
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 500,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000009548725353,
+      "mean_paired_excess_risk": 2.661509849016244e-09,
+      "se_paired_excess_risk": 1.7925982025172504e-08,
+      "mean_hellinger_to_ordinary": 2.1921632389400924e-11,
+      "mean_ordinary_loglik_gap": 2.2530082333105385e-08,
+      "mean_logfit_sq_sum": 4.237407121135358e-08,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 5.3257218857183375e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 1000,
+      "method": "BB",
+      "risk_ratio_of_means": 1.9225932692479653,
+      "mean_paired_excess_risk": 0.0014410254676555817,
+      "se_paired_excess_risk": 0.00014269521674436608,
+      "mean_hellinger_to_ordinary": 0.0014804696634991873,
+      "mean_ordinary_loglik_gap": 3.078229564232865,
+      "mean_logfit_sq_sum": 5.706655294290265,
+      "mean_support_difference": -0.15,
+      "fraction_same_support_as_ordinary": 0.58,
+      "max_kkt_gap": 7.471256657787252e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 1000,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.020291525151449,
+      "mean_paired_excess_risk": 3.169392786124098e-05,
+      "se_paired_excess_risk": 1.288581036946023e-05,
+      "mean_hellinger_to_ordinary": 1.7742650018047848e-05,
+      "mean_ordinary_loglik_gap": 0.0366882163593345,
+      "mean_logfit_sq_sum": 0.06936656881688101,
+      "mean_support_difference": -0.04,
+      "fraction_same_support_as_ordinary": 0.89,
+      "max_kkt_gap": 1.4712067364364145e-07
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 1000,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 0.9999914396405417,
+      "mean_paired_excess_risk": -1.337067633500218e-08,
+      "se_paired_excess_risk": 3.5365017129845e-09,
+      "mean_hellinger_to_ordinary": 1.3728247668658134e-12,
+      "mean_ordinary_loglik_gap": 2.7578926165006124e-09,
+      "mean_logfit_sq_sum": 5.45154742356888e-09,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.8003882207295876e-07
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 2000,
+      "method": "BB",
+      "risk_ratio_of_means": 2.1902608677001676,
+      "mean_paired_excess_risk": 0.0008213409362565915,
+      "se_paired_excess_risk": 7.952581559302578e-05,
+      "mean_hellinger_to_ordinary": 0.0006890622684687529,
+      "mean_ordinary_loglik_gap": 2.880455142124256,
+      "mean_logfit_sq_sum": 5.365680364374572,
+      "mean_support_difference": -0.05,
+      "fraction_same_support_as_ordinary": 0.59,
+      "max_kkt_gap": 3.2957536477695726e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 2000,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0011230675285512,
+      "mean_paired_excess_risk": 7.749740921599545e-07,
+      "se_paired_excess_risk": 6.3842662820521614e-06,
+      "mean_hellinger_to_ordinary": 8.311053729258634e-06,
+      "mean_ordinary_loglik_gap": 0.03449451860486984,
+      "mean_logfit_sq_sum": 0.06538426091477971,
+      "mean_support_difference": 0.02,
+      "fraction_same_support_as_ordinary": 0.98,
+      "max_kkt_gap": 9.43680320553142e-08
+    },
+    {
+      "scenario": "three_point_1d",
+      "n": 2000,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000004335967037,
+      "mean_paired_excess_risk": 2.9920392432322e-10,
+      "se_paired_excess_risk": 6.013157890185275e-10,
+      "mean_hellinger_to_ordinary": 1.7137561590091776e-13,
+      "mean_ordinary_loglik_gap": 2.650722308317199e-10,
+      "mean_logfit_sq_sum": 1.3089129422527036e-09,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.3096265139012078e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 200,
+      "method": "BB",
+      "risk_ratio_of_means": 1.5989669858056859,
+      "mean_paired_excess_risk": 0.003631490437514201,
+      "se_paired_excess_risk": 0.000515496642166597,
+      "mean_hellinger_to_ordinary": 0.005098956414704607,
+      "mean_ordinary_loglik_gap": 2.1361195702546785,
+      "mean_logfit_sq_sum": 4.005461036386309,
+      "mean_support_difference": -0.16,
+      "fraction_same_support_as_ordinary": 0.65,
+      "max_kkt_gap": 9.075791851387295e-08
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 200,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0200671604955618,
+      "mean_paired_excess_risk": 0.00012166563963399598,
+      "se_paired_excess_risk": 7.405640582187073e-05,
+      "mean_hellinger_to_ordinary": 0.00014400957054443807,
+      "mean_ordinary_loglik_gap": 0.06065966898468385,
+      "mean_logfit_sq_sum": 0.10950492868591485,
+      "mean_support_difference": 0.01,
+      "fraction_same_support_as_ordinary": 0.95,
+      "max_kkt_gap": 1.600550940672463e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 200,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000177565600707,
+      "mean_paired_excess_risk": 1.0765664824498657e-07,
+      "se_paired_excess_risk": 1.7046399450160713e-07,
+      "mean_hellinger_to_ordinary": 8.008858856601932e-10,
+      "mean_ordinary_loglik_gap": 3.330463067641176e-07,
+      "mean_logfit_sq_sum": 6.094639154154081e-07,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.44764552123533e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 500,
+      "method": "BB",
+      "risk_ratio_of_means": 1.6057862048527474,
+      "mean_paired_excess_risk": 0.001546923325236939,
+      "se_paired_excess_risk": 0.00020771910107221931,
+      "mean_hellinger_to_ordinary": 0.00223358174806923,
+      "mean_ordinary_loglik_gap": 2.3548222747441216,
+      "mean_logfit_sq_sum": 4.459246670590991,
+      "mean_support_difference": -0.14,
+      "fraction_same_support_as_ordinary": 0.59,
+      "max_kkt_gap": 1.339491986218633e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 500,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0144351590731886,
+      "mean_paired_excess_risk": 3.6861328460342026e-05,
+      "se_paired_excess_risk": 2.722222382914456e-05,
+      "mean_hellinger_to_ordinary": 4.416193882416524e-05,
+      "mean_ordinary_loglik_gap": 0.04552942437695602,
+      "mean_logfit_sq_sum": 0.08525462500573429,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 0.95,
+      "max_kkt_gap": 6.4781230157962e-08
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 500,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000017201022064,
+      "mean_paired_excess_risk": 4.392417991040958e-09,
+      "se_paired_excess_risk": 2.1884013835744053e-08,
+      "mean_hellinger_to_ordinary": 2.1041805297817097e-11,
+      "mean_ordinary_loglik_gap": 2.1940346641713403e-08,
+      "mean_logfit_sq_sum": 4.106044935595176e-08,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.876471109607536e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 1000,
+      "method": "BB",
+      "risk_ratio_of_means": 1.810505682487723,
+      "mean_paired_excess_risk": 0.0012702814804269652,
+      "se_paired_excess_risk": 0.00012752662429977996,
+      "mean_hellinger_to_ordinary": 0.0014117625763047275,
+      "mean_ordinary_loglik_gap": 2.9343013078160993,
+      "mean_logfit_sq_sum": 5.527262842091643,
+      "mean_support_difference": -0.16,
+      "fraction_same_support_as_ordinary": 0.64,
+      "max_kkt_gap": 1.3175509994134418e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 1000,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.005810100505721,
+      "mean_paired_excess_risk": 9.105997935983996e-06,
+      "se_paired_excess_risk": 1.414393167787811e-05,
+      "mean_hellinger_to_ordinary": 2.0534623841220906e-05,
+      "mean_ordinary_loglik_gap": 0.04291995781935608,
+      "mean_logfit_sq_sum": 0.08083111892189768,
+      "mean_support_difference": -0.04,
+      "fraction_same_support_as_ordinary": 0.92,
+      "max_kkt_gap": 3.3345276606588925e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 1000,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.0000016895427628,
+      "mean_paired_excess_risk": 2.647970184993585e-09,
+      "se_paired_excess_risk": 3.5575914343592376e-09,
+      "mean_hellinger_to_ordinary": 1.6258275519484427e-12,
+      "mean_ordinary_loglik_gap": 2.899942046497017e-09,
+      "mean_logfit_sq_sum": 6.049470369944505e-09,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 1.552652055814008e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 2000,
+      "method": "BB",
+      "risk_ratio_of_means": 1.9604939728418511,
+      "mean_paired_excess_risk": 0.0006724128423721719,
+      "se_paired_excess_risk": 6.566319405318026e-05,
+      "mean_hellinger_to_ordinary": 0.0006855255020699459,
+      "mean_ordinary_loglik_gap": 2.848825091302115,
+      "mean_logfit_sq_sum": 5.407700370678008,
+      "mean_support_difference": -0.22,
+      "fraction_same_support_as_ordinary": 0.56,
+      "max_kkt_gap": 1.2128647663978145e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 2000,
+      "method": "RR-balanced",
+      "risk_ratio_of_means": 1.0194566377729835,
+      "mean_paired_excess_risk": 1.3621004897332994e-05,
+      "se_paired_excess_risk": 5.1094607697015096e-06,
+      "mean_hellinger_to_ordinary": 8.94709123704746e-06,
+      "mean_ordinary_loglik_gap": 0.03702275078087492,
+      "mean_logfit_sq_sum": 0.06942124153615065,
+      "mean_support_difference": -0.05,
+      "fraction_same_support_as_ordinary": 0.93,
+      "max_kkt_gap": 1.1260445020866429e-07
+    },
+    {
+      "scenario": "uniform_1d",
+      "n": 2000,
+      "method": "RR-tiny",
+      "risk_ratio_of_means": 1.000002499532698,
+      "mean_paired_excess_risk": 1.7498474050004182e-09,
+      "se_paired_excess_risk": 6.820871736096523e-10,
+      "mean_hellinger_to_ordinary": 1.4332758272927909e-13,
+      "mean_ordinary_loglik_gap": 3.389823177712969e-10,
+      "mean_logfit_sq_sum": 1.0276547701840423e-09,
+      "mean_support_difference": 0.0,
+      "fraction_same_support_as_ordinary": 1.0,
+      "max_kkt_gap": 3.00579847678506e-07
+    }
+  ]
+}

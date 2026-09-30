@@ -1,0 +1,802 @@
+@ReweightedNPMLE.gammaWeight_normalize_total_joint_law : ∀ {n : ℕ},
+  0 < n →
+    ∀ {α : ℝ},
+      0 < α →
+        MeasureTheory.Measure.map (fun (w : Fin n → ℝ) => (ReweightedNPMLE.normalize w, ReweightedNPMLE.total w))
+            (ReweightedNPMLE.gammaWeightMeasure n α) =
+          (ReweightedNPMLE.symmetricDirichletMeasure n α).prod (ProbabilityTheory.gammaMeasure (↑n * α) α)
+@ReweightedNPMLE.gammaWeight_normalize_indep_total : ∀ {n : ℕ},
+  0 < n →
+    ∀ {α : ℝ},
+      0 < α →
+        ProbabilityTheory.IndepFun ReweightedNPMLE.normalize ReweightedNPMLE.total
+          (ReweightedNPMLE.gammaWeightMeasure n α)
+@ReweightedNPMLE.symmetricDirichlet_weighted_empirical_mean : ∀ {n : ℕ},
+  0 < n →
+    ∀ {α : ℝ},
+      0 < α →
+        ∀ (h : Fin n → ℝ),
+          ∫ (p : Fin n → ℝ), ∑ i : Fin n, p i * h i ∂ReweightedNPMLE.symmetricDirichletMeasure n α =
+            ReweightedNPMLE.empiricalMean h
+@ReweightedNPMLE.symmetricDirichlet_weighted_empirical_variance : ∀ {n : ℕ},
+  0 < n →
+    ∀ {α : ℝ},
+      0 < α →
+        ∀ (h : Fin n → ℝ),
+          ∫ (p : Fin n → ℝ),
+              (∑ i : Fin n, p i * h i - ReweightedNPMLE.empiricalMean h) ^
+                2 ∂ReweightedNPMLE.symmetricDirichletMeasure n α =
+            (ReweightedNPMLE.empiricalSecondMoment h - ReweightedNPMLE.empiricalMean h ^ 2) / (↑n * α + 1)
+@ReweightedNPMLE.empiricalDirichlet_expected_tv_le : ∀ {X : Type u_1} {n : ℕ} (x : Fin n → X),
+  0 < n →
+    ∀ {α : ℝ},
+      0 < α →
+        ∫ (p : Fin n → ℝ), ReweightedNPMLE.empiricalDirichletTV x p ∂ReweightedNPMLE.symmetricDirichletMeasure n α ≤
+          1 / 2 * √((↑n - 1) / (↑n * α + 1))
+@ReweightedNPMLE.empiricalDirichletTV_eq_half_sum_actual_atom_mass_differences : ∀ {X : Type u_1}
+  [inst : MeasurableSpace X] [MeasurableSingletonClass X] [DecidableEq X] {n : ℕ} (x : Fin n → X),
+  0 < n →
+    ∀ (p : Fin n → ℝ) (hp : p ∈ ReweightedNPMLE.finiteSimplex n),
+      ∃ (hUniform : (fun (x : Fin n) => 1 / ↑n) ∈ ReweightedNPMLE.finiteSimplex n),
+        ReweightedNPMLE.empiricalDirichletTV x p =
+          1 / 2 *
+            ∑ y ∈ ReweightedNPMLE.empiricalObservationSet x,
+              |(↑(ReweightedNPMLE.finiteProbabilityMeasure x p hp)).real {y} -
+                  (↑(ReweightedNPMLE.finiteProbabilityMeasure x (fun (x : Fin n) => 1 / ↑n) hUniform)).real {y}|
+@ReweightedNPMLE.compactGaussianMixture_unchanged_population_criterion : ∀ {d n : ℕ}
+  {K : Set (ReweightedNPMLE.Point d)},
+  0 < n →
+    ∀ {α : ℝ},
+      0 < α →
+        ∀ (Gstar G : MeasureTheory.ProbabilityMeasure ↑K),
+          MeasureTheory.Integrable
+              (fun (x : ReweightedNPMLE.Point d) => Real.log (ReweightedNPMLE.compactGaussianMixtureDensity G x))
+              (ReweightedNPMLE.gaussianLocationMixtureLaw ↑Gstar fun (a : ↑K) => ↑a) →
+            (∫ (p : ReweightedNPMLE.GaussianDataWeight d n),
+                  (∑ i : Fin n, p.2 i * Real.log (ReweightedNPMLE.compactGaussianMixtureDensity G (p.1 i))) /
+                    ↑n ∂ReweightedNPMLE.gaussianDataWeightMeasure Gstar n α =
+                ∫ (x : ReweightedNPMLE.Point d),
+                  Real.log
+                    (ReweightedNPMLE.compactGaussianMixtureDensity G
+                      x) ∂ReweightedNPMLE.gaussianLocationMixtureLaw ↑Gstar fun (a : ↑K) => ↑a) ∧
+              ∫ (p : ReweightedNPMLE.GaussianDataWeight d n),
+                  ∑ i : Fin n,
+                    ReweightedNPMLE.normalize p.2 i *
+                      Real.log
+                        (ReweightedNPMLE.compactGaussianMixtureDensity G
+                          (p.1 i)) ∂ReweightedNPMLE.gaussianDataWeightMeasure Gstar n α =
+                ∫ (x : ReweightedNPMLE.Point d),
+                  Real.log
+                    (ReweightedNPMLE.compactGaussianMixtureDensity G
+                      x) ∂ReweightedNPMLE.gaussianLocationMixtureLaw ↑Gstar fun (a : ↑K) => ↑a
+@ReweightedNPMLE.compactGaussianMixture_population_gap_eq_klDiv : ∀ {d : ℕ} {K : Set (ReweightedNPMLE.Point d)}
+  (Gstar G : MeasureTheory.ProbabilityMeasure ↑K) {S : ℝ},
+  0 ≤ S →
+    (∀ a ∈ K, ‖a‖ ≤ S) →
+      MeasureTheory.Integrable
+          (fun (x : ReweightedNPMLE.Point d) => Real.log (ReweightedNPMLE.compactGaussianMixtureDensity G x))
+          (ReweightedNPMLE.gaussianLocationMixtureLaw ↑Gstar fun (a : ↑K) => ↑a) →
+        have ρ := ReweightedNPMLE.gaussianLocationMixtureLaw ↑Gstar fun (a : ↑K) => ↑a;
+        have σ := ReweightedNPMLE.gaussianLocationMixtureLaw ↑G fun (a : ↑K) => ↑a;
+        have gap :=
+          ∫ (x : ReweightedNPMLE.Point d), Real.log (ReweightedNPMLE.compactGaussianMixtureDensity Gstar x) ∂ρ -
+            ∫ (x : ReweightedNPMLE.Point d), Real.log (ReweightedNPMLE.compactGaussianMixtureDensity G x) ∂ρ;
+        gap = (InformationTheory.klDiv ρ σ).toReal ∧ 0 ≤ gap ∧ (gap = 0 ↔ ρ = σ)
+@ReweightedNPMLE.gaussian_exact_regularization_main : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ (C : ℝ),
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in Filter.atTop,
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                          ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                            MeasurableSet G ∧
+                              (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                        (ReweightedNPMLE.gaussianPaperBalancedShape d n)).real
+                                    Gᶜ ≤
+                                  C * ↑n ^ (-b) ∧
+                                ∀ p ∈ G,
+                                  (∀ (i : Fin n),
+                                      |p.2 i - 1| ≤ C / √(ReweightedNPMLE.gaussianPaperAugmentedDimension d n)) ∧
+                                    p.2 ∈ ReweightedNPMLE.positiveVectors n ∧
+                                      ∃ (μ : MeasureTheory.ProbabilityMeasure ↑K),
+                                        ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p = {μ} ∧
+                                          (↑μ).support.Finite ∧
+                                            ↑(↑μ).support.ncard ≤
+                                                C * ReweightedNPMLE.gaussianPaperAugmentedDimension d n ∧
+                                              (∀
+                                                  μ₀ ∈
+                                                    ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a)
+                                                      (p.1, 1),
+                                                  0 ≤
+                                                      ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                        (p, μ, μ₀) ∧
+                                                    ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                          (p, μ, μ₀) ≤
+                                                        C / Real.log ↑n ∧
+                                                      ReweightedNPMLE.gaussianSquaredLogRatioGap (fun (a : ↑K) => ↑a)
+                                                          (p, μ, μ₀) ≤
+                                                        C / Real.log ↑n) ∧
+                                                ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                                  C * ReweightedNPMLE.gaussianPaperRiskScale d n
+@ReweightedNPMLE.gaussian_main_support_dimension_refinements : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ (C : ℝ),
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in Filter.atTop,
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                          ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                            MeasurableSet G ∧
+                              (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                        (ReweightedNPMLE.gaussianPaperBalancedShape d n)).real
+                                    Gᶜ ≤
+                                  C * ↑n ^ (-b) ∧
+                                ∀ p ∈ G,
+                                  ∃ (μ : MeasureTheory.ProbabilityMeasure ↑K),
+                                    ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p = {μ} ∧
+                                      (↑μ).support.Finite ∧
+                                        ↑(↑μ).support.ncard ≤ C * ReweightedNPMLE.gaussianPaperSupportOrder d n
+@ReweightedNPMLE.gaussian_exact_regularization_joint_tiny_explicit : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b L : ℝ},
+            0 ≤ S →
+              0 ≤ b →
+                0 < L →
+                  (∀ u ∈ K, ‖u‖ ≤ S) →
+                    ∀ᶠ (n : ℕ) in Filter.atTop,
+                      ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                        ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                          MeasurableSet G ∧
+                            (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n (↑n ^ (2 * L + 2))).real Gᶜ ≤
+                                (4 * ↑d + 5) * ↑n ^ (-(b + 2)) ∧
+                              ∀ p ∈ G,
+                                (∀ (i : Fin n), |p.2 i - 1| ≤ ↑n ^ (-L)) ∧
+                                  p.2 ∈ ReweightedNPMLE.positiveVectors n ∧
+                                    ∃ (μ : MeasureTheory.ProbabilityMeasure ↑K),
+                                      ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p = {μ} ∧
+                                        (↑μ).support.Finite ∧
+                                          ↑(↑μ).support.ncard ≤
+                                              ReweightedNPMLE.gaussianPaperSupportConstant d (8 * (2 * L + 6)) b *
+                                                ReweightedNPMLE.gaussianPaperAugmentedDimension d n ∧
+                                            ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                                (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                              ReweightedNPMLE.gaussianPaperRateConstant d b *
+                                                    ReweightedNPMLE.gaussianPaperLogScale n ^ d *
+                                                  Real.log ↑n /
+                                                ↑n
+@ReweightedNPMLE.gaussian_exact_regularization_tiny : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b L : ℝ},
+            0 ≤ S →
+              0 < b →
+                0 < L →
+                  (∀ u ∈ K, ‖u‖ ≤ S) →
+                    ∃ (C : ℝ),
+                      0 < C ∧
+                        ∀ᶠ (n : ℕ) in Filter.atTop,
+                          ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                            ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                              MeasurableSet G ∧
+                                (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n (↑n ^ (2 * L + 2))).real Gᶜ ≤
+                                    C * ↑n ^ (-b) ∧
+                                  ∀ p ∈ G,
+                                    (∀ (i : Fin n), |p.2 i - 1| ≤ ↑n ^ (-L)) ∧
+                                      p.2 ∈ ReweightedNPMLE.positiveVectors n ∧
+                                        ∃ (μ : MeasureTheory.ProbabilityMeasure ↑K),
+                                          ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p = {μ} ∧
+                                            (↑μ).support.Finite ∧
+                                              ↑(↑μ).support.ncard ≤
+                                                  C * ReweightedNPMLE.gaussianPaperAugmentedDimension d n ∧
+                                                ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                                  C * ReweightedNPMLE.gaussianPaperRiskScale d n
+@ReweightedNPMLE.gaussian_reweighted_optimizer_weak_consistency : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S : ℝ},
+            0 ≤ S →
+              (∀ u ∈ K, ‖u‖ ≤ S) →
+                ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K)
+                  (Ghat : (n : ℕ) → ReweightedNPMLE.GaussianDataWeight d n → MeasureTheory.ProbabilityMeasure ↑K),
+                  (∀ (n : ℕ) (p : ReweightedNPMLE.GaussianDataWeight d n),
+                      p.2 ∈ ReweightedNPMLE.positiveVectors n →
+                        Ghat n p ∈ ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p) →
+                    ∀ U ∈ nhds Gstar,
+                      Filter.Tendsto
+                        (fun (n : ℕ) =>
+                          (ReweightedNPMLE.gaussianBalancedExperimentMeasure Gstar n).real
+                            {p : ReweightedNPMLE.GaussianDataWeight d n | Ghat n p ∉ U})
+                        Filter.atTop (nhds 0)
+@ReweightedNPMLE.effective_dimension_full_support : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [inst_1 : CompactSpace Θ]
+  [inst_2 : Nonempty Θ] [inst_3 : MeasurableSpace Θ] [BorelSpace Θ] {n r : ℕ} [Nonempty (Fin n)] {α q η : ℝ},
+  1 ≤ q →
+    0 ≤ η →
+      10000000 * (↑r + ReweightedNPMLE.effectiveQ n q) ≤ α →
+        η * √(α * ↑n * ReweightedNPMLE.effectiveQ n q) ≤ 1 →
+          ∀ (A : Θ → Fin n → ℝ) (hA : Continuous A) (hApos : ∀ (θ : Θ) (i : Fin n), 0 < A θ i)
+            (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))),
+            Module.finrank ℝ ↥V ≤ r →
+              (∀
+                  u ∈
+                    ReweightedNPMLE.relativeFittedSet ((convexHull ℝ) (Set.range A))
+                      (ReweightedNPMLE.fittedValueSelection ((convexHull ℝ) (Set.range A)) ⋯ ⋯ ⋯ 1),
+                  ‖WithLp.toLp 2 u - V.starProjection (WithLp.toLp 2 u)‖ ≤ η) →
+                let C := (convexHull ℝ) (Set.range A);
+                have vhat := ReweightedNPMLE.fittedValueSelection C ⋯ ⋯ ⋯;
+                have v₀ := vhat 1;
+                Measurable (ReweightedNPMLE.maximumExtremeSupport A vhat) ∧
+                  ∃ (G : Set (Fin n → ℝ)),
+                    MeasurableSet G ∧
+                      (ReweightedNPMLE.gammaProductMeasure n α α).real Gᶜ ≤ 3 * Real.exp (-q) ∧
+                        ∀ w ∈ G,
+                          (∀ (i : Fin n), |w i - 1| ≤ 2 * √(ReweightedNPMLE.effectiveQ n q / α)) ∧
+                            w ∈ ReweightedNPMLE.positiveVectors n ∧
+                              ↑(ReweightedNPMLE.maximumExtremeSupport A vhat w) ≤ 10000000 * (↑r + q) ∧
+                                (0 < ReweightedNPMLE.maximumExtremeSupport A vhat w ∧
+                                    ReweightedNPMLE.maximumExtremeSupport A vhat w ≤ n ∧
+                                      ∃ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                                        ReweightedNPMLE.IsExtremeProbabilityMixture A (vhat w) μ ∧
+                                          (↑μ).support.ncard = ReweightedNPMLE.maximumExtremeSupport A vhat w) ∧
+                                  (∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                                      ReweightedNPMLE.IsExtremeProbabilityMixture A (vhat w) μ →
+                                        (↑μ).support.Finite ∧ ↑(↑μ).support.ncard ≤ 10000000 * (↑r + q)) ∧
+                                    0 ≤
+                                        ReweightedNPMLE.weightedLogLikelihood 1 v₀ -
+                                          ReweightedNPMLE.weightedLogLikelihood 1 (vhat w) ∧
+                                      ReweightedNPMLE.weightedLogLikelihood 1 v₀ -
+                                            ReweightedNPMLE.weightedLogLikelihood 1 (vhat w) ≤
+                                          10000000 * (↑r + q) / α ∧
+                                        ∑ i : Fin n, ReweightedNPMLE.fittedLogRatio v₀ (vhat w) i ^ 2 ≤
+                                            10000000 * (↑r + q) / α ∧
+                                          ∀ (τ : ℝ),
+                                            0 ≤ τ →
+                                              τ < 1 / 3072 →
+                                                ∀ v ∈ C,
+                                                  ReweightedNPMLE.weightedLogLikelihood w (vhat w) - τ ≤
+                                                      ReweightedNPMLE.weightedLogLikelihood w v →
+                                                    0 ≤
+                                                        ReweightedNPMLE.weightedLogLikelihood 1 v₀ -
+                                                          ReweightedNPMLE.weightedLogLikelihood 1 v ∧
+                                                      ReweightedNPMLE.weightedLogLikelihood 1 v₀ -
+                                                            ReweightedNPMLE.weightedLogLikelihood 1 v ≤
+                                                          10000000 * ((↑r + q) / α + τ) ∧
+                                                        ∑ i : Fin n, ReweightedNPMLE.fittedLogRatio v₀ v i ^ 2 ≤
+                                                          10000000 * ((↑r + q) / α + τ)
+@ReweightedNPMLE.full_support_sensitivity_ae : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [CompactSpace Θ]
+  [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ (C : Set (Fin n → ℝ)),
+      Convex ℝ C →
+        ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n),
+          Set.range A ⊆ C →
+            C ⊆ (convexHull ℝ) (Set.range A) →
+              have vhat := ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos;
+              have z := ReweightedNPMLE.fittedLogSelection C hCcompact hCnonempty hCpos;
+              ∀ᵐ (w : Fin n → ℝ),
+                w ∈ ReweightedNPMLE.positiveVectors n →
+                  have J := fderiv ℝ z w;
+                  have H := ReweightedNPMLE.fittedLogDerivativeMatrix J;
+                  have D := Matrix.diagonal fun (i : Fin n) => √(w i);
+                  HasFDerivAt (fderiv ℝ (ReweightedNPMLE.fittedOptimalValue vhat))
+                      (ReweightedNPMLE.fittedSecondDerivativeOfLogDerivative J) w ∧
+                    (∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                        ReweightedNPMLE.IsExtremeProbabilityMixture A (vhat w) μ →
+                          ∃ (P : Matrix (Fin n) (Fin n) ℝ),
+                            P.IsHermitian ∧ P * P = P ∧ P.rank = (↑μ).support.ncard - 1 ∧ (D * H * D - P).PosSemidef) ∧
+                      ∃ (P : Matrix (Fin n) (Fin n) ℝ),
+                        P.IsHermitian ∧
+                          P * P = P ∧
+                            P.rank = ReweightedNPMLE.maximumExtremeSupport A vhat w - 1 ∧ (D * H * D - P).PosSemidef
+@ReweightedNPMLE.gaussian_probability_relative_width_bound : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [CompactSpace Θ]
+  [Nonempty Θ] [inst_3 : MeasurableSpace Θ] [BorelSpace Θ] {d n : ℕ} (L : ℕ) (x : Fin n → ReweightedNPMLE.Point d)
+  (θ : Θ → ReweightedNPMLE.Point d),
+  Continuous θ →
+    ∀ (μ₀ : MeasureTheory.ProbabilityMeasure Θ) {T S : ℝ},
+      0 ≤ T →
+        0 ≤ S →
+          (∀ (i : Fin n), ‖x i‖ ≤ T) →
+            (∀ (a : Θ), ‖θ a‖ ≤ S) →
+              ∃ (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))),
+                Module.finrank ℝ ↥V ≤ 1 + (L + d).choose d ∧
+                  (WithLp.toLp 2 fun (x : Fin n) => 1) ∈ V ∧
+                    ∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                      have u :=
+                        WithLp.toLp 2 fun (i : Fin n) =>
+                          ReweightedNPMLE.gaussianMixture (↑μ) θ (x i) / ReweightedNPMLE.gaussianMixture (↑μ₀) θ (x i) -
+                            1;
+                      ‖u - V.starProjection u‖ ≤ ReweightedNPMLE.gaussianTaylorResidual n T S L
+@ReweightedNPMLE.gaussianTaylorResidual_eq_zero_of_mul_eq_zero : ∀ {n L : ℕ} {T S : ℝ},
+  T * S = 0 → ReweightedNPMLE.gaussianTaylorResidual n T S L = 0
+@ReweightedNPMLE.gaussian_conditional_structural_and_likelihood_bounds : ∀ {Θ : Type u_1} [inst : MetricSpace Θ]
+  [inst_1 : CompactSpace Θ] [inst_2 : Nonempty Θ] [inst_3 : MeasurableSpace Θ] [inst_4 : BorelSpace Θ] {d : ℕ},
+  0 < d →
+    ∀ {S b C₀ : ℝ},
+      0 ≤ S →
+        0 < b →
+          ∀ (θ : Θ → ReweightedNPMLE.Point d) (hθ : Continuous θ),
+            (∀ (a : Θ), ‖θ a‖ ≤ S) →
+              ∃ (C : ℝ),
+                0 < C ∧
+                  ∀ᶠ (n : ℕ) in Filter.atTop,
+                    ∀ (x : Fin n → ReweightedNPMLE.Point d),
+                      (∀ (i : Fin n), ‖x i‖ ≤ C₀ * √(Real.log ↑n)) →
+                        ∃ (G : Set (Fin n → ℝ)),
+                          MeasurableSet G ∧
+                            (ReweightedNPMLE.gammaProductMeasure n (ReweightedNPMLE.gaussianPaperBalancedShape d n)
+                                      (ReweightedNPMLE.gaussianPaperBalancedShape d n)).real
+                                  Gᶜ ≤
+                                C * ↑n ^ (-b) ∧
+                              ∀ w ∈ G,
+                                w ∈ ReweightedNPMLE.positiveVectors n ∧
+                                  ↑(ReweightedNPMLE.gaussianMaximumExtremeSupport θ hθ x w) ≤
+                                      C * ReweightedNPMLE.gaussianPaperAugmentedDimension d n ∧
+                                    (∀ (i : Fin n),
+                                        |w i - 1| ≤ C / √(ReweightedNPMLE.gaussianPaperAugmentedDimension d n)) ∧
+                                      ∀ μw ∈ ReweightedNPMLE.gaussianProbabilityOptimizerSet θ (x, w),
+                                        ∀ μ₀ ∈ ReweightedNPMLE.gaussianProbabilityOptimizerSet θ (x, 1),
+                                          0 ≤ ReweightedNPMLE.gaussianOrdinaryLikelihoodGap θ ((x, w), μw, μ₀) ∧
+                                            ReweightedNPMLE.gaussianOrdinaryLikelihoodGap θ ((x, w), μw, μ₀) ≤
+                                                C / Real.log ↑n ∧
+                                              ReweightedNPMLE.gaussianSquaredLogRatioGap θ ((x, w), μw, μ₀) ≤
+                                                C / Real.log ↑n
+ReweightedNPMLE.gaussian_generic_evaluation_independence : ∀ (n d : ℕ),
+  ∃ (X : Set (Fin n → ReweightedNPMLE.Point d)),
+    MeasurableSet X ∧
+      MeasureTheory.volume Xᶜ = 0 ∧
+        ∀ x ∈ X,
+          ∀ (k : ℕ),
+            k * (d + 1) ≤ n →
+              ∀ (θ : Fin k → ReweightedNPMLE.Point d),
+                Function.Injective θ →
+                  LinearIndependent ℝ fun (j : Fin k) (i : Fin n) => ReweightedNPMLE.gaussianKernel d (x i) (θ j)
+ReweightedNPMLE.gaussian_generic_optimizer_fiber_uniqueness : ∀ (n d : ℕ) [Nonempty (Fin n)],
+  ∃ (X : Set (Fin n → ReweightedNPMLE.Point d)),
+    MeasurableSet X ∧
+      MeasureTheory.volume Xᶜ = 0 ∧
+        ∀ x ∈ X,
+          ∀ (Θ : Type) [inst : MetricSpace Θ] [CompactSpace Θ] [inst_2 : MeasurableSpace Θ] [BorelSpace Θ]
+            (θ : Θ → ReweightedNPMLE.Point d),
+            Continuous θ →
+              Function.Injective θ →
+                ∀ (m : ℕ) (w v : Fin n → ℝ),
+                  w ∈ ReweightedNPMLE.positiveVectors n →
+                    ReweightedNPMLE.IsMaxOn
+                        ((convexHull ℝ) (Set.range fun (a : Θ) => ReweightedNPMLE.gaussianScoreFeature x (θ a)))
+                        (ReweightedNPMLE.weightedLogLikelihood w) v →
+                      2 * m * (d + 1) ≤ n →
+                        (∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                            ReweightedNPMLE.IsExtremeProbabilityMixture
+                                (fun (a : Θ) => ReweightedNPMLE.gaussianScoreFeature x (θ a)) v μ →
+                              (↑μ).support.ncard ≤ m) →
+                          ∃ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                            ReweightedNPMLE.probabilityMixtureFiber
+                                  (fun (a : Θ) (i : Fin n) => ReweightedNPMLE.gaussianKernel d (x i) (θ a))
+                                  ((fun (i : Fin n) => ReweightedNPMLE.gaussianDensity d (x i)) * v) =
+                                {μ} ∧
+                              ReweightedNPMLE.IsExtremeProbabilityMixture
+                                  (fun (a : Θ) (i : Fin n) => ReweightedNPMLE.gaussianKernel d (x i) (θ a))
+                                  ((fun (i : Fin n) => ReweightedNPMLE.gaussianDensity d (x i)) * v) μ ∧
+                                (↑μ).support.Finite ∧ (↑μ).support.ncard ≤ m
+@ReweightedNPMLE.gaussian_uniform_nearMLE_paper_theorem : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ (C : ℝ),
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in Filter.atTop,
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                          ∃ (E : Set (Fin n → ReweightedNPMLE.Point d)),
+                            MeasurableSet E ∧
+                              (ReweightedNPMLE.compactGaussianSampleMeasure Gstar n).real Eᶜ ≤ C * ↑n ^ (-b) ∧
+                                ∀ x ∈ E,
+                                  ∀ (G : MeasureTheory.ProbabilityMeasure ↑K),
+                                    ∑ i : Fin n, Real.log (ReweightedNPMLE.compactGaussianMixtureDensity Gstar (x i)) -
+                                          1 ≤
+                                        ∑ i : Fin n, Real.log (ReweightedNPMLE.compactGaussianMixtureDensity G (x i)) →
+                                      ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                          (ReweightedNPMLE.compactGaussianMixtureDensity G)
+                                          (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                        C * Real.log ↑n ^ (d + 1) / (↑n * Real.log (Real.log ↑n) ^ d)
+@ReweightedNPMLE.gaussian_approximate_optimizer_joint_robustness : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ (C : ℝ),
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in Filter.atTop,
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                          ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                            MeasurableSet G ∧
+                              (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                        (ReweightedNPMLE.gaussianPaperBalancedShape d n)).real
+                                    Gᶜ ≤
+                                  C * ↑n ^ (-b) ∧
+                                ∀ p ∈ G,
+                                  ∀ μw ∈ ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p,
+                                    ∀ (ν : MeasureTheory.ProbabilityMeasure ↑K),
+                                      ReweightedNPMLE.gaussianProbabilityLogLikelihood (fun (a : ↑K) => ↑a) (p, μw) -
+                                            ReweightedNPMLE.gaussianPaperApproxTolerance n ≤
+                                          ReweightedNPMLE.gaussianProbabilityLogLikelihood (fun (a : ↑K) => ↑a) (p, ν) →
+                                        (∀
+                                            μ₀ ∈
+                                              ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a)
+                                                (p.1, 1),
+                                            0 ≤
+                                                ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                  (p, ν, μ₀) ∧
+                                              ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                    (p, ν, μ₀) ≤
+                                                  C / Real.log ↑n ∧
+                                                ReweightedNPMLE.gaussianSquaredLogRatioGap (fun (a : ↑K) => ↑a)
+                                                    (p, ν, μ₀) ≤
+                                                  C / Real.log ↑n) ∧
+                                          ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                              (ReweightedNPMLE.compactGaussianMixtureDensity ν)
+                                              (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                            C * ReweightedNPMLE.gaussianPaperRiskScale d n
+@ReweightedNPMLE.positive_kernel_hull_properties : ∀ {Θ : Type u_1} [inst : TopologicalSpace Θ] [CompactSpace Θ]
+  [Nonempty Θ] {n : ℕ} (A : Θ → Fin n → ℝ),
+  Continuous A →
+    (∀ (θ : Θ) (i : Fin n), 0 < A θ i) →
+      IsCompact ((convexHull ℝ) (Set.range A)) ∧
+        ((convexHull ℝ) (Set.range A)).Nonempty ∧ (convexHull ℝ) (Set.range A) ⊆ ReweightedNPMLE.positiveVectors n
+@ReweightedNPMLE.canonical_fitted_value_convexOn_univ : ∀ {n : ℕ} [Nonempty (Fin n)] (C : Set (Fin n → ℝ))
+  (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n),
+  ConvexOn ℝ Set.univ
+    (ReweightedNPMLE.fittedOptimalValue (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos))
+@ReweightedNPMLE.canonical_fitted_maps_locally_lipschitz : ∀ {n : ℕ} [Nonempty (Fin n)] (C : Set (Fin n → ℝ)),
+  Convex ℝ C →
+    ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n)
+      {w : Fin n → ℝ},
+      w ∈ ReweightedNPMLE.positiveVectors n →
+        ∃ (s : Set (Fin n → ℝ)) (Kv : NNReal) (Kz : NNReal),
+          s ∈ nhds w ∧
+            LipschitzOnWith Kv (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos) s ∧
+              LipschitzOnWith Kz (ReweightedNPMLE.fittedLogSelection C hCcompact hCnonempty hCpos) s
+@ReweightedNPMLE.canonical_fitted_value_contDiffOn_one : ∀ {n : ℕ} [Nonempty (Fin n)] (C : Set (Fin n → ℝ)),
+  Convex ℝ C →
+    ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n),
+      ContDiffOn ℝ 1
+        (ReweightedNPMLE.fittedOptimalValue (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos))
+        (ReweightedNPMLE.positiveVectors n)
+@ReweightedNPMLE.paper_full_optimizer_fiber_geometry : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [inst_1 : CompactSpace Θ]
+  [inst_2 : Nonempty Θ] [inst_3 : MeasurableSpace Θ] [inst_4 : BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)]
+  (A : Θ → Fin n → ℝ) (hA : Continuous A) (hApos : ∀ (θ : Θ) (i : Fin n), 0 < A θ i),
+  let C := (convexHull ℝ) (Set.range A);
+  have v := ReweightedNPMLE.fittedValueSelection C ⋯ ⋯ ⋯;
+  ∀ w ∈ ReweightedNPMLE.positiveVectors n,
+    (ReweightedNPMLE.probabilityMixtureFiber A (v w)).Nonempty ∧
+      IsCompact (ReweightedNPMLE.probabilityMixtureFiber A (v w)) ∧
+        (∀ (a b : NNReal) (hab : a + b = 1) (μ ν : MeasureTheory.ProbabilityMeasure Θ),
+            μ ∈ ReweightedNPMLE.probabilityMixtureFiber A (v w) →
+              ν ∈ ReweightedNPMLE.probabilityMixtureFiber A (v w) →
+                ReweightedNPMLE.probabilityConvexCombination a b hab μ ν ∈
+                  ReweightedNPMLE.probabilityMixtureFiber A (v w)) ∧
+          ∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+            ReweightedNPMLE.IsMaxOn Set.univ
+                (fun (ν : MeasureTheory.ProbabilityMeasure Θ) =>
+                  ReweightedNPMLE.weightedLogLikelihood w (ReweightedNPMLE.probabilityMixtureValue A ν))
+                μ ↔
+              μ ∈ ReweightedNPMLE.probabilityMixtureFiber A (v w)
+@ReweightedNPMLE.canonicalFittedOptimalValue_hasFDerivAt_of_positive_weights : ∀ {n : ℕ} [Nonempty (Fin n)]
+  (C : Set (Fin n → ℝ)),
+  Convex ℝ C →
+    ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n)
+      (w : Fin n → ℝ),
+      (∀ (i : Fin n), 0 < w i) →
+        HasFDerivAt
+          (ReweightedNPMLE.fittedOptimalValue (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos))
+          (ReweightedNPMLE.fittedLogLinearFunctional
+            (ReweightedNPMLE.fittedLogSelection C hCcompact hCnonempty hCpos w))
+          w
+@ReweightedNPMLE.full_probability_optimizer_extreme_iff : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [CompactSpace Θ]
+  [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ {C : Set (Fin n → ℝ)},
+      Convex ℝ C →
+        C ⊆ ReweightedNPMLE.positiveVectors n →
+          Set.range A ⊆ C →
+            ∀ (w v : Fin n → ℝ),
+              (∀ (i : Fin n), 0 < w i) →
+                ReweightedNPMLE.IsMaxOn C (ReweightedNPMLE.weightedLogLikelihood w) v →
+                  ∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                    ReweightedNPMLE.IsExtremeProbabilityMixture A v μ ↔
+                      ∃ (k : ℕ) (θ : Fin k → Θ) (p : Fin k → ℝ) (hp : p ∈ ReweightedNPMLE.finiteSimplex k),
+                        k ≤ n ∧
+                          Function.Injective θ ∧
+                            (∀ (j : Fin k), 0 < p j) ∧
+                              LinearIndependent ℝ (A ∘ θ) ∧
+                                ReweightedNPMLE.finiteMixtureValue (A ∘ θ) p = v ∧
+                                  ReweightedNPMLE.finiteProbabilityMeasure θ p hp = μ
+@ReweightedNPMLE.full_extreme_optimizer_support_finite_card_le : ∀ {Θ : Type u_1} [inst : MetricSpace Θ]
+  [CompactSpace Θ] [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ {C : Set (Fin n → ℝ)},
+      Convex ℝ C →
+        C ⊆ ReweightedNPMLE.positiveVectors n →
+          Set.range A ⊆ C →
+            ∀ (w v : Fin n → ℝ),
+              (∀ (i : Fin n), 0 < w i) →
+                ReweightedNPMLE.IsMaxOn C (ReweightedNPMLE.weightedLogLikelihood w) v →
+                  ∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                    ReweightedNPMLE.IsExtremeProbabilityMixture A v μ → (↑μ).support.Finite ∧ (↑μ).support.ncard ≤ n
+@ReweightedNPMLE.measurable_maximumExtremeSupport : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [CompactSpace Θ]
+  [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ {C : Set (Fin n → ℝ)},
+      Convex ℝ C →
+        C ⊆ ReweightedNPMLE.positiveVectors n →
+          Set.range A ⊆ C →
+            ∀ (vhat : (Fin n → ℝ) → Fin n → ℝ),
+              (∀ w ∈ ReweightedNPMLE.positiveVectors n,
+                  ReweightedNPMLE.IsMaxOn C (ReweightedNPMLE.weightedLogLikelihood w) (vhat w)) →
+                ContinuousOn vhat (ReweightedNPMLE.positiveVectors n) →
+                  Measurable (ReweightedNPMLE.maximumExtremeSupport A vhat)
+@ReweightedNPMLE.canonical_maximumExtremeSupport_attained : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [CompactSpace Θ]
+  [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ (C : Set (Fin n → ℝ)),
+      Convex ℝ C →
+        ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n),
+          Set.range A ⊆ C →
+            C ⊆ (convexHull ℝ) (Set.range A) →
+              ∀ w ∈ ReweightedNPMLE.positiveVectors n,
+                have vhat := ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos;
+                0 < ReweightedNPMLE.maximumExtremeSupport A vhat w ∧
+                  ReweightedNPMLE.maximumExtremeSupport A vhat w ≤ n ∧
+                    ∃ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                      ReweightedNPMLE.IsExtremeProbabilityMixture A (vhat w) μ ∧
+                        (↑μ).support.ncard = ReweightedNPMLE.maximumExtremeSupport A vhat w
+@ReweightedNPMLE.full_extreme_optimizer_hessian_projection : ∀ {Θ : Type u_1} [inst : MetricSpace Θ] [CompactSpace Θ]
+  [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ (C : Set (Fin n → ℝ)),
+      Convex ℝ C →
+        ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n),
+          Set.range A ⊆ C →
+            ∀ w ∈ ReweightedNPMLE.positiveVectors n,
+              ∀ {J : (Fin n → ℝ) →L[ℝ] Fin n → ℝ},
+                HasFDerivAt (ReweightedNPMLE.fittedLogSelection C hCcompact hCnonempty hCpos) J w →
+                  ∀ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                    ReweightedNPMLE.IsExtremeProbabilityMixture A
+                        (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos w) μ →
+                      ∃ (P : Matrix (Fin n) (Fin n) ℝ),
+                        P.IsHermitian ∧
+                          P * P = P ∧
+                            P.rank = (↑μ).support.ncard - 1 ∧
+                              (((Matrix.diagonal fun (i : Fin n) => √(w i)) *
+                                      ReweightedNPMLE.fittedLogDerivativeMatrix J *
+                                    Matrix.diagonal fun (i : Fin n) => √(w i)) -
+                                  P).PosSemidef
+@ReweightedNPMLE.isCompact_paperRadialEvent : ∀ {n : ℕ} (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) (η : ℝ),
+  IsCompact (ReweightedNPMLE.paperRadialEvent V η)
+@ReweightedNPMLE.paper_radial_localization : ∀ {n : ℕ} [Nonempty (Fin n)] {C : Set (Fin n → ℝ)},
+  Convex ℝ C →
+    C ⊆ ReweightedNPMLE.positiveVectors n →
+      ∀ (v₀ : Fin n → ℝ),
+        ReweightedNPMLE.IsMaxOn C (ReweightedNPMLE.weightedLogLikelihood 1) v₀ →
+          ∀ (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) {η : ℝ},
+            0 ≤ η →
+              (∀ u ∈ ReweightedNPMLE.relativeFittedSet C v₀,
+                  ‖WithLp.toLp 2 u - V.starProjection (WithLp.toLp 2 u)‖ ≤ η) →
+                ∀ {w : Fin n → ℝ},
+                  w ∈ ReweightedNPMLE.paperRadialEvent V η →
+                    ∀ {v : Fin n → ℝ},
+                      v ∈ C →
+                        ∀ {τ : ℝ},
+                          0 ≤ τ →
+                            τ < (1 / 16) ^ 2 / 12 →
+                              ReweightedNPMLE.weightedLogLikelihood w v₀ - τ ≤
+                                  ReweightedNPMLE.weightedLogLikelihood w v →
+                                have u := ReweightedNPMLE.relativeFittedVector v₀ v;
+                                have A := ‖V.starProjection (WithLp.toLp 2 fun (i : Fin n) => w i - 1)‖;
+                                have E := η * ‖WithLp.toLp 2 fun (i : Fin n) => w i - 1‖;
+                                √(∑ i : Fin n, u i ^ 2) < 1 / 16 ∧
+                                  ∑ i : Fin n, u i ^ 2 ≤ 36 * A ^ 2 + 12 * E + 12 * τ ∧
+                                    (∀ (i : Fin n), |ReweightedNPMLE.fittedLogRatio v₀ v i| < 1 / 8) ∧
+                                      0 ≤
+                                          ReweightedNPMLE.weightedLogLikelihood 1 v₀ -
+                                            ReweightedNPMLE.weightedLogLikelihood 1 v ∧
+                                        ReweightedNPMLE.weightedLogLikelihood 1 v₀ -
+                                              ReweightedNPMLE.weightedLogLikelihood 1 v ≤
+                                            37 * A ^ 2 + 13 * E + 13 * τ ∧
+                                          ∑ i : Fin n, ReweightedNPMLE.fittedLogRatio v₀ v i ^ 2 ≤
+                                              72 * A ^ 2 + 24 * E + 24 * τ ∧
+                                            ∑ i : Fin n, (w i - 1) * ReweightedNPMLE.fittedLogRatio v₀ v i ≤
+                                              37 * A ^ 2 + 13 * E + 12 * τ
+@ReweightedNPMLE.canonical_paper_radial_exact_fit : ∀ {n : ℕ} [Nonempty (Fin n)] (C : Set (Fin n → ℝ)),
+  Convex ℝ C →
+    ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n)
+      (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) {η : ℝ},
+      0 ≤ η →
+        (∀
+            u ∈
+              ReweightedNPMLE.relativeFittedSet C (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos 1),
+            ‖WithLp.toLp 2 u - V.starProjection (WithLp.toLp 2 u)‖ ≤ η) →
+          ∀ {w : Fin n → ℝ},
+            w ∈ ReweightedNPMLE.paperRadialEvent V η →
+              have z₀ := ReweightedNPMLE.fittedLogSelection C hCcompact hCnonempty hCpos 1;
+              have t := ReweightedNPMLE.fittedLogDisplacement C hCcompact hCnonempty hCpos z₀ w;
+              (∀ (i : Fin n), |t i| < 1 / 8) ∧
+                0 ≤ ∑ i : Fin n, (w i - 1) * t i ∧
+                  ∑ i : Fin n, (w i - 1) * t i ≤
+                    37 * ‖V.starProjection (WithLp.toLp 2 fun (i : Fin n) => w i - 1)‖ ^ 2 +
+                      13 * (η * ‖WithLp.toLp 2 fun (i : Fin n) => w i - 1‖)
+@ReweightedNPMLE.canonical_maximumExtremeSupport_paper_gamma_moment : ∀ {Θ : Type u_1} [inst : MetricSpace Θ]
+  [CompactSpace Θ] [inst_2 : MeasurableSpace Θ] [BorelSpace Θ] {n : ℕ} [Nonempty (Fin n)] {α η : ℝ},
+  0 < α →
+    0 ≤ η →
+      ∀ (A : Θ → Fin n → ℝ),
+        Continuous A →
+          ∀ (C : Set (Fin n → ℝ)),
+            Convex ℝ C →
+              ∀ (hCcompact : IsCompact C) (hCnonempty : C.Nonempty) (hCpos : C ⊆ ReweightedNPMLE.positiveVectors n),
+                Set.range A ⊆ C →
+                  ∀ (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))),
+                    (∀
+                        u ∈
+                          ReweightedNPMLE.relativeFittedSet C
+                            (ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos 1),
+                        ‖WithLp.toLp 2 u - V.starProjection (WithLp.toLp 2 u)‖ ≤ η) →
+                      have v := ReweightedNPMLE.fittedValueSelection C hCcompact hCnonempty hCpos;
+                      have t :=
+                        ReweightedNPMLE.fittedLogDisplacement C hCcompact hCnonempty hCpos
+                          (ReweightedNPMLE.fittedLogSelection C hCcompact hCnonempty hCpos 1);
+                      ∫⁻ (w : Fin n → ℝ) in ReweightedNPMLE.paperRadialEvent V η,
+                          ENNReal.ofReal
+                            ((17 / 9) ^ (ReweightedNPMLE.maximumExtremeSupport A v w - 1) *
+                              Real.exp
+                                (-α *
+                                  (∑ i : Fin n, (w i - 1) * t w i +
+                                    ∑ i : Fin n, t w i ^ 2))) ∂ReweightedNPMLE.gammaProductMeasure n α α ≤
+                        1
+@ReweightedNPMLE.compactGaussianMixture_simultaneous_paper_finite_net : ∀ {d : ℕ} (K : Set (ReweightedNPMLE.Point d)),
+  IsCompact K →
+    K.Nonempty →
+      ∀ {S b : ℝ},
+        0 ≤ S →
+          0 < b →
+            (∀ u ∈ K, ‖u‖ ≤ S) →
+              ∃ (C : ℝ),
+                0 < C ∧
+                  ∀ᶠ (n : ℕ) in Filter.atTop,
+                    ∃ (N : Finset (ReweightedNPMLE.Point d → ℝ)) (T : ℝ),
+                      N.Nonempty ∧
+                        0 ≤ T ∧
+                          T ≤ C * √(Real.log ↑n) ∧
+                            Real.log ↑N.card ≤ C * Real.log ↑n ^ (d + 1) / Real.log (Real.log ↑n) ^ d ∧
+                              (∀ p ∈ N,
+                                  ∃ (G : MeasureTheory.ProbabilityMeasure ↑K),
+                                    p = ReweightedNPMLE.compactGaussianMixtureDensity G) ∧
+                                (∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                                    (ReweightedNPMLE.compactGaussianSampleMeasure Gstar n).real
+                                        {x : Fin n → ReweightedNPMLE.Point d | ∃ (i : Fin n), T < ‖x i‖} ≤
+                                      ↑n ^ (-(b + 2))) ∧
+                                  ∀ (G : MeasureTheory.ProbabilityMeasure ↑K),
+                                    ∃ p ∈ N,
+                                      √(ReweightedNPMLE.hellingerSq MeasureTheory.volume p
+                                              (ReweightedNPMLE.compactGaussianMixtureDensity G)) ≤
+                                          1 / ↑n ^ 3 ∧
+                                        ∀ (y : ReweightedNPMLE.Point d),
+                                          ‖y‖ ≤ T →
+                                            |Real.log (p y) -
+                                                  Real.log (ReweightedNPMLE.compactGaussianMixtureDensity G y)| ≤
+                                              1 / ↑n ^ 3
+@ReweightedNPMLE.gamma_coordinate_concentration : ∀ {a t : ℝ},
+  0 < a →
+    0 < t → t ≤ 1 → (ProbabilityTheory.gammaMeasure a a).real {x : ℝ | |x - 1| > t} ≤ 2 * Real.exp (-a * t ^ 2 / 4)
+@ReweightedNPMLE.probability_optimizer_exists : ∀ {Θ : Type u_1} [inst : TopologicalSpace Θ] [CompactSpace Θ]
+  [inst_2 : MeasurableSpace Θ] [OpensMeasurableSpace Θ] {n : ℕ} [Nonempty (Fin n)] (A : Θ → Fin n → ℝ),
+  Continuous A →
+    ∀ {C : Set (Fin n → ℝ)},
+      C = (convexHull ℝ) (Set.range A) →
+        C ⊆ ReweightedNPMLE.positiveVectors n →
+          ∀ (w v : Fin n → ℝ),
+            (∀ (i : Fin n), 0 < w i) →
+              ReweightedNPMLE.IsMaxOn C (ReweightedNPMLE.weightedLogLikelihood w) v →
+                ∃ (μ : MeasureTheory.ProbabilityMeasure Θ),
+                  ReweightedNPMLE.IsMaxOn Set.univ
+                    (fun (ν : MeasureTheory.ProbabilityMeasure Θ) =>
+                      ReweightedNPMLE.weightedLogLikelihood w (ReweightedNPMLE.probabilityMixtureValue A ν))
+                    μ
+'ReweightedNPMLE.gammaWeight_normalize_total_joint_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaWeight_normalize_indep_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_weighted_empirical_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_weighted_empirical_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.empiricalDirichlet_expected_tv_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.empiricalDirichletTV_eq_half_sum_actual_atom_mass_differences' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_unchanged_population_criterion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_population_gap_eq_klDiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_main_support_dimension_refinements' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_joint_tiny_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_tiny' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_reweighted_optimizer_weak_consistency' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.effective_dimension_full_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_support_sensitivity_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_probability_relative_width_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianTaylorResidual_eq_zero_of_mul_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_conditional_structural_and_likelihood_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_generic_evaluation_independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_generic_optimizer_fiber_uniqueness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_uniform_nearMLE_paper_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_approximate_optimizer_joint_robustness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.positive_kernel_hull_properties' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_fitted_value_convexOn_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_fitted_maps_locally_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_fitted_value_contDiffOn_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.paper_full_optimizer_fiber_geometry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonicalFittedOptimalValue_hasFDerivAt_of_positive_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.full_probability_optimizer_extreme_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_support_finite_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurable_maximumExtremeSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_maximumExtremeSupport_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_hessian_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isCompact_paperRadialEvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.paper_radial_localization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_paper_radial_exact_fit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_maximumExtremeSupport_paper_gamma_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_simultaneous_paper_finite_net' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gamma_coordinate_concentration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probability_optimizer_exists' depends on axioms: [propext, Classical.choice, Quot.sound]

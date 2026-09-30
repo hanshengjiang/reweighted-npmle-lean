@@ -1,0 +1,4 @@
+PASS: recorded Comparator evidence integrity; 119 source hashes match.
+Recorded exit 0, Nanoda/Lean acceptance, log, configuration, and tool hashes agree.
+Recorded-evidence integrity only: no checker was rerun and no certification is implied.
+The recorded run used unsandboxed development mode; original absolute paths are metadata only.

@@ -1,0 +1,4 @@
+7 declarations: []
+613 declarations: [Classical.choice, Quot.sound, propext]
+1 declarations: [Quot.sound, propext]
+Independent axiom audit passed: 621 unique declarations

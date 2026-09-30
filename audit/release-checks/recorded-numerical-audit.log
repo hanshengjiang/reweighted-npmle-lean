@@ -1,0 +1,27 @@
+balanced risk ratio: printed [1.001, 1.020], actual extrema approximately [1.0011230675285514, 1.0202915251514515], literal bounds FAIL
+tiny risk ratio: printed [0.999985, 1.000018], actual extrema approximately [0.99998467022130455, 1.000017756560071], literal bounds FAIL
+BB risk ratio: printed [1.60, 2.19], actual extrema approximately [1.5989669858056825, 2.1902608677000823], literal bounds FAIL
+balanced H2 to ordinary: printed [8.31e-6, 1.76e-4], actual extrema approximately [8.311053729258634e-06, 0.00017648081128264256], literal bounds FAIL
+tiny H2 to ordinary: printed [1.43e-13, 9.60e-10], actual extrema approximately [1.4332758272927909e-13, 9.5957890168300398e-10], literal bounds PASS
+balanced likelihood loss: printed [0.0345, 0.0964], actual extrema approximately [0.034494518604869878, 0.096402019765469013], literal bounds FAIL
+BB likelihood loss: printed [2.14, 7.86], actual extrema approximately [2.1361195702546785, 7.8632995503184135], literal bounds FAIL
+balanced support difference: printed [-0.125, 0.025], actual extrema approximately [-0.125, 0.025000000000000001], literal bounds PASS
+path balanced hellinger_to_ordinary q=1/2: actual approximately 4.399281920659558e-05, printed 4.3999999999999999e-05, precision PASS
+path balanced ordinary_loglik_gap q=1/2: actual approximately 0.04528920340590048, printed 0.0453, precision PASS
+path balanced hellinger_to_truth q=1/2: actual approximately 0.002664463050173461, printed 0.0026640000000000001, precision PASS
+path balanced wasserstein_to_ordinary q=1/2: actual approximately 0.030801363040149132, printed 0.030800000000000001, precision PASS
+path balanced support q=1/2: actual approximately 3, printed 3, precision PASS
+path tiny hellinger_to_ordinary q=1/2: actual approximately 1.519763063471358e-11, printed 1.52e-11, precision PASS
+path tiny ordinary_loglik_gap q=1/2: actual approximately 1.6501985555805732e-08, printed 1.6499999999999999e-08, precision PASS
+path tiny hellinger_to_truth q=1/2: actual approximately 0.0026621079041753448, printed 0.0026619999999999999, precision PASS
+path tiny support q=1/2: actual approximately 3, printed 3, precision PASS
+path BB-scale hellinger_to_ordinary q=1/2: actual approximately 0.0019456763162473089, printed 0.0019499999999999999, precision PASS
+path BB-scale ordinary_loglik_gap q=1/2: actual approximately 2.029614379572763, printed 2.0299999999999998, precision PASS
+path BB-scale support q=9/10: actual approximately 4, printed 4, precision PASS
+scaled likelihood: minimum index 5, enclosure [0.25343321990309342, 0.25343322026997561]; maximum index 0, enclosure [0.53227998378008456, 0.53227998474410476]
+scaled logfit: minimum index 5, enclosure [0.47916728130662767, 0.47916728200029335]; maximum index 0, enclosure [0.92759915606192556, 0.92759915774191415]
+raw-data OLS weight_max_deviation: enclosure approximately [-0.50269532646322113, -0.50269530735746748], printed precision PASS
+raw-data OLS hellinger_to_ordinary: enclosure approximately [-1.0159189631272203, -1.0159189258779227], printed precision PASS
+raw-data OLS ordinary_loglik_gap: enclosure approximately [-1.0157636580781206, -1.0157636264217669], printed precision PASS
+raw-data OLS logfit_sq_sum: enclosure approximately [-1.0121909945570098, -1.0121909634340076], printed precision PASS
+All three numerical Lean artifacts exactly match all six source files

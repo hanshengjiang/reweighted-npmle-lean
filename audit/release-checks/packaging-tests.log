@@ -1,0 +1,33 @@
+test_bad_line_anchor_and_build_link_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_broken_and_escaping_markdown_links_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_excluded_zip_content_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_audit_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_manuscript_hash_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_or_extra_lean_source_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_nested_audit_links_and_line_anchors (test_release_checks.ReleaseIntegrityTests) ... ok
+test_symlink_source_rejected_even_when_bytes_match (test_release_checks.ReleaseIntegrityTests) ... ok
+test_tampered_lean_source_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_tampered_manuscript_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_unsafe_zip_paths_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_valid_package_and_zip (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_frozen_sources_checked_independently_of_export_manifest (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_missing_member_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_symlink_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_tampered_checksum_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_unmanifested_member_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_invalid_expected_list_rejected (test_repository_tools.AxiomAuditTests) ... ok
+test_missing_duplicate_or_unknown_report_rejected (test_repository_tools.AxiomAuditTests) ... ok
+test_standard_and_axiom_free (test_repository_tools.AxiomAuditTests) ... ok
+test_unexpected_axiom_rejected (test_repository_tools.AxiomAuditTests) ... ok
+test_clean_export_and_manifest (test_repository_tools.ExportTests) ... ok
+test_missing_root_file_rejected (test_repository_tools.ExportTests) ... ok
+test_output_inside_sources_rejected (test_repository_tools.ExportTests) ... ok
+test_overwrite_requires_force (test_repository_tools.ExportTests) ... ok
+test_symlink_input_rejected (test_repository_tools.ExportTests) ... ok
+test_generator_inputs_are_bundled (test_repository_tools.StandalonePathsTests) ... ok
+test_markdown_file_links_stay_inside_package (test_repository_tools.StandalonePathsTests) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.638s
+
+OK

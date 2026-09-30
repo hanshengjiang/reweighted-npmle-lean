@@ -1,0 +1,4 @@
+Verification.lean:5:standard mathlib axioms and must not use any proof placeholder or project-defined axiom.
+ReweightedNPMLE/NumericalTable.lean:10:literal bounds, and without a floating-point oracle or `native_decide`.
+ReweightedNPMLE/SupportSensitivity.lean:17:likelihood contact equations, and admit an explicit orthonormal matrix.
+ReweightedNPMLE/NumericalStudy.lean:12:`native_decide` or an oracle axiom.

@@ -1,0 +1,3 @@
+⚠ [2732/2733] Built audit.comparator.Challenge (1.5s)
+warning: audit/comparator/Challenge.lean:150:8: declaration uses `sorry`
+Build completed successfully (2733 jobs).

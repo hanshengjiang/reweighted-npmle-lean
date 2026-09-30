@@ -1,0 +1,34 @@
+docs/manuscript/paper.tex: sha256=4166c2e5db94f7fd267b79a97e3ef6ed7803709a3ea3a9ce2fc603002b76f385
+thm:main identical to paper.tex: True
+docs/manuscript/paper_v2.tex: sha256=e12d130e9da64c030ce6f394dbd8cae269c6f76e27de4470bc14908c21020762
+thm:main identical to paper.tex: False
+--- paper.tex theorem
++++ docs/manuscript/paper_v2.tex theorem
+@@ -1,7 +1,7 @@
+ \begin{theorem}[Exact regularization by random reweighting]
+ \label{thm:main}
+-Assume \eqref{eq:model} with fixed $d$, fixed compact
+-$K\subset B(0,S)$, and $G^*\in\Pcal(K)$.  Let the weights satisfy
++Suppose that \Cref{ass:standing} holds and that the data follow
++\eqref{eq:model} with $G^*\in\Pcal(K)$.  Let the weights satisfy
+ \eqref{eq:weights} with the concentration in \eqref{eq:scales}.  For every
+ $b>0$, there are constants $C_b<\infty$ and $n_0$ depending only on
+ $d,K,S,b$ such that, uniformly over $G^*\in\Pcal(K)$, the following event has
+
+docs/manuscript/paper_v3.tex: sha256=8ffa46f93551b73169fae3e1c518a62d612ce4ab7ec7b5abcbcc17226cc9ec64
+thm:main identical to paper.tex: False
+--- paper.tex theorem
++++ docs/manuscript/paper_v3.tex theorem
+@@ -1,7 +1,7 @@
+ \begin{theorem}[Exact regularization by random reweighting]
+ \label{thm:main}
+-Assume \eqref{eq:model} with fixed $d$, fixed compact
+-$K\subset B(0,S)$, and $G^*\in\Pcal(K)$.  Let the weights satisfy
++Suppose that \Cref{ass:standing} holds and that the data follow
++\eqref{eq:model} with $G^*\in\Pcal(K)$.  Let the weights satisfy
+ \eqref{eq:weights} with the concentration in \eqref{eq:scales}.  For every
+ $b>0$, there are constants $C_b<\infty$ and $n_0$ depending only on
+ $d,K,S,b$ such that, uniformly over $G^*\in\Pcal(K)$, the following event has
+
+docs/paper.tex: sha256=c8840cb4cac1a05306adb10d835355298678fb8d14a1f52bbd8c18f050942267
+thm:main identical to paper.tex: True

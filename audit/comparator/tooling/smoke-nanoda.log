@@ -1,0 +1,21 @@
+info: comparator-smoke: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+Building Challenge
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec lake build Challenge
+⚠ [2/3] Built Challenge (176ms)
+warning: Challenge.lean:1:8: declaration uses `sorry`
+Build completed successfully (3 jobs).
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec /private/tmp/npmle-comparator-tools/comparator/.lake/packages/lean4export/.lake/build/bin/lean4export Challenge -- Nat String String.mk Char Char.ofNat List Quot Quot.mk Quot.lift Quot.ind comm propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, comm, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from Challenge
+Building Solution
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec lake build Solution
+✔ [2/3] Built Solution (135ms)
+Build completed successfully (3 jobs).
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec /private/tmp/npmle-comparator-tools/comparator/.lake/packages/lean4export/.lake/build/bin/lean4export Solution -- Nat String String.mk Char Char.ofNat List Quot Quot.mk Quot.lift Quot.ind comm propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec /private/tmp/npmle-comparator-tools/nanoda_lib/target/release/nanoda_bin /var/folders/1w/r9lx_0cn3b1d8fps787h3l900000gn/T/tmp.1BA5TU3F
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, comm, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from Solution
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!

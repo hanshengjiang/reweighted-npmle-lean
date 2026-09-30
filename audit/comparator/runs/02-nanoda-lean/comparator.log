@@ -1,0 +1,397 @@
+Building audit.comparator.Challenge
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec lake build audit.comparator.Challenge
+⚠ [2732/2732] Replayed audit.comparator.Challenge
+warning: audit/comparator/Challenge.lean:150:8: declaration uses `sorry`
+Build completed successfully (2732 jobs).
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec /private/tmp/npmle-comparator-tools/comparator/.lake/packages/lean4export/.lake/build/bin/lean4export audit.comparator.Challenge -- Nat String String.mk Char Char.ofNat List Quot Quot.mk Quot.lift Quot.ind ComparatorAudit.main propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, ComparatorAudit.main, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from audit.comparator.Challenge
+Building audit.comparator.Solution
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec lake build audit.comparator.Solution
+⚠ [3599/3750] Replayed ReweightedNPMLE.GammaBounds
+warning: ReweightedNPMLE/GammaBounds.lean:25:31: This simp argument is unused:
+  Pi.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [Pi.add_apply, P̵i̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵id_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/GammaBounds.lean:24:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaBounds.lean:25:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaBounds.lean:26:17: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaBounds.lean:58:31: This simp argument is unused:
+  Pi.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [Pi.sub_apply, P̵i̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵id_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/GammaBounds.lean:57:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaBounds.lean:58:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaBounds.lean:59:17: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3600/3750] Replayed ReweightedNPMLE.GammaDistribution
+warning: ReweightedNPMLE/GammaDistribution.lean:515:41: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GammaDistribution.lean:515:54: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: ReweightedNPMLE/GammaDistribution.lean:601:62: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: ReweightedNPMLE/GammaDistribution.lean:601:58: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3601/3750] Replayed ReweightedNPMLE.Gaussian
+info: ReweightedNPMLE/Gaussian.lean:101:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: ReweightedNPMLE/Gaussian.lean:116:47: This simp argument is unused:
+  Complex.zero_im
+
+Hint: Omit it from the simp argument list.
+  simp only [Complex.mul_re, Complex.neg_re, C̵o̵m̵p̵l̵e̵x̵.̵z̵e̵r̵o̵_̵i̵m̵,̵zero_mul, add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3603/3750] Replayed ReweightedNPMLE.GaussianRadius
+info: ReweightedNPMLE/GaussianRadius.lean:258:53: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: ReweightedNPMLE/GaussianRadius.lean:258:49: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3605/3750] Replayed ReweightedNPMLE.GaussianIdentifiability
+warning: ReweightedNPMLE/GaussianIdentifiability.lean:252:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GaussianIdentifiability.lean:309:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3606/3750] Replayed ReweightedNPMLE.Weights
+warning: ReweightedNPMLE/Weights.lean:45:17: This simp argument is unused:
+  mul_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [m̵u̵l̵_̵z̵e̵r̵o̵,̵ ̵add_zero] at hab ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3611/3750] Replayed ReweightedNPMLE.FittedContact
+warning: ReweightedNPMLE/FittedContact.lean:59:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ReweightedNPMLE/FittedContact.lean:59:66: 'norm_num' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ReweightedNPMLE/FittedContact.lean:59:66: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3620/3750] Replayed ReweightedNPMLE.ProbabilityFiberGeometry
+warning: ReweightedNPMLE/ProbabilityFiberGeometry.lean:94:21: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/ProbabilityFiberGeometry.lean:94:34: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3633/3750] Replayed ReweightedNPMLE.GaussianIncidence
+warning: ReweightedNPMLE/GaussianIncidence.lean:178:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3642/3750] Replayed ReweightedNPMLE.Localization
+warning: ReweightedNPMLE/Localization.lean:88:31: This simp argument is unused:
+  Pi.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [Pi.add_apply, P̵i̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵id_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/Localization.lean:87:79: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/Localization.lean:88:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/Localization.lean:88:67: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3643/3750] Replayed ReweightedNPMLE.RadialLocalization
+warning: ReweightedNPMLE/RadialLocalization.lean:77:43: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/RadialLocalization.lean:289:4: 'change (∑ i, (w i - 1) * u i) + ∑ i, (w i - 1) * (Real.log (1 + u i) - u i) ≤ _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [3700/3750] Replayed ReweightedNPMLE.FittedRegularity
+warning: ReweightedNPMLE/FittedRegularity.lean:172:62: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3701/3750] Replayed ReweightedNPMLE.FittedEnvelope
+warning: ReweightedNPMLE/FittedEnvelope.lean:74:13: This simp argument is unused:
+  q
+
+Hint: Omit it from the simp argument list.
+  simp only [q̵,̵ ̵Pi.add_apply, Pi.smul_apply, smul_eq_mul,
+  ̵  ̵ ̵ ̵Finset.mul_sum, ← Finset.sum_add_distrib]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/FittedEnvelope.lean:149:14: This simp argument is unused:
+  z
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵z̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3704/3750] Replayed ReweightedNPMLE.FittedHessian
+warning: ReweightedNPMLE/FittedHessian.lean:41:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/FittedHessian.lean:45:44: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/FittedHessian.lean:66:65: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/FittedHessian.lean:73:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/FittedHessian.lean:239:30: This simp argument is unused:
+  smul_eq_mul
+
+Hint: Omit it from the simp argument list.
+  simp only [zero_add, ha0,̵ ̵s̵m̵u̵l̵_̵e̵q̵_̵m̵u̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/FittedHessian.lean:309:30: 'simp [z, Function.comp_def]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ReweightedNPMLE/FittedHessian.lean:309:30: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3707/3750] Replayed ReweightedNPMLE.SupportSensitivityAnalytic
+warning: ReweightedNPMLE/SupportSensitivityAnalytic.lean:50:90: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/SupportSensitivityAnalytic.lean:60:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/SupportSensitivityAnalytic.lean:60:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3709/3750] Replayed ReweightedNPMLE.ExtremeSupport
+warning: ReweightedNPMLE/ExtremeSupport.lean:105:15: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3716/3750] Replayed ReweightedNPMLE.DirichletProposition
+warning: ReweightedNPMLE/DirichletProposition.lean:92:14: `MeasureTheory.integrable_finset_sum` has been deprecated: Use `MeasureTheory.integrable_finsetSum` instead
+⚠ [3717/3750] Replayed ReweightedNPMLE.DirichletSecondMoment
+warning: ReweightedNPMLE/DirichletSecondMoment.lean:179:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ReweightedNPMLE/DirichletSecondMoment.lean:183:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ReweightedNPMLE/DirichletSecondMoment.lean:296:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ReweightedNPMLE/DirichletSecondMoment.lean:300:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3719/3750] Replayed ReweightedNPMLE.DirichletIndependence
+info: ReweightedNPMLE/DirichletIndependence.lean:39:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: ReweightedNPMLE/DirichletIndependence.lean:38:8: 'congr 1' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ReweightedNPMLE/DirichletIndependence.lean:103:30: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: ReweightedNPMLE/DirichletIndependence.lean:244:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [3720/3750] Replayed ReweightedNPMLE.ChangeOfVariables
+warning: ReweightedNPMLE/ChangeOfVariables.lean:187:67: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/ChangeOfVariables.lean:188:8: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3722/3750] Replayed ReweightedNPMLE.EffectiveDimension
+warning: ReweightedNPMLE/EffectiveDimension.lean:49:21: unused variable `hkappa`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3733/3750] Replayed ReweightedNPMLE.GammaProjection
+warning: ReweightedNPMLE/GammaProjection.lean:24:31: This simp argument is unused:
+  Pi.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [Pi.add_apply, P̵i̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵id_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/GammaProjection.lean:23:79: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaProjection.lean:24:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GammaProjection.lean:24:67: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3740/3750] Replayed ReweightedNPMLE.PolynomialMoments
+warning: ReweightedNPMLE/PolynomialMoments.lean:703:18: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/PolynomialMoments.lean:772:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3741/3750] Replayed ReweightedNPMLE.GaussianWidth
+warning: ReweightedNPMLE/GaussianWidth.lean:161:4: This simp argument is unused:
+  PiLp.toLp_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [WithLp.ofLp_sub, WithLp.ofLp_sum, WithLp.ofLp_smul,
+  ̵  ̵ ̵ ̵PiL̵p̵.t̵o̵L̵p̵_̵a̵p̵p̵l̵y̵,̵ ̵P̵i̵.̵sub_apply, Finset.sum_apply,
+  ̲  ̲ ̲ ̲Pi.smul_apply,
+  ̵  ̵ ̵ ̵smul_eq_mul, gaussianWidthGenerator]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3753/3772] Replayed ReweightedNPMLE.GaussianMixtureNet
+warning: ReweightedNPMLE/GaussianMixtureNet.lean:270:62: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: ReweightedNPMLE/GaussianMixtureNet.lean:324:59: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: ReweightedNPMLE/GaussianMixtureNet.lean:369:53: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [3757/3772] Replayed ReweightedNPMLE.FiniteNet
+info: ReweightedNPMLE/FiniteNet.lean:29:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: ReweightedNPMLE/FiniteNet.lean:23:41: unused variable `hh₀`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/FiniteNet.lean:28:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/FiniteNet.lean:148:5: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3759/3772] Replayed ReweightedNPMLE.GaussianNearMLERate
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:179:23: unused variable `hS`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:204:36: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:302:10: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:302:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:318:13: unused variable `hC`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:343:28: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:620:58: unused variable `hS`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:1027:5: unused variable `hC`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:1029:5: unused variable `hN`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:1188:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:1246:55: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:1272:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GaussianNearMLERate.lean:1296:13: unused variable `hd`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3760/3772] Replayed ReweightedNPMLE.GaussianPaperScales
+warning: ReweightedNPMLE/GaussianPaperScales.lean:68:70: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ReweightedNPMLE/GaussianPaperScales.lean:134:41: This simp argument is unused:
+  abs_of_nonneg (pow_nonneg hl d)
+
+Hint: Omit it from the simp argument list.
+  simp only [gaussianPaperEffectiveDimension, Real.norm_eq_abs, abs_of_nonneg (pow_nonneg hn.1 d̵)̵,̵ ̵a̵b̵s̵_̵o̵f̵_̵n̵o̵n̵n̵e̵g̵ ̵(̵p̵o̵w̵_̵n̵o̵n̵n̵e̵g̵ ̵h̵l̵ ̵d)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ReweightedNPMLE/GaussianPaperScales.lean:168:62: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ReweightedNPMLE/GaussianPaperScales.lean:444:74: unused variable `hL`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3768/3772] Replayed ReweightedNPMLE.GaussianSampling
+warning: ReweightedNPMLE/GaussianSampling.lean:50:46: unused variable `hS`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3771/3772] Replayed ReweightedNPMLE.GaussianMainTheorem
+warning: ReweightedNPMLE/GaussianMainTheorem.lean:21:60: This simp argument is unused:
+  div_pow
+
+Hint: Omit it from the simp argument list.
+  simp only [gaussianPaperRiskScale, gaussianPaperLogScale, d̵i̵v̵_̵pow,̵ ̵p̵o̵w̵_succ,
+  ̵  ̵ ̵ ̵div_eq_mul_inv, mul_inv_rev]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Build completed successfully (3772 jobs).
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec /private/tmp/npmle-comparator-tools/comparator/.lake/packages/lean4export/.lake/build/bin/lean4export audit.comparator.Solution -- Nat String String.mk Char Char.ofNat List Quot Quot.mk Quot.lift Quot.ind ComparatorAudit.main propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList
+WARNING: THIS IS NOT REAL LANDRUN! UNSAFELY RUNNING exec /private/tmp/npmle-comparator-tools/nanoda_lib/target/release/nanoda_bin /var/folders/1w/r9lx_0cn3b1d8fps787h3l900000gn/T/tmp.dogPmM1Y
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, ComparatorAudit.main, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from audit.comparator.Solution
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!

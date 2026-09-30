@@ -1,0 +1,1049 @@
+@ReweightedNPMLE.gaussian_exact_regularization_main : ∀ {d : Nat}
+  (hd : @LT.lt.{0} Nat instLTNat (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))) d)
+  (K : Set.{0} (ReweightedNPMLE.Point d))
+  (hKcompact :
+    @IsCompact.{0} (ReweightedNPMLE.Point d)
+      (@PiLp.topologicalSpace.{0, 0}
+        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+            PiLp.innerProductSpace._proof_1))
+        (Fin d) (fun (x : Fin d) => Real) fun (i : Fin d) =>
+        @UniformSpace.toTopologicalSpace.{0} Real (@PseudoMetricSpace.toUniformSpace.{0} Real Real.pseudoMetricSpace))
+      K)
+  (hKnonempty : @Set.Nonempty.{0} (ReweightedNPMLE.Point d) K) {S b : Real}
+  (hS : @LE.le.{0} Real Real.instLE (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)) S)
+  (hb : @LT.lt.{0} Real Real.instLT (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)) b)
+  (hKbound :
+    ∀ (u : ReweightedNPMLE.Point d),
+      @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K u →
+        @LE.le.{0} Real Real.instLE
+          (@Norm.norm.{0} (ReweightedNPMLE.Point d)
+            (@PiLp.instNorm.{0, 0}
+              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                  PiLp.innerProductSpace._proof_1))
+              (Fin d) (fun (x : Fin d) => Real) (Fin.fintype d) fun (i : Fin d) => Real.norm)
+            u)
+          S),
+  @Exists.{1} Real fun (C : Real) =>
+    And (@LT.lt.{0} Real Real.instLT (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)) C)
+      (@Filter.Eventually.{0} Nat
+        (fun (n : Nat) =>
+          ∀
+            (Gstar :
+              @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                  (fun (x : ReweightedNPMLE.Point d) =>
+                    @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+                      (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                  (@WithLp.measurableSpace.{0}
+                    (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                      (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                        (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                          (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                        PiLp.innerProductSpace._proof_1))
+                    ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                    (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                      Real.measurableSpace)))),
+            @Exists.{1} (Set.{0} (ReweightedNPMLE.GaussianDataWeight d n))
+              fun (G : Set.{0} (ReweightedNPMLE.GaussianDataWeight d n)) =>
+              And
+                (@MeasurableSet.{0} (ReweightedNPMLE.GaussianDataWeight d n)
+                  (@Prod.instMeasurableSpace.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+                    (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => ReweightedNPMLE.Point d) fun (a : Fin n) =>
+                      @WithLp.measurableSpace.{0}
+                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                            PiLp.innerProductSpace._proof_1))
+                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                          Real.measurableSpace))
+                    (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (a : Fin n) =>
+                      Real.measurableSpace))
+                  G)
+                (And
+                  (@LE.le.{0} Real Real.instLE
+                    (@MeasureTheory.Measure.real.{0} (ReweightedNPMLE.GaussianDataWeight d n)
+                      (@Prod.instMeasurableSpace.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+                        (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => ReweightedNPMLE.Point d)
+                          fun (a : Fin n) =>
+                          @WithLp.measurableSpace.{0}
+                            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                    ENNReal.instAddCommMonoidWithOne))
+                                PiLp.innerProductSpace._proof_1))
+                            ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                            (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                              Real.measurableSpace))
+                        (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (a : Fin n) =>
+                          Real.measurableSpace))
+                      (@ReweightedNPMLE.gaussianDataWeightMeasure d K Gstar n
+                        (ReweightedNPMLE.gaussianPaperBalancedShape d n))
+                      (@Compl.compl.{0} (Set.{0} (ReweightedNPMLE.GaussianDataWeight d n))
+                        (@Set.instCompl.{0} (ReweightedNPMLE.GaussianDataWeight d n)) G))
+                    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) C
+                      (@HPow.hPow.{0, 0, 0} Real Real Real (@instHPow.{0, 0} Real Real Real.instPow)
+                        (@Nat.cast.{0} Real Real.instNatCast n) (@Neg.neg.{0} Real Real.instNeg b))))
+                  (∀ (p : ReweightedNPMLE.GaussianDataWeight d n),
+                    @Membership.mem.{0, 0} (ReweightedNPMLE.GaussianDataWeight d n)
+                        (Set.{0} (ReweightedNPMLE.GaussianDataWeight d n))
+                        (@Set.instMembership.{0} (ReweightedNPMLE.GaussianDataWeight d n)) G p →
+                      And
+                        (∀ (i : Fin n),
+                          @LE.le.{0} Real Real.instLE
+                            (@abs.{0} Real Real.lattice Real.instAddGroup
+                              (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+                                (@Prod.snd.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real) p i)
+                                (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))
+                            (@HDiv.hDiv.{0, 0, 0} Real Real Real
+                              (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid)) C
+                              (Real.sqrt (ReweightedNPMLE.gaussianPaperAugmentedDimension d n))))
+                        (And
+                          (@Membership.mem.{0, 0} (Fin n → Real) (Set.{0} (Fin n → Real))
+                            (@Set.instMembership.{0} (Fin n → Real)) (ReweightedNPMLE.positiveVectors n)
+                            (@Prod.snd.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real) p))
+                          (@Exists.{1}
+                            (@MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                              (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                (fun (x : ReweightedNPMLE.Point d) =>
+                                  @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+                                    (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                (@WithLp.measurableSpace.{0}
+                                  (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                    (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                      (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                        (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                          ENNReal.instAddCommMonoidWithOne))
+                                      PiLp.innerProductSpace._proof_1))
+                                  ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                  (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                                    Real.measurableSpace))))
+                            fun
+                              (μ :
+                                @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                  (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                    (fun (x : ReweightedNPMLE.Point d) =>
+                                      @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                        (Set.{0} (ReweightedNPMLE.Point d))
+                                        (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                    (@WithLp.measurableSpace.{0}
+                                      (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                        (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                          (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                            (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                              ENNReal.instAddCommMonoidWithOne))
+                                          PiLp.innerProductSpace._proof_1))
+                                      ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                      (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                                        Real.measurableSpace)))) =>
+                            And
+                              (@Eq.{1}
+                                (Set.{0}
+                                  (@MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                      (@WithLp.measurableSpace.{0}
+                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                ENNReal.instAddCommMonoidWithOne))
+                                            PiLp.innerProductSpace._proof_1))
+                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                                          Real.measurableSpace)))))
+                                (@ReweightedNPMLE.gaussianProbabilityOptimizerSet.{0}
+                                  (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                  (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                    (fun (x : ReweightedNPMLE.Point d) =>
+                                      @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                        (Set.{0} (ReweightedNPMLE.Point d))
+                                        (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                    (@WithLp.measurableSpace.{0}
+                                      (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                        (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                          (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                            (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                              ENNReal.instAddCommMonoidWithOne))
+                                          PiLp.innerProductSpace._proof_1))
+                                      ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                      (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                                        Real.measurableSpace)))
+                                  d n
+                                  (fun (a : @Set.Elem.{0} (ReweightedNPMLE.Point d) K) =>
+                                    @Subtype.val.{1} (ReweightedNPMLE.Point d)
+                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                      a)
+                                  p)
+                                (@Singleton.singleton.{0, 0}
+                                  (@MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                      (@WithLp.measurableSpace.{0}
+                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                ENNReal.instAddCommMonoidWithOne))
+                                            PiLp.innerProductSpace._proof_1))
+                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                                          Real.measurableSpace))))
+                                  (Set.{0}
+                                    (@MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                        (@WithLp.measurableSpace.{0}
+                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                  ENNReal.instAddCommMonoidWithOne))
+                                              PiLp.innerProductSpace._proof_1))
+                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                            fun (a : Fin d) => Real.measurableSpace)))))
+                                  (@Set.instSingletonSet.{0}
+                                    (@MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                        (@WithLp.measurableSpace.{0}
+                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                  ENNReal.instAddCommMonoidWithOne))
+                                              PiLp.innerProductSpace._proof_1))
+                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                            fun (a : Fin d) => Real.measurableSpace)))))
+                                  μ))
+                              (And
+                                (@Set.Finite.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                  (@MeasureTheory.Measure.support.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                    (@instTopologicalSpaceSubtype.{0} (ReweightedNPMLE.Point d)
+                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                      (@PiLp.topologicalSpace.{0, 0}
+                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                ENNReal.instAddCommMonoidWithOne))
+                                            PiLp.innerProductSpace._proof_1))
+                                        (Fin d) (fun (x : Fin d) => Real) fun (i : Fin d) =>
+                                        @UniformSpace.toTopologicalSpace.{0} Real
+                                          (@PseudoMetricSpace.toUniformSpace.{0} Real Real.pseudoMetricSpace)))
+                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                      (@WithLp.measurableSpace.{0}
+                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                ENNReal.instAddCommMonoidWithOne))
+                                            PiLp.innerProductSpace._proof_1))
+                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                                          Real.measurableSpace)))
+                                    (@MeasureTheory.ProbabilityMeasure.toMeasure.{0}
+                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                        (@WithLp.measurableSpace.{0}
+                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                  ENNReal.instAddCommMonoidWithOne))
+                                              PiLp.innerProductSpace._proof_1))
+                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                            fun (a : Fin d) => Real.measurableSpace)))
+                                      μ)))
+                                (And
+                                  (@LE.le.{0} Real Real.instLE
+                                    (@Nat.cast.{0} Real Real.instNatCast
+                                      (@Set.ncard.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                        (@MeasureTheory.Measure.support.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                          (@instTopologicalSpaceSubtype.{0} (ReweightedNPMLE.Point d)
+                                            (fun (x : ReweightedNPMLE.Point d) =>
+                                              @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                (Set.{0} (ReweightedNPMLE.Point d))
+                                                (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                            (@PiLp.topologicalSpace.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              (Fin d) (fun (x : Fin d) => Real) fun (i : Fin d) =>
+                                              @UniformSpace.toTopologicalSpace.{0} Real
+                                                (@PseudoMetricSpace.toUniformSpace.{0} Real Real.pseudoMetricSpace)))
+                                          (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                            (fun (x : ReweightedNPMLE.Point d) =>
+                                              @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                (Set.{0} (ReweightedNPMLE.Point d))
+                                                (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                            (@WithLp.measurableSpace.{0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                fun (a : Fin d) => Real.measurableSpace)))
+                                          (@MeasureTheory.ProbabilityMeasure.toMeasure.{0}
+                                            (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                            (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                              (fun (x : ReweightedNPMLE.Point d) =>
+                                                @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                  (Set.{0} (ReweightedNPMLE.Point d))
+                                                  (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                              (@WithLp.measurableSpace.{0}
+                                                (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                  (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                    (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                      (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                        ENNReal.instAddCommMonoidWithOne))
+                                                    PiLp.innerProductSpace._proof_1))
+                                                ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                  fun (a : Fin d) => Real.measurableSpace)))
+                                            μ))))
+                                    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) C
+                                      (ReweightedNPMLE.gaussianPaperAugmentedDimension d n)))
+                                  (And
+                                    (∀
+                                      (μ₀ :
+                                        @MeasureTheory.ProbabilityMeasure.{0}
+                                          (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                          (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                            (fun (x : ReweightedNPMLE.Point d) =>
+                                              @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                (Set.{0} (ReweightedNPMLE.Point d))
+                                                (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                            (@WithLp.measurableSpace.{0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                fun (a : Fin d) => Real.measurableSpace)))),
+                                      @Membership.mem.{0, 0}
+                                          (@MeasureTheory.ProbabilityMeasure.{0}
+                                            (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                            (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                              (fun (x : ReweightedNPMLE.Point d) =>
+                                                @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                  (Set.{0} (ReweightedNPMLE.Point d))
+                                                  (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                              (@WithLp.measurableSpace.{0}
+                                                (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                  (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                    (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                      (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                        ENNReal.instAddCommMonoidWithOne))
+                                                    PiLp.innerProductSpace._proof_1))
+                                                ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                  fun (a : Fin d) => Real.measurableSpace))))
+                                          (Set.{0}
+                                            (@MeasureTheory.ProbabilityMeasure.{0}
+                                              (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                              (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                (fun (x : ReweightedNPMLE.Point d) =>
+                                                  @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                    (Set.{0} (ReweightedNPMLE.Point d))
+                                                    (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                (@WithLp.measurableSpace.{0}
+                                                  (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                    (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                      (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                        (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                          ENNReal.instAddCommMonoidWithOne))
+                                                      PiLp.innerProductSpace._proof_1))
+                                                  ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                  (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                    fun (a : Fin d) => Real.measurableSpace)))))
+                                          (@Set.instMembership.{0}
+                                            (@MeasureTheory.ProbabilityMeasure.{0}
+                                              (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                              (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                (fun (x : ReweightedNPMLE.Point d) =>
+                                                  @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                    (Set.{0} (ReweightedNPMLE.Point d))
+                                                    (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                (@WithLp.measurableSpace.{0}
+                                                  (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                    (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                      (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                        (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                          ENNReal.instAddCommMonoidWithOne))
+                                                      PiLp.innerProductSpace._proof_1))
+                                                  ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                  (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                    fun (a : Fin d) => Real.measurableSpace)))))
+                                          (@ReweightedNPMLE.gaussianProbabilityOptimizerSet.{0}
+                                            (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                            (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                              (fun (x : ReweightedNPMLE.Point d) =>
+                                                @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                  (Set.{0} (ReweightedNPMLE.Point d))
+                                                  (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                              (@WithLp.measurableSpace.{0}
+                                                (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                  (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                    (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                      (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                        ENNReal.instAddCommMonoidWithOne))
+                                                    PiLp.innerProductSpace._proof_1))
+                                                ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                  fun (a : Fin d) => Real.measurableSpace)))
+                                            d n
+                                            (fun (a : @Set.Elem.{0} (ReweightedNPMLE.Point d) K) =>
+                                              @Subtype.val.{1} (ReweightedNPMLE.Point d)
+                                                (fun (x : ReweightedNPMLE.Point d) =>
+                                                  @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                    (Set.{0} (ReweightedNPMLE.Point d))
+                                                    (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                a)
+                                            (@Prod.mk.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+                                              (@Prod.fst.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real) p)
+                                              (@OfNat.ofNat.{0} (Fin n → Real) (nat_lit 1)
+                                                (@One.toOfNat1.{0} (Fin n → Real)
+                                                  (@Pi.instOne.{0, 0} (Fin n) (fun (a : Fin n) => Real)
+                                                    fun (i : Fin n) => Real.instOne)))))
+                                          μ₀ →
+                                        And
+                                          (@LE.le.{0} Real Real.instLE
+                                            (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+                                            (@ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{0}
+                                              (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                              (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                (fun (x : ReweightedNPMLE.Point d) =>
+                                                  @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                    (Set.{0} (ReweightedNPMLE.Point d))
+                                                    (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                (@WithLp.measurableSpace.{0}
+                                                  (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                    (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                      (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                        (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                          ENNReal.instAddCommMonoidWithOne))
+                                                      PiLp.innerProductSpace._proof_1))
+                                                  ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                  (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                    fun (a : Fin d) => Real.measurableSpace)))
+                                              d n
+                                              (fun (a : @Set.Elem.{0} (ReweightedNPMLE.Point d) K) =>
+                                                @Subtype.val.{1} (ReweightedNPMLE.Point d)
+                                                  (fun (x : ReweightedNPMLE.Point d) =>
+                                                    @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                      (Set.{0} (ReweightedNPMLE.Point d))
+                                                      (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                  a)
+                                              (@Prod.mk.{0, 0} (ReweightedNPMLE.GaussianDataWeight d n)
+                                                (Prod.{0, 0}
+                                                  (@MeasureTheory.ProbabilityMeasure.{0}
+                                                    (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                      (@WithLp.measurableSpace.{0}
+                                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                ENNReal.instAddCommMonoidWithOne))
+                                                            PiLp.innerProductSpace._proof_1))
+                                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                          fun (a : Fin d) => Real.measurableSpace))))
+                                                  (@MeasureTheory.ProbabilityMeasure.{0}
+                                                    (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                      (@WithLp.measurableSpace.{0}
+                                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                ENNReal.instAddCommMonoidWithOne))
+                                                            PiLp.innerProductSpace._proof_1))
+                                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                          fun (a : Fin d) => Real.measurableSpace)))))
+                                                p
+                                                (@Prod.mk.{0, 0}
+                                                  (@MeasureTheory.ProbabilityMeasure.{0}
+                                                    (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                      (@WithLp.measurableSpace.{0}
+                                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                ENNReal.instAddCommMonoidWithOne))
+                                                            PiLp.innerProductSpace._proof_1))
+                                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                          fun (a : Fin d) => Real.measurableSpace))))
+                                                  (@MeasureTheory.ProbabilityMeasure.{0}
+                                                    (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                      (fun (x : ReweightedNPMLE.Point d) =>
+                                                        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                          (Set.{0} (ReweightedNPMLE.Point d))
+                                                          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                      (@WithLp.measurableSpace.{0}
+                                                        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                ENNReal.instAddCommMonoidWithOne))
+                                                            PiLp.innerProductSpace._proof_1))
+                                                        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                          fun (a : Fin d) => Real.measurableSpace))))
+                                                  μ μ₀))))
+                                          (And
+                                            (@LE.le.{0} Real Real.instLE
+                                              (@ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{0}
+                                                (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                  (fun (x : ReweightedNPMLE.Point d) =>
+                                                    @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                      (Set.{0} (ReweightedNPMLE.Point d))
+                                                      (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                  (@WithLp.measurableSpace.{0}
+                                                    (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                      (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                        (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                          (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                            ENNReal.instAddCommMonoidWithOne))
+                                                        PiLp.innerProductSpace._proof_1))
+                                                    ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                    (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                      fun (a : Fin d) => Real.measurableSpace)))
+                                                d n
+                                                (fun (a : @Set.Elem.{0} (ReweightedNPMLE.Point d) K) =>
+                                                  @Subtype.val.{1} (ReweightedNPMLE.Point d)
+                                                    (fun (x : ReweightedNPMLE.Point d) =>
+                                                      @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                        (Set.{0} (ReweightedNPMLE.Point d))
+                                                        (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                    a)
+                                                (@Prod.mk.{0, 0} (ReweightedNPMLE.GaussianDataWeight d n)
+                                                  (Prod.{0, 0}
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace))))
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace)))))
+                                                  p
+                                                  (@Prod.mk.{0, 0}
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace))))
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace))))
+                                                    μ μ₀)))
+                                              (@HDiv.hDiv.{0, 0, 0} Real Real Real
+                                                (@instHDiv.{0} Real
+                                                  (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+                                                C (Real.log (@Nat.cast.{0} Real Real.instNatCast n))))
+                                            (@LE.le.{0} Real Real.instLE
+                                              (@ReweightedNPMLE.gaussianSquaredLogRatioGap.{0}
+                                                (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                  (fun (x : ReweightedNPMLE.Point d) =>
+                                                    @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                      (Set.{0} (ReweightedNPMLE.Point d))
+                                                      (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                  (@WithLp.measurableSpace.{0}
+                                                    (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                      (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                        (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                          (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                            ENNReal.instAddCommMonoidWithOne))
+                                                        PiLp.innerProductSpace._proof_1))
+                                                    ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                    (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                      fun (a : Fin d) => Real.measurableSpace)))
+                                                d n
+                                                (fun (a : @Set.Elem.{0} (ReweightedNPMLE.Point d) K) =>
+                                                  @Subtype.val.{1} (ReweightedNPMLE.Point d)
+                                                    (fun (x : ReweightedNPMLE.Point d) =>
+                                                      @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                        (Set.{0} (ReweightedNPMLE.Point d))
+                                                        (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                    a)
+                                                (@Prod.mk.{0, 0} (ReweightedNPMLE.GaussianDataWeight d n)
+                                                  (Prod.{0, 0}
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace))))
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace)))))
+                                                  p
+                                                  (@Prod.mk.{0, 0}
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace))))
+                                                    (@MeasureTheory.ProbabilityMeasure.{0}
+                                                      (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+                                                      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                                        (fun (x : ReweightedNPMLE.Point d) =>
+                                                          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d)
+                                                            (Set.{0} (ReweightedNPMLE.Point d))
+                                                            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+                                                        (@WithLp.measurableSpace.{0}
+                                                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                                  ENNReal.instAddCommMonoidWithOne))
+                                                              PiLp.innerProductSpace._proof_1))
+                                                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                                          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                            fun (a : Fin d) => Real.measurableSpace))))
+                                                    μ μ₀)))
+                                              (@HDiv.hDiv.{0, 0, 0} Real Real Real
+                                                (@instHDiv.{0} Real
+                                                  (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+                                                C (Real.log (@Nat.cast.{0} Real Real.instNatCast n))))))
+                                    (@LE.le.{0} Real Real.instLE
+                                      (@ReweightedNPMLE.hellingerSq.{0} (ReweightedNPMLE.Point d)
+                                        (@MeasureTheory.MeasureSpace.toMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+                                          (@measureSpaceOfInnerProductSpace.{0} (ReweightedNPMLE.Point d)
+                                            (@PiLp.normedAddCommGroup.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              (Fin d) (fun (x : Fin d) => Real) fact_one_le_two_ennreal (Fin.fintype d)
+                                              fun (i : Fin d) => Real.normedAddCommGroup)
+                                            (@PiLp.innerProductSpace.{0, 0, 0} Real Real.instRCLike (Fin d)
+                                              (Fin.fintype d) (fun (x : Fin d) => Real)
+                                              (fun (i : Fin d) => Real.normedAddCommGroup) fun (i : Fin d) =>
+                                              @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+                                            (@WithLp.instModuleFinite.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              Real ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                              (@DivisionSemiring.toSemiring.{0} Real
+                                                (@DivisionRing.toDivisionSemiring.{0} Real Real.instDivisionRing))
+                                              (@Pi.addCommGroup.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                fun (i : Fin d) =>
+                                                @SeminormedAddCommGroup.toAddCommGroup.{0} ((fun (x : Fin d) => Real) i)
+                                                  ((fun (i : Fin d) =>
+                                                      @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                        ((fun (x : Fin d) => Real) i)
+                                                        ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                    i))
+                                              (@Pi.module.{0, 0, 0} (Fin d) (fun (x : Fin d) => Real) Real
+                                                (@DivisionSemiring.toSemiring.{0} Real
+                                                  (@Semifield.toDivisionSemiring.{0} Real
+                                                    (@Field.toSemifield.{0} Real
+                                                      (@NormedField.toField.{0} Real
+                                                        (@DenselyNormedField.toNormedField.{0} Real
+                                                          (@RCLike.toDenselyNormedField.{0} Real Real.instRCLike))))))
+                                                (fun (i : Fin d) =>
+                                                  @AddCommGroup.toAddCommMonoid.{0} ((fun (x : Fin d) => Real) i)
+                                                    (@SeminormedAddCommGroup.toAddCommGroup.{0}
+                                                      ((fun (x : Fin d) => Real) i)
+                                                      ((fun (i : Fin d) =>
+                                                          @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                            ((fun (x : Fin d) => Real) i)
+                                                            ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                        i)))
+                                                fun (i : Fin d) =>
+                                                @NormedSpace.toModule.{0, 0} Real ((fun (x : Fin d) => Real) i)
+                                                  (@DenselyNormedField.toNormedField.{0} Real
+                                                    (@RCLike.toDenselyNormedField.{0} Real Real.instRCLike))
+                                                  ((fun (i : Fin d) =>
+                                                      @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                        ((fun (x : Fin d) => Real) i)
+                                                        ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                    i)
+                                                  ((fun (i : Fin d) =>
+                                                      @InnerProductSpace.toNormedSpace.{0, 0} Real
+                                                        ((fun (x : Fin d) => Real) i) Real.instRCLike
+                                                        (@NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                        ((fun (i : Fin d) =>
+                                                            @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+                                                          i))
+                                                    i))
+                                              (@FiniteDimensional.finiteDimensional_pi'.{0, 0, 0} Real
+                                                Real.instDivisionRing (Fin d)
+                                                (@Finite.of_fintype.{0} (Fin d) (Fin.fintype d))
+                                                (fun (x : Fin d) => Real)
+                                                (fun (i : Fin d) =>
+                                                  @SeminormedAddCommGroup.toAddCommGroup.{0}
+                                                    ((fun (x : Fin d) => Real) i)
+                                                    ((fun (i : Fin d) =>
+                                                        @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                      i))
+                                                (fun (i : Fin d) =>
+                                                  @NormedSpace.toModule.{0, 0} Real ((fun (x : Fin d) => Real) i)
+                                                    (@DenselyNormedField.toNormedField.{0} Real
+                                                      (@RCLike.toDenselyNormedField.{0} Real Real.instRCLike))
+                                                    ((fun (i : Fin d) =>
+                                                        @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                      i)
+                                                    ((fun (i : Fin d) =>
+                                                        @InnerProductSpace.toNormedSpace.{0, 0} Real
+                                                          ((fun (x : Fin d) => Real) i) Real.instRCLike
+                                                          (@NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                            ((fun (x : Fin d) => Real) i)
+                                                            ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                          ((fun (i : Fin d) =>
+                                                              @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+                                                            i))
+                                                      i))
+                                                fun (i : Fin d) =>
+                                                @FiniteDimensional.rclike_to_real.{0} Real Real.instRCLike))
+                                            (@WithLp.measurableSpace.{0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                fun (a : Fin d) => Real.measurableSpace))
+                                            (@PiLp.borelSpace.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              (Fin d) (fun (x : Fin d) => Real) (@instCountableFin d)
+                                              (fun (a : Fin d) => Real.measurableSpace)
+                                              (fun (i : Fin d) =>
+                                                @UniformSpace.toTopologicalSpace.{0} ((fun (x : Fin d) => Real) i)
+                                                  ((fun (i : Fin d) =>
+                                                      @PseudoEMetricSpace.toUniformSpace.{0}
+                                                        ((fun (x : Fin d) => Real) i)
+                                                        (@PseudoMetricSpace.toPseudoEMetricSpace.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) =>
+                                                              @SeminormedAddCommGroup.toPseudoMetricSpace.{0}
+                                                                ((fun (x : Fin d) => Real) i)
+                                                                ((fun (i : Fin d) =>
+                                                                    @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                                      ((fun (x : Fin d) => Real) i)
+                                                                      ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                                  i))
+                                                            i)))
+                                                    i))
+                                              (fun (i : Fin d) => Real.borelSpace) fun (i : Fin d) =>
+                                              instSecondCountableTopologyReal)))
+                                        (@MeasureTheory.MeasureSpace.volume.{0} (ReweightedNPMLE.Point d)
+                                          (@measureSpaceOfInnerProductSpace.{0} (ReweightedNPMLE.Point d)
+                                            (@PiLp.normedAddCommGroup.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              (Fin d) (fun (x : Fin d) => Real) fact_one_le_two_ennreal (Fin.fintype d)
+                                              fun (i : Fin d) => Real.normedAddCommGroup)
+                                            (@PiLp.innerProductSpace.{0, 0, 0} Real Real.instRCLike (Fin d)
+                                              (Fin.fintype d) (fun (x : Fin d) => Real)
+                                              (fun (i : Fin d) => Real.normedAddCommGroup) fun (i : Fin d) =>
+                                              @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+                                            (@WithLp.instModuleFinite.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              Real ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                              (@DivisionSemiring.toSemiring.{0} Real
+                                                (@DivisionRing.toDivisionSemiring.{0} Real Real.instDivisionRing))
+                                              (@Pi.addCommGroup.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                fun (i : Fin d) =>
+                                                @SeminormedAddCommGroup.toAddCommGroup.{0} ((fun (x : Fin d) => Real) i)
+                                                  ((fun (i : Fin d) =>
+                                                      @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                        ((fun (x : Fin d) => Real) i)
+                                                        ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                    i))
+                                              (@Pi.module.{0, 0, 0} (Fin d) (fun (x : Fin d) => Real) Real
+                                                (@DivisionSemiring.toSemiring.{0} Real
+                                                  (@Semifield.toDivisionSemiring.{0} Real
+                                                    (@Field.toSemifield.{0} Real
+                                                      (@NormedField.toField.{0} Real
+                                                        (@DenselyNormedField.toNormedField.{0} Real
+                                                          (@RCLike.toDenselyNormedField.{0} Real Real.instRCLike))))))
+                                                (fun (i : Fin d) =>
+                                                  @AddCommGroup.toAddCommMonoid.{0} ((fun (x : Fin d) => Real) i)
+                                                    (@SeminormedAddCommGroup.toAddCommGroup.{0}
+                                                      ((fun (x : Fin d) => Real) i)
+                                                      ((fun (i : Fin d) =>
+                                                          @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                            ((fun (x : Fin d) => Real) i)
+                                                            ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                        i)))
+                                                fun (i : Fin d) =>
+                                                @NormedSpace.toModule.{0, 0} Real ((fun (x : Fin d) => Real) i)
+                                                  (@DenselyNormedField.toNormedField.{0} Real
+                                                    (@RCLike.toDenselyNormedField.{0} Real Real.instRCLike))
+                                                  ((fun (i : Fin d) =>
+                                                      @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                        ((fun (x : Fin d) => Real) i)
+                                                        ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                    i)
+                                                  ((fun (i : Fin d) =>
+                                                      @InnerProductSpace.toNormedSpace.{0, 0} Real
+                                                        ((fun (x : Fin d) => Real) i) Real.instRCLike
+                                                        (@NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                        ((fun (i : Fin d) =>
+                                                            @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+                                                          i))
+                                                    i))
+                                              (@FiniteDimensional.finiteDimensional_pi'.{0, 0, 0} Real
+                                                Real.instDivisionRing (Fin d)
+                                                (@Finite.of_fintype.{0} (Fin d) (Fin.fintype d))
+                                                (fun (x : Fin d) => Real)
+                                                (fun (i : Fin d) =>
+                                                  @SeminormedAddCommGroup.toAddCommGroup.{0}
+                                                    ((fun (x : Fin d) => Real) i)
+                                                    ((fun (i : Fin d) =>
+                                                        @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                      i))
+                                                (fun (i : Fin d) =>
+                                                  @NormedSpace.toModule.{0, 0} Real ((fun (x : Fin d) => Real) i)
+                                                    (@DenselyNormedField.toNormedField.{0} Real
+                                                      (@RCLike.toDenselyNormedField.{0} Real Real.instRCLike))
+                                                    ((fun (i : Fin d) =>
+                                                        @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                      i)
+                                                    ((fun (i : Fin d) =>
+                                                        @InnerProductSpace.toNormedSpace.{0, 0} Real
+                                                          ((fun (x : Fin d) => Real) i) Real.instRCLike
+                                                          (@NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                            ((fun (x : Fin d) => Real) i)
+                                                            ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                          ((fun (i : Fin d) =>
+                                                              @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+                                                            i))
+                                                      i))
+                                                fun (i : Fin d) =>
+                                                @FiniteDimensional.rclike_to_real.{0} Real Real.instRCLike))
+                                            (@WithLp.measurableSpace.{0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                                              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real)
+                                                fun (a : Fin d) => Real.measurableSpace))
+                                            (@PiLp.borelSpace.{0, 0}
+                                              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                                                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                                                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal
+                                                      ENNReal.instAddCommMonoidWithOne))
+                                                  PiLp.innerProductSpace._proof_1))
+                                              (Fin d) (fun (x : Fin d) => Real) (@instCountableFin d)
+                                              (fun (a : Fin d) => Real.measurableSpace)
+                                              (fun (i : Fin d) =>
+                                                @UniformSpace.toTopologicalSpace.{0} ((fun (x : Fin d) => Real) i)
+                                                  ((fun (i : Fin d) =>
+                                                      @PseudoEMetricSpace.toUniformSpace.{0}
+                                                        ((fun (x : Fin d) => Real) i)
+                                                        (@PseudoMetricSpace.toPseudoEMetricSpace.{0}
+                                                          ((fun (x : Fin d) => Real) i)
+                                                          ((fun (i : Fin d) =>
+                                                              @SeminormedAddCommGroup.toPseudoMetricSpace.{0}
+                                                                ((fun (x : Fin d) => Real) i)
+                                                                ((fun (i : Fin d) =>
+                                                                    @NormedAddCommGroup.toSeminormedAddCommGroup.{0}
+                                                                      ((fun (x : Fin d) => Real) i)
+                                                                      ((fun (i : Fin d) => Real.normedAddCommGroup) i))
+                                                                  i))
+                                                            i)))
+                                                    i))
+                                              (fun (i : Fin d) => Real.borelSpace) fun (i : Fin d) =>
+                                              instSecondCountableTopologyReal)))
+                                        (@ReweightedNPMLE.compactGaussianMixtureDensity d K μ)
+                                        (@ReweightedNPMLE.compactGaussianMixtureDensity d K Gstar))
+                                      (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) C
+                                        (ReweightedNPMLE.gaussianPaperRiskScale d n)))))))))))
+        (@Filter.atTop.{0} Nat Nat.instPreorder))

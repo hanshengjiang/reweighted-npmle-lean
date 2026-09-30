@@ -1,0 +1,13 @@
+{
+  "challenge_module": "audit.comparator.Challenge",
+  "solution_module": "audit.comparator.Solution",
+  "theorem_names": [
+    "ComparatorAudit.main"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

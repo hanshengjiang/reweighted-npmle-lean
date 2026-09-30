@@ -1,0 +1,21 @@
+{
+  "all_expected_rejections_verified": true,
+  "controls": [
+    {
+      "control": "changed-definition",
+      "exit_code": 1,
+      "expected_diagnostic": "Const does not match between challenge and target 'ReweightedNPMLE.gaussianPaperRiskScale'",
+      "expected_diagnostic_found": true,
+      "sources_unchanged": true,
+      "expected_rejection_verified": true
+    },
+    {
+      "control": "unproved-solution",
+      "exit_code": 1,
+      "expected_diagnostic": "Illegal axiom detected: 'sorryAx'",
+      "expected_diagnostic_found": true,
+      "sources_unchanged": true,
+      "expected_rejection_verified": true
+    }
+  ]
+}

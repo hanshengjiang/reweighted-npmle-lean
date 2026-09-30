@@ -1,0 +1,13 @@
+import ReweightedNPMLE.GaussianMainTheorem
+set_option format.width 120
+set_option pp.funBinderTypes true
+set_option pp.piBinderTypes true
+set_option pp.proofs false
+#check @ReweightedNPMLE.gaussian_exact_regularization_main
+#print ReweightedNPMLE.gaussian_exact_regularization_main
+#print axioms ReweightedNPMLE.gaussian_exact_regularization_main
+#print axioms ReweightedNPMLE.gaussian_exact_regularization_joint_balanced_explicit
+#print ReweightedNPMLE.gaussianPaperJointConstant
+#print ReweightedNPMLE.gaussianPaperSupportConstant
+#print ReweightedNPMLE.gaussianPaperRateConstant
+#print ReweightedNPMLE.gaussianPaperEntropyConstant

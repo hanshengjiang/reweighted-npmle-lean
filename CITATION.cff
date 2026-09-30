@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying paper and identify the Lean package release or commit used."
+title: "Lean 4 formalization of reweighted Gaussian-mixture NPMLE"
+type: software
+authors:
+  - family-names: Jiang
+    given-names: Hansheng
+version: 0.1.0
+license: Apache-2.0
+abstract: >-
+  Lean 4 and mathlib formalization of exact sparsity, uniqueness, likelihood
+  stability, and Hellinger accuracy for randomly reweighted Gaussian-mixture
+  NPMLEs, with statement audits and frozen manuscript references.

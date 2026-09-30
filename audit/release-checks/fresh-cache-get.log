@@ -1,0 +1,41 @@
+info: mathlib: cloning https://github.com/leanprover-community/mathlib4.git
+info: mathlib: checking out revision 'c5ea00351c28e24afc9f0f84379aa41082b1188f'
+info: plausible: cloning https://github.com/leanprover-community/plausible
+info: plausible: checking out revision 'a456461b368b71d2accd95234832cd9c174b5437'
+info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+info: LeanSearchClient: checking out revision 'c5d5b8fe6e5158def25cd28eb94e4141ad97c843'
+info: importGraph: cloning https://github.com/leanprover-community/import-graph
+info: importGraph: checking out revision '515cf9d0c00ece5e661f6de4326a53dedc1e8ea1'
+info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+info: proofwidgets: checking out revision 'a84b3e2475d5c5ab979567b1ad8aea21b764bcf8'
+info: aesop: cloning https://github.com/leanprover-community/aesop
+info: aesop: checking out revision '558915ae105bfd8074e22d597613d1961822adc2'
+info: Qq: cloning https://github.com/leanprover-community/quote4
+info: Qq: checking out revision 'a6e6c34c4ef182f83b219a3a5a385f51f44bdc4c'
+info: batteries: cloning https://github.com/leanprover-community/batteries
+info: batteries: checking out revision '32dc18cde3684679f3c003de608743b57498c56f'
+info: Cli: cloning https://github.com/leanprover/lean4-cli
+info: Cli: checking out revision '6b907cf12b2e445ccb7c24bc208ef04a1f39e84c'
+✔ [2/24] Built Cache.Init (203ms)
+✔ [3/24] Built Cache.Lean (237ms)
+✔ [10/24] Built Batteries.Data.Array.Match:c.o (267ms)
+✔ [11/24] Built Batteries.Data.String.Basic:c.o (229ms)
+✔ [12/24] Built Batteries.Data.String.Matcher:c.o (244ms)
+✔ [13/24] Built Cache.Lean:c.o (2.4s)
+✔ [14/24] Built Cache.Init:c.o (2.4s)
+✔ [15/24] Built Batteries.Tactic.OpenPrivate:c.o (555ms)
+✔ [16/24] Built Cache.IO (841ms)
+✔ [17/24] Built Cache.Hashing (411ms)
+✔ [18/24] Built Cache.IO:c.o (473ms)
+✔ [19/24] Built Cache.Hashing:c.o (136ms)
+✔ [20/24] Built Cache.Requests (824ms)
+✔ [21/24] Built Cache.Main (465ms)
+✔ [22/24] Built Cache.Main:c.o (224ms)
+✔ [23/24] Built Cache.Requests:c.o (723ms)
+✔ [24/24] Built cache:exe (1.2s)
+Decompressing 8283 already-cached file(s) (176 already decompressed)
+Current branch: HEAD
+Using cache (Azure) from origin: (some leanprover-community/mathlib4)
+No files to download
+Decompressed 8283 already-cached file(s)
+Completed successfully in 11227 ms!

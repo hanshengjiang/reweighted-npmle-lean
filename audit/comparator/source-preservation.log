@@ -1,0 +1,14 @@
+Historical manifest entries: 120
+Checked production Lean sources: 112
+Checked toolchain/dependency pins: 2
+Excluded historical entries: 6
+  excluded: Check.lean
+  excluded: data/results/key_findings.json
+  excluded: data/results/multistart_stability.json
+  excluded: data/results/numerical_summary.tex
+  excluded: docs/paper.tex
+  excluded: lakefile.toml
+Missing: 0
+Changed: 0
+PASS: packaged production Lean sources and dependency pins match historical hashes.
+Release documentation, data, and lakefile metadata are outside this comparison.

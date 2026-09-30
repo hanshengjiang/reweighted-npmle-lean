@@ -1,0 +1,32 @@
+@gaussian_main_support_dimension_refinements : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ C,
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in atTop,
+                        ∀ (Gstar : ProbabilityMeasure ↑K),
+                          ∃ G,
+                            MeasurableSet G ∧
+                              (gaussianDataWeightMeasure Gstar n (gaussianPaperBalancedShape d n)).real Gᶜ ≤
+                                  C * ↑n ^ (-b) ∧
+                                ∀ p ∈ G,
+                                  ∃ μ,
+                                    gaussianProbabilityOptimizerSet (fun a => ↑a) p = {μ} ∧
+                                      (↑μ).support.Finite ∧ ↑(↑μ).support.ncard ≤ C * gaussianPaperSupportOrder d n
+'ReweightedNPMLE.gaussian_main_support_dimension_refinements' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_paper_rate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_evaluation_independence_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_support_finite_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.canonical_maximumIndependentSupport_gamma_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

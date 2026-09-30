@@ -1,0 +1,1277 @@
+'ReweightedNPMLE.sum_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.normalize_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isMaxOn_normalize_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isMaxOn_weight_smul_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.fittedValue_maximizer_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.sum_simplexGridRound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.simplexGridRound_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.sum_abs_simplexGridRound_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.card_simplexWeightGrid_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.simplexGridRound_mem_simplexWeightGrid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.simplexGridRound_mem_validSimplexWeightGrid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.card_validSimplexWeightGrid_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianKernel_eq_density_mul_exp_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianDensity_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianDensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianKernel_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianKernel_product_div_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianKernel_product_div_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_finiteGaussianMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_finiteGaussianMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_sq_div_density_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.integral_finiteGaussianMixture_sq_div_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.abs_gaussianScore_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.real_exp_taylor_remainder_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.pow_div_factorial_le_exp_mul_div_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.card_monomialCoord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finrank_monomialFeature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.monomialFeature_integrable_of_compact_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_monomial_moment_matching' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.inner_eq_coordinateDot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finite_moment_matching_pointTruncatedInnerExp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.IsMonomialCombination.weighted_sum_eq_of_feature_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.IsMonomialCombination.weighted_sum_eq_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussian_truncated_score_matching' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_score_exp_average_error_of_moment_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exp_neg_bound_le_gaussian_score_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.relative_error_of_exp_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussian_score_exp_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussian_score_exp_relative_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianTruncatedScoreExp_isPointMonomialCombination' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussian_mixture_relative_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussian_kernel_relative_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussian_kernel_uniform_relative_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_relative_width_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isCompact_convexHull_of_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.convexHull_eq_closedConvexHull_of_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.mem_gaussianFittedSet_iff_exists_finite_mixture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_bounded_gaussian_finite_mixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianScoreFeature_mem_gaussianFittedSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_unique_gaussian_fittedValue_maximizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteMixtureFiber_extreme_of_linearIndepOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.coefficientSupport_card_le_fin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteMixtureFiber_extreme_iff_augmented_linearIndepOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteMixtureFiber_extreme_iff_linearIndepOn_of_contact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.coefficientSupport_card_le_finrank_of_extreme_contact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteMixtureFiber_eq_singleton_of_support_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.likelihoodContactNumerator_le_total_of_isMaxOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finite_likelihood_optimizer_extreme_iff_linearIndepOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finite_likelihood_extreme_optimizer_support_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.weighted_difference_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.ordinary_gap_le_perturbation_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.abs_perturbation_pairing_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.ordinary_gap_sq_le_weight_deviation_sq_mul_logratio_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.logratio_sq_le_weight_deviation_sq_of_quadratic_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.one_six_logratio_sq_le_ordinary_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.local_logratio_sq_le_thirtysix_weight_deviation_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.local_ordinary_gap_le_six_weight_deviation_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.affinity_eq_one_sub_half_hellingerSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_le_integral_abs_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_abs_le_sqrt_weightedL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_le_sqrt_weightedL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerIntegrand_integrable_of_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.abs_sub_integrable_of_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_signedDifference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_finiteGaussianMixture_difference_sq_div_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.hellingerSq_finiteGaussianMixture_le_sqrt_quadraticForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.signedMixture_quadraticForm_eq_remainder_of_moment_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.abs_pointInnerExpRemainder_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.abs_remainder_quadraticForm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finite_moment_matching_weightedL2_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_finite_moment_matching_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_abs_finiteGaussianMixture_le_sum_abs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_sub_same_locations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_finiteGaussianMixture_same_locations_le_weight_l1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.sqrt_gaussianKernel_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerAffinity_gaussianKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_gaussianKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_gaussianKernel_le_norm_sq_div_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.sqrt_sub_sq_finiteGaussianMixture_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hellingerSq_finiteGaussianMixture_same_weights_le_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.hellingerSq_finiteGaussianMixture_location_rounding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.hellingerSq_finiteGaussianMixture_rounding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianMixture_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianMixture_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_gaussianMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurable_gaussianMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianMixture_mul_kernel_div_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.integral_gaussianMixture_sq_div_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_gaussianMixture_sub_finite_sq_div_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.moment_matching_truncated_quadratic_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.abs_general_finite_remainder_quadratic_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.general_finite_quadratic_eq_remainder_of_moment_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.general_finite_moment_matching_weightedL2_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.hellingerSq_gaussianMixture_finite_moment_matching_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussianMixture_hellinger_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.abs_gaussianScore_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.abs_log_finiteGaussianMixture_location_rounding_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.abs_finiteGaussianMixture_weight_relative_error_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.abs_log_finiteGaussianMixture_weight_rounding_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.abs_log_finiteGaussianMixture_rounding_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.abs_log_rounded_finiteGaussianMixture_sub_gaussianMixture_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.hellingerSq_gaussianMixture_finite_rounding_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_finite_gaussianMixture_simultaneous_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.boundedLocationNet_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.card_boundedLocationNet_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.exists_mem_boundedLocationNet_norm_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.card_finiteGaussianMixtureGrid_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.card_finiteGaussianMixtureGrid_boundedLocationNet_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_mem_finiteGaussianMixtureGrid_simultaneous_approximation_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_mem_boundedGaussianMixtureGrid_simultaneous_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianReal_two_sided_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianProduct_euclidean_norm_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianLocationMixtureLaw_radius_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianLocationMixtureSample_max_radius_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.withDensity_gaussianDensity_eq_stdGaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.map_stdGaussian_add_eq_withDensity_gaussianKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianLocationMixtureLaw_eq_withDensity_gaussianMixture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.hellingerSq_eq_zero_iff_ae_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.sqrt_mul_integrable_of_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_abs_sub_le_two_mul_sqrt_hellingerSq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.tendsto_integral_abs_sub_of_ae_tendsto_of_integral_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianLocationMixtureLaw_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianMixture_identifiable_of_ae_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianMixture_identifiable_of_hellingerSq_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianMixture_identifiable_of_measurableEmbedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.tendsto_gaussianMixture_eval_of_tendsto_probabilityMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.tendsto_probabilityMeasure_of_tendsto_gaussianMixture_hellingerSq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_hellingerSq_ball_subset_probabilityMeasure_nhds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.tendstoInMeasure_probabilityMeasure_of_gaussianMixture_hellingerSq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianMixture_weak_consistency_of_hellingerSq_tails' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.product_sqrt_likelihood_ratio_eq_one_sub_half_hellingerSq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.fixed_density_likelihood_ratio_test_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finite_density_net_likelihood_test_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.nearMLE_hellingerSq_transfer_of_net' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.uniform_nearMLE_hellinger_bad_event_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_explicit_tuned' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_entropy_tuned' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_fully_tuned' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_bad_event_bound_polynomial_tuned' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianMomentDimension_eq_choose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianMomentDimension_le_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.boundedLocationCellCount_cast_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.log_gaussianNetCardBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.log_gaussianNetCardBound_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperStirlingBase_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperStirlingPower_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianMomentRelativeError_paper_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianMomentHellingerError_paper_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianNetLogError_256' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianNearMLE_threshold_256_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianPaper_failure_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_uniform_nearMLE_paper_rate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.sub_log_one_add_ge_sq_div_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.neg_sub_log_one_sub_ge_sq_div_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.radial_quadratic_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.log_one_add_sq_le_two_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.log_one_add_le_sub_sq_third' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gamma_max_coordinate_concentration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.total_gammaWeight_mgf_eq_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.total_gammaWeight_map_eq_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gamma_weighted_logLikelihood_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichletMeasure_map_piCongrLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichletMeasure_ae_mem_finiteSimplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.normalized_gamma_coordinate_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_coordinate_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichletActualCovariance_row_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichletActualCovariance_diag_add_offdiag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.symmetricDirichletActualCovariance_eq_of_diag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_weighted_empirical_variance_of_covariance_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_expected_tv_le_of_covariance_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.normalized_gamma_coordinate_second_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_coordinate_second_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichletActualCovariance_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_weighted_empirical_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_expected_tv_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaMeasure_map_mul_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaMeasure_tilted_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaProductMeasure_tilted_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaProductMeasure_map_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaProductMeasure_map_normalize_eq_symmetricDirichlet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gammaProduct_normalize_indep_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaWeight_normalize_indep_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaWeight_normalize_total_joint_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.lintegral_density_jacobian_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaProduct_lintegral_le_one_of_jacobian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_weightedLogLikelihood_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.numerical_optimization_corollary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.exists_uniform_positive_coordinate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonicalFittedLog_continuousOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonicalFittedValue_continuousOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonicalFittedLog_ae_differentiableAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurable_fittedLogDisplacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonicalFittedOptimalValue_hasFDerivAt_of_positive_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_canonicalFittedOptimalValue_hasFDerivAt_of_positive_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.fittedValue_secondOrderExpansion_of_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finite_optimizer_directional_sensitivity_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finite_optimizer_hessian_sub_projection_posSemidef' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finite_extreme_optimizer_jacobian_determinant_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.canonical_finite_extreme_optimizer_jacobian_determinant_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurableSet_independentRepresentationEvent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurable_maximumIndependentSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.maximumIndependentSupport_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.maximumIndependentSupport_mem_of_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.maximumIndependentSupport_pos_of_mem_convexHull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.independentRepresentationEvent_iff_extreme_finite_representation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.canonical_maximumIndependentSupport_jacobian_determinant_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gammaProduct_lintegral_le_one_of_ae_jacobian' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gamma_determinant_moment_of_monotone_ae_deriv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.canonical_gamma_determinant_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_maximumIndependentSupport_gamma_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.markov_event_bound_exp_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_maximumIndependentSupport_gamma_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.convex_relativeFittedSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.relativeFittedSet_firstOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.fitted_radial_localization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isClosed_gammaEffectiveEvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaEffectiveEvent_failure_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaEffectiveEvent_localization_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gammaEffectiveEvent_fitted_localization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.effective_dimension_finite_support_common_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.effective_dimension_scale_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.effective_dimension_support_numeric_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.effective_dimension_error_numeric_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.effective_dimension_finite_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureValue_finiteProbabilityMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.probabilityMixtureValue_convexCombination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_convexCombination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_nonempty_of_mem_convexHull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.continuous_probabilityMixtureValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isCompact_probabilityMixtureFiber' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureValue_mem_convexHull' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_nonempty_iff_mem_convexHull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.probability_optimizer_iff_mem_fiber' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probability_optimizer_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integral_likelihoodContactFunctional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probability_optimizer_likelihood_contact_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probability_optimizer_likelihood_contact_on_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.probabilityIntegralFunctional_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_probabilityIntegralFunctional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityIntegralFunctional_convexCombination' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.isCompact_probabilityFiberImage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.convex_probabilityFiberImage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isExtremeProbabilityMixture_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_extreme_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityFiberImage_kreinMilman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_eq_singleton_of_extreme_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measure_eq_sum_dirac_of_ae_mem_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMeasure_finiteRepresentation_of_ae_mem_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteProbabilityMeasure_singleton_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteProbabilityMeasure_coefficients_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteProbabilityMeasure_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityIntegralFunctional_finiteProbabilityMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_unique_of_supported_independent_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteProbabilityMeasure_extreme_of_linearIndependent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteMixtureFiber_extreme_of_probability_extreme' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finite_probability_optimizer_extreme_iff_linearIndependent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.integral_probabilityMeasureWithRealDensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_not_extreme_of_bounded_zero_moment_perturbation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.integral_perturbation_eq_zero_of_contact_zero_moments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.probability_optimizer_not_extreme_of_disjoint_positive_regions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_disjoint_open_neighborhoods_of_finite_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_no_large_injective_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_support_finite_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measure_support_singleton_pos_of_finite_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.probabilityMeasure_positive_finiteRepresentation_of_finite_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.full_probability_optimizer_extreme_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.maximumIndependentSupport_eq_sSup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.fullExtremeSupportEvent_eq_independentRepresentationEvent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.maximumExtremeSupport_eq_maximumIndependentSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurable_maximumExtremeSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_support_le_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_maximumExtremeSupport_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.positive_kernel_hull_properties' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.effective_dimension_full_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_eq_singleton_of_small_extreme_supports' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.relative_gaussian_fitted_mem_convexHull' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_relativeFittedSet_width' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureValue_coordinate_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.probabilityMixtureFiber_coordinate_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isExtremeProbabilityMixture_coordinate_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_probability_optimizer_fiber_eq_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_effective_dimension_full_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_optimizer_fiber_unique_of_evaluation_independence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_iteratedFDeriv_ne_zero_of_analytic_nontrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.continuousMultilinearMap_exists_nonzero_basis_word' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.exists_regular_iterated_derivative_of_analytic_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measure_image_eq_zero_of_smooth_dimension_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianMixture_finiteProbabilityMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_coefficients_zero_of_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_not_identically_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.linearIndependent_gaussianKernel_functions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.analyticAt_gaussianKernel_joint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.analyticAt_finiteGaussianMixture_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.analyticOnNhd_finiteGaussianMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteGaussianMixture_exists_nonzero_derivative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.finrank_gaussianDependenceParameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finrank_gaussianDependenceParameter_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isOpen_gaussianDependenceDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.analyticAt_gaussianDependenceFamily_joint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianDependenceFamily_nontrivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianDependenceFamily_regular_derivative_at_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_evaluation_dependence_has_normalized_chart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measure_image_eq_zero_of_lipschitzOn_dimension_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.contDiff_iteratedFDeriv_with_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.contDiff_iteratedFDeriv_word_with_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.hasFDerivAt_incidenceEquations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.contDiff_incidenceEquations_of_joint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.fderiv_uncurry_observation_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.incidenceDerivative_surjective_of_observation_derivatives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.fderiv_incidenceEquations_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.exists_open_null_projection_neighborhood_of_regular_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measure_projection_regular_zero_locus_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.contDiff_gaussianObservationDerivativeFamily_joint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianIncidence_has_regular_derivative_equations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.volume_projection_gaussianIncidenceSet_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.volume_gaussianBadData_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_generic_evaluation_independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_generic_optimizer_fiber_uniqueness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_evaluation_independence_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperAugmentedDimension_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperStructuralRank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_effectiveQ_gaussianPaperStructuralTail_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperStructural_complexity_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperBalancedShape_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isLittleO_gaussianPaperAugmentedDimension_rpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.isLittleO_gaussianPaperBalancedShape_rpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianTaylorResidual_le_momentRelativeError' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianTaylorResidual_paper_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperBalancedShape_le_rpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperStructuralTail_ge_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_effectiveQ_gaussianPaperStructuralTail_le_nat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianTaylorResidual_width_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperBalanced_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperTiny_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaper_sparse_uniqueness_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaper_rank_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperBalanced_likelihood_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperBalanced_weight_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianPaperStructural_failure_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperAugmentedDimension_le_twice_effective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperAugmentedDimension_one_le_twice_log' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperTiny_weight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianCanonicalFit_isMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.weightedLogLikelihood_mul_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.fittedLogRatio_mul_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_probability_optimizer_iff_score_fiber' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_conditional_balanced' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_conditional_tiny' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.isClosed_compactOptimizerGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.positive_iff_exists_nat_mul_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_compactOptimizer_nonunique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_exists_compactOptimizer_strict_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.continuous_probabilityIntegral_with_parameter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.continuous_gaussian_probabilityMixtureValue_joint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_probabilityMixtureValue_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_gaussian_probabilityLogLikelihood_joint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.isClosed_gaussian_probabilityOptimizerGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_finiteProbabilityLawMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isCompact_range_finiteProbabilityLawMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isCompact_smallSupportProbabilityLaws' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.mem_smallSupportProbabilityLaws_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isClosed_smallSupportProbabilityLaws' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_exists_compactOptimizer_outside_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurableSet_exists_closed_relation_strict_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measureReal_prod_le_of_uniform_section_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.absolutelyContinuous_finiteProduct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_gaussianProbabilityLogLikelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussian_optimizer_nonunique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussian_optimizer_support_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.isClosed_gaussianOptimizerComparisonGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_gaussianOrdinaryLikelihoodGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussian_optimizer_likelihood_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.continuous_gaussianSquaredLogRatioGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussian_optimizer_log_fit_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussianStructuralFailure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.notMem_gaussianStructuralFailure_of_unique_optimizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_balanced_structural_sections' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_balanced_joint_structural_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_structural_conclusions_of_notMem_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_optimizer_nearMLE_of_likelihood_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixtureLaw_eq_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isProbabilityMeasure_compactGaussianSampleMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianSampleMeasure_absolutelyContinuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianSampleMeasure_paper_radius_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianProbabilityLogLikelihood_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_measurable_uniform_nearMLE_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_joint_balanced_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussianTinyStructuralFailure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.notMem_gaussianTinyStructuralFailure_of_unique_nearMLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_tiny_conclusions_of_notMem_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_joint_tiny_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianPaperRiskScale_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianPaperJointConstant_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_tiny' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isProbabilityMeasure_gaussianBalancedExperimentMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.tendsto_gaussianPaperRiskScale_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_reweighted_optimizer_weak_consistency' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.isClosed_gaussianApproxComparisonGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.measurableSet_gaussianApproxFitFailure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_approx_fit_bounds_of_notMem_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianProbabilityLogLikelihood_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianSquaredLogRatioGap_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_approx_regularization_conditional_balanced' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_approximate_optimizer_joint_robustness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianScoreProbabilityValue_mem_fittedSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_probability_relative_width_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianTaylorResidual_eq_zero_of_mul_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.maximumExtremeSupport_coordinate_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianMaximumExtremeSupport_eq_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussianPaperSampleRadius_ge_sqrt_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_conditional_structural_and_likelihood_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.iid_weighted_population_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.iid_gamma_population_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_unchanged_population_criterion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussianMixture_log_quadratic_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_log_integrable_of_candidate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_population_gap_eq_klDiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.orthonormal_matrix_projection_properties' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_extreme_optimizer_hessian_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.full_support_sensitivity_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.eventually_gaussianMomentHellingerError_256_le_inv_pow12' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianNetHellingerSqError_256_le_inv_pow6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianNetLogError_256_le_inv_pow3' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixtureDensity_finiteProbabilityMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.mem_gaussianGrid_is_compactGaussianMixtureDensity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperSampleRadius_le_sqrt_log' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianSampleMeasure_strengthened_paper_radius_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.compactGaussianMixture_simultaneous_paper_finite_net' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.canonical_fitted_maps_locally_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.continuous_fittedLogLinearFunctional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_fitted_value_contDiffOn_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.fittedOptimalValue_convexOn_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_fitted_value_convexOn_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.paperRadialEvent_subset_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.isCompact_paperRadialEvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.paper_radial_localization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_paper_radial_exact_fit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.canonical_maximumExtremeSupport_paper_gamma_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.eventually_gaussianPaperAugmentedDimension_le_twice_supportOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.gaussian_main_support_dimension_refinements' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.paper_full_optimizer_fiber_geometry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.finiteProbabilityMeasure_real_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.empiricalDirichletTV_eq_half_sum_actual_atom_mass_differences' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.empiricalDirichletTV_le_indexed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.empiricalDirichletTV_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.integrable_empiricalDirichletTV' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.empiricalDirichlet_expected_tv_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_uniform_nearMLE_paper_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gamma_coordinate_concentration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.symmetricDirichlet_weighted_empirical_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.paired_replication_count' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.tiny_same_support_all' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.balanced_same_support_count' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.diagnostic_fit_count' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.all_fit_diagnostics_pass' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.one_dimensional_kkt_below_five_e_neg_seven' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.multistart_same_resolved_support_all' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.multistart_one_dimensional_hellinger_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.multistart_two_dimensional_hellinger_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.path_weight_deviation_slope_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.path_second_order_slopes_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.balanced_risk_ratio_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.tiny_risk_ratio_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.bb_risk_ratio_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.balanced_mean_support_difference_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.balanced_mean_hellinger_to_ordinary_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.tiny_mean_hellinger_to_ordinary_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.balanced_mean_ordinary_loglik_gap_range_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_raw_sample_cell_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_all_means_recomputed_from_raw_samples' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_all_standard_errors_recomputed_from_raw_samples' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_entry_counts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_all_means_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_all_standard_errors_sq_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.sqrt_standard_error_rounding_of_sq_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_mean_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_table_standard_error_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_range_report_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_range_all_rounded_extrema_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_range_literal_interpretation_results' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_range_extrema_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.balanced_average_risk_ratio_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.balanced_same_support_percentage_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.path_slopes_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_report_counts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_all_sorting_permutations_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_all_samples_sorted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_all_sorted_samples_match_raw_samples' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_all_printed_quantiles_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_index_permutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_quantile_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.numericalKKTResidual_eq_paper_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.numericalKKTResidual_nonpos_of_fitted_optimizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.numericalKKTResidual_nonpos_of_full_optimizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_log_unit_enclosure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_log_power_two_enclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalLogUnitLowerRat_cast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalLogUnitErrorRat_cast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalLogLowerRat_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalLogErrorRat_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_log_certificate_enclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_raw_diagnostic_fit_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_all_raw_fit_diagnostics_pass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_maximum_KKT_upward_decimal_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_one_dimensional_KKT_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_multistart_maxima_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_design_replications_exact' does not depend on any axioms
+'ReweightedNPMLE.NumericalStudy.numerical_path_alpha_and_draw_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_recorded_balanced_alpha_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_ordinary_risk_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_balanced_support_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_balanced_all_three_refuted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_path_tiny_all_draws_support_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_sample_size_log_certificates_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_sample_size_log_enclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_cells_logs_certified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_cell_log_enclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_cell_rational_range_checks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_cell_real_ranges' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_extremum_witness_rational_checks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_likelihood_and_logfit_extrema_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_scaled_likelihood_literal_upper_bound_refuted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_interval_add_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_interval_sub_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_interval_mul_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_interval_inv_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_expression_enclosure_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_division_enclosure_denominator_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalExprSum_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalOLSExpression_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_ols_moment_equations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_least_squares_optimal_of_normal_equations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_ols_globally_minimizes_squared_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalOLSExpression_div' depends on axioms: [propext, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numericalOLSDenominatorExpression_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_dataset_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_all_eligible_alphas_used' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_metric_and_printed_values_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_all_sorting_permutations_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_all_raw_source_checks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_all_log_certificates_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_fallback_log_certificate_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_variable_log_certificate_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_variable_enclosures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_all_interval_evaluations_checked' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_actual_expression_enclosed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_all_printed_precisions_checked' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_real_slopes_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_raw_sorting_properties' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_regression_values_eq_raw_coordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_raw_regression_slopes_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_raw_regression_denominator_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_raw_regression_coefficients_globally_optimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_cell_and_replication_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_design_matches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_all_replications_and_lengths_checked' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_ordinary_risk_means_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_balanced_risk_ratios_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_tiny_risk_ratios_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_bb_risk_ratios_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_support_differences_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_balanced_hellinger_means_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_tiny_hellinger_means_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_balanced_likelihood_means_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_bb_likelihood_means_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_logfit_means_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_support_pairs_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_tiny_same_support_all' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_balanced_same_support_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_range_reports_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_range_extrema_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_literal_range_results' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_balanced_average_risk_ratio_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_scaled_cells_recomputed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_real_sample_mean_eq_cast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_real_ratio_within_2p1_percent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_actual_real_risk_ratios' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_actual_real_scaled_ranges' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_actual_balanced_risk_within_2p1_percent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_summary_raw_scaled_extrema_printed_precision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_parameter_box_compact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_parameter_box_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_embed1_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_three_point_masses_simplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_three_point_atoms_in_box' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_three_point_atoms_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_three_point_singleton_masses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_three_point_law_correctly_specified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_square_masses_simplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_square_atoms_in_box' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_square_atoms_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_square_singleton_masses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_square_law_correctly_specified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_uniform_real_law_literal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_uniform_real_singleton_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_uniform_singleton_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_uniform_law_correctly_specified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_design_densities_integrate_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_tiny_shape_is_L_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_normalized_weights_eq_nP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_normalized_weights_sum_eq_n' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ReweightedNPMLE.NumericalStudy.numerical_normalization_optimizer_unchanged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

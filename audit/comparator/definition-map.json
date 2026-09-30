@@ -1,0 +1,147 @@
+[
+  {
+    "name": "Point",
+    "source": "ReweightedNPMLE/Gaussian.lean",
+    "start_line": 21,
+    "end_line": 21
+  },
+  {
+    "name": "gaussianScore",
+    "source": "ReweightedNPMLE/Gaussian.lean",
+    "start_line": 24,
+    "end_line": 25,
+    "purpose": "Elaborator numeral-proof name compatibility; generates gaussianScore._proof_1 used by gaussianConstant and gaussianKernel."
+  },
+  {
+    "name": "gaussianConstant",
+    "source": "ReweightedNPMLE/Gaussian.lean",
+    "start_line": 28,
+    "end_line": 29
+  },
+  {
+    "name": "gaussianKernel",
+    "source": "ReweightedNPMLE/Gaussian.lean",
+    "start_line": 36,
+    "end_line": 37
+  },
+  {
+    "name": "gaussianMixture",
+    "source": "ReweightedNPMLE/GaussianMixtureMeasure.lean",
+    "start_line": 19,
+    "end_line": 21
+  },
+  {
+    "name": "compactGaussianMixtureDensity",
+    "source": "ReweightedNPMLE/GaussianNearMLE.lean",
+    "start_line": 22,
+    "end_line": 24
+  },
+  {
+    "name": "weightedLogLikelihood",
+    "source": "ReweightedNPMLE/Weights.lean",
+    "start_line": 26,
+    "end_line": 27
+  },
+  {
+    "name": "IsMaxOn",
+    "source": "ReweightedNPMLE/Weights.lean",
+    "start_line": 30,
+    "end_line": 31
+  },
+  {
+    "name": "positiveVectors",
+    "source": "ReweightedNPMLE/Weights.lean",
+    "start_line": 34,
+    "end_line": 35
+  },
+  {
+    "name": "probabilityMixtureValue",
+    "source": "ReweightedNPMLE/ProbabilityOptimizerFiber.lean",
+    "start_line": 24,
+    "end_line": 26
+  },
+  {
+    "name": "GaussianDataWeight",
+    "source": "ReweightedNPMLE/GaussianJointEvents.lean",
+    "start_line": 18,
+    "end_line": 18
+  },
+  {
+    "name": "gaussianProbabilityLogLikelihood",
+    "source": "ReweightedNPMLE/GaussianJointEvents.lean",
+    "start_line": 20,
+    "end_line": 23
+  },
+  {
+    "name": "gaussianProbabilityOptimizerSet",
+    "source": "ReweightedNPMLE/GaussianJointEvents.lean",
+    "start_line": 25,
+    "end_line": 27
+  },
+  {
+    "name": "gaussianOrdinaryLikelihoodGap",
+    "source": "ReweightedNPMLE/GaussianJointEvents.lean",
+    "start_line": 82,
+    "end_line": 86
+  },
+  {
+    "name": "gaussianSquaredLogRatioGap",
+    "source": "ReweightedNPMLE/GaussianJointEvents.lean",
+    "start_line": 113,
+    "end_line": 118
+  },
+  {
+    "name": "gaussianPaperLogScale",
+    "source": "ReweightedNPMLE/GaussianNearMLERate.lean",
+    "start_line": 24,
+    "end_line": 25
+  },
+  {
+    "name": "gaussianPaperEffectiveDimension",
+    "source": "ReweightedNPMLE/GaussianPaperScales.lean",
+    "start_line": 19,
+    "end_line": 20
+  },
+  {
+    "name": "gaussianPaperAugmentedDimension",
+    "source": "ReweightedNPMLE/GaussianPaperScales.lean",
+    "start_line": 22,
+    "end_line": 23
+  },
+  {
+    "name": "gaussianPaperBalancedShape",
+    "source": "ReweightedNPMLE/GaussianPaperScales.lean",
+    "start_line": 25,
+    "end_line": 26
+  },
+  {
+    "name": "gaussianPaperRiskScale",
+    "source": "ReweightedNPMLE/GaussianMainTheorem.lean",
+    "start_line": 15,
+    "end_line": 16
+  },
+  {
+    "name": "compactGaussianSampleMeasure",
+    "source": "ReweightedNPMLE/GaussianSampling.lean",
+    "start_line": 18,
+    "end_line": 21
+  },
+  {
+    "name": "gammaProductMeasure",
+    "source": "ReweightedNPMLE/DirichletIndependence.lean",
+    "start_line": 115,
+    "end_line": 117
+  },
+  {
+    "name": "gaussianDataWeightMeasure",
+    "source": "ReweightedNPMLE/GaussianJointTheorems.lean",
+    "start_line": 19,
+    "end_line": 21
+  },
+  {
+    "name": "hellingerSq",
+    "source": "ReweightedNPMLE/Hellinger.lean",
+    "start_line": 23,
+    "end_line": 25
+  }
+]

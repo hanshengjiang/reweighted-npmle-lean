@@ -1,0 +1,48 @@
+test_absolute_escape_and_symlink_paths_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_before_after_mismatch_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_binary_hash_mismatch_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_changed_source_and_manuscript_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_duplicate_json_keys_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_each_acceptance_flag_and_exit_code_required (test_comparator_record.ComparatorRecordTests) ... ok
+test_effective_config_cannot_weaken_target_or_axioms (test_comparator_record.ComparatorRecordTests) ... ok
+test_extra_production_file_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_missing_acceptance_rejected_even_with_updated_log_hash (test_comparator_record.ComparatorRecordTests) ... ok
+test_missing_unfinished_and_failed_records_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_omitted_source_in_both_maps_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_relocated_record_uses_no_original_paths_or_installed_tools (test_comparator_record.ComparatorRecordTests) ... ok
+test_tampered_log_rejected (test_comparator_record.ComparatorRecordTests) ... ok
+test_bad_line_anchor_and_build_link_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_broken_and_escaping_markdown_links_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_comparator_sources_runner_and_logs_exported (test_release_checks.ReleaseIntegrityTests) ... ok
+test_excluded_zip_content_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_audit_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_comparator_artifact_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_manuscript_hash_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_missing_or_extra_lean_source_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_nested_audit_links_and_line_anchors (test_release_checks.ReleaseIntegrityTests) ... ok
+test_symlink_source_rejected_even_when_bytes_match (test_release_checks.ReleaseIntegrityTests) ... ok
+test_tampered_lean_source_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_tampered_manuscript_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_unsafe_zip_paths_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_valid_package_and_zip (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_frozen_sources_checked_independently_of_export_manifest (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_missing_member_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_symlink_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_tampered_checksum_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_zip_unmanifested_member_rejected (test_release_checks.ReleaseIntegrityTests) ... ok
+test_invalid_expected_list_rejected (test_repository_tools.AxiomAuditTests) ... ok
+test_missing_duplicate_or_unknown_report_rejected (test_repository_tools.AxiomAuditTests) ... ok
+test_standard_and_axiom_free (test_repository_tools.AxiomAuditTests) ... ok
+test_unexpected_axiom_rejected (test_repository_tools.AxiomAuditTests) ... ok
+test_clean_export_and_manifest (test_repository_tools.ExportTests) ... ok
+test_missing_root_file_rejected (test_repository_tools.ExportTests) ... ok
+test_output_inside_sources_rejected (test_repository_tools.ExportTests) ... ok
+test_overwrite_requires_force (test_repository_tools.ExportTests) ... ok
+test_symlink_input_rejected (test_repository_tools.ExportTests) ... ok
+test_generator_inputs_are_bundled (test_repository_tools.StandalonePathsTests) ... ok
+test_markdown_file_links_stay_inside_package (test_repository_tools.StandalonePathsTests) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 1.086s
+
+OK

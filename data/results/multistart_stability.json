@@ -1,0 +1,202 @@
+[
+  {
+    "scenario": "three_point_1d",
+    "start": 0,
+    "initial_support": 8,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -2.2737367544323206e-13,
+    "hellinger_to_reference": 7.871859233075175e-16,
+    "kkt_gap": 1.4915690682570926e-08
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 1,
+    "initial_support": 8,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": 0.0,
+    "hellinger_to_reference": 5.348108393469338e-16,
+    "kkt_gap": 9.029608172284043e-09
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 2,
+    "initial_support": 6,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": 0.0,
+    "hellinger_to_reference": 5.176285417411807e-16,
+    "kkt_gap": 1.8665025081077147e-10
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 3,
+    "initial_support": 7,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -2.2737367544323206e-13,
+    "hellinger_to_reference": 5.176118471459573e-16,
+    "kkt_gap": 4.811817611027891e-11
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 4,
+    "initial_support": 1,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -4.547473508864641e-13,
+    "hellinger_to_reference": 5.259846124608028e-16,
+    "kkt_gap": 5.674025693735985e-10
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 5,
+    "initial_support": 4,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -6.821210263296962e-13,
+    "hellinger_to_reference": 5.517333729588467e-16,
+    "kkt_gap": 4.480825932517973e-09
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 6,
+    "initial_support": 3,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -2.2737367544323206e-13,
+    "hellinger_to_reference": 5.060605723853875e-16,
+    "kkt_gap": 3.764049072429998e-10
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 7,
+    "initial_support": 5,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -4.547473508864641e-13,
+    "hellinger_to_reference": 4.4303278124096253e-16,
+    "kkt_gap": 8.218836722306833e-10
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 8,
+    "initial_support": 8,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": 0.0,
+    "hellinger_to_reference": 5.119621618885235e-16,
+    "kkt_gap": 3.119968727816058e-10
+  },
+  {
+    "scenario": "three_point_1d",
+    "start": 9,
+    "initial_support": 2,
+    "reference_support": 3,
+    "support": 3,
+    "objective_gap": -4.547473508864641e-13,
+    "hellinger_to_reference": 5.186418675014206e-16,
+    "kkt_gap": 8.41933189832389e-11
+  },
+  {
+    "scenario": "square_2d",
+    "start": 0,
+    "initial_support": 12,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -6.741629476891831e-10,
+    "hellinger_to_reference": 2.539702379230301e-13,
+    "kkt_gap": 1.683625181492232e-07
+  },
+  {
+    "scenario": "square_2d",
+    "start": 1,
+    "initial_support": 6,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -4.2746250983327627e-10,
+    "hellinger_to_reference": 3.686449052972909e-13,
+    "kkt_gap": 1.6803614277804968e-08
+  },
+  {
+    "scenario": "square_2d",
+    "start": 2,
+    "initial_support": 11,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -7.09405867382884e-10,
+    "hellinger_to_reference": 3.028635159014177e-13,
+    "kkt_gap": 6.555800347030072e-11
+  },
+  {
+    "scenario": "square_2d",
+    "start": 3,
+    "initial_support": 9,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -6.925802154000849e-10,
+    "hellinger_to_reference": 3.166884153547551e-13,
+    "kkt_gap": 8.505347315335143e-09
+  },
+  {
+    "scenario": "square_2d",
+    "start": 4,
+    "initial_support": 7,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -7.898961484897882e-10,
+    "hellinger_to_reference": 1.3368422118697531e-13,
+    "kkt_gap": 1.749442701814985e-08
+  },
+  {
+    "scenario": "square_2d",
+    "start": 5,
+    "initial_support": 11,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -7.523794920416549e-10,
+    "hellinger_to_reference": 1.7444745615747724e-13,
+    "kkt_gap": 5.153145843372897e-08
+  },
+  {
+    "scenario": "square_2d",
+    "start": 6,
+    "initial_support": 6,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -2.473825588822365e-10,
+    "hellinger_to_reference": 7.764373891052122e-14,
+    "kkt_gap": 4.583354140663687e-08
+  },
+  {
+    "scenario": "square_2d",
+    "start": 7,
+    "initial_support": 8,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -7.562448445241898e-10,
+    "hellinger_to_reference": 8.20004585383976e-14,
+    "kkt_gap": 1.2224952361528096e-07
+  },
+  {
+    "scenario": "square_2d",
+    "start": 8,
+    "initial_support": 4,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -7.635208021383733e-10,
+    "hellinger_to_reference": 2.5157048659550055e-13,
+    "kkt_gap": 7.252366884813455e-08
+  },
+  {
+    "scenario": "square_2d",
+    "start": 9,
+    "initial_support": 2,
+    "reference_support": 12,
+    "support": 12,
+    "objective_gap": -7.637481758138165e-10,
+    "hellinger_to_reference": 1.4208695071646242e-13,
+    "kkt_gap": 5.88622484087864e-11
+  }
+]

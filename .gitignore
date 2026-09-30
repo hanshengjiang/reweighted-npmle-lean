@@ -1,0 +1,8 @@
+/.lake/
+/dist/
+/tmp/
+/Check.lean
+.DS_Store
+__pycache__/
+*.py[cod]
+/.audit-rerun/

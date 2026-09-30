@@ -1,0 +1,169 @@
+/private/tmp/npmle-statement-audit/StatementAudit.lean:2:0: error: Unknown option `pp.width`
+@ReweightedNPMLE.gaussian_exact_regularization_main : ∀ {d : Nat},
+  LT.lt.{0} 0 d →
+    ∀ (K : Set.{0} (ReweightedNPMLE.Point d)),
+      IsCompact.{0} K →
+        Set.Nonempty.{0} K →
+          ∀ {S b : Real},
+            LE.le.{0} 0 S →
+              LT.lt.{0} 0 b →
+                (∀ (u : ReweightedNPMLE.Point d), Membership.mem.{0, 0} K u → LE.le.{0} (norm.{0} u) S) →
+                  ∃ (C : Real),
+                    And (LT.lt.{0} 0 C)
+                      (∀ᶠ (n : Nat) in Filter.atTop.{0},
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure.{0} ↑K),
+                          ∃ (G : Set.{0} (ReweightedNPMLE.GaussianDataWeight d n)),
+                            And (MeasurableSet.{0} G)
+                              (And
+                                (LE.le.{0}
+                                  (MeasureTheory.Measure.real.{0}
+                                    (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                      (ReweightedNPMLE.gaussianPaperBalancedShape d n))
+                                    (compl.{0} G))
+                                  (HMul.hMul.{0, 0, 0} C (HPow.hPow.{0, 0, 0} (↑n) (Neg.neg.{0} b))))
+                                (∀ (p : ReweightedNPMLE.GaussianDataWeight d n),
+                                  Membership.mem.{0, 0} G p →
+                                    And
+                                      (∀ (i : Fin n),
+                                        LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} (p.2 i) 1))
+                                          (HDiv.hDiv.{0, 0, 0} C
+                                            (Real.sqrt (ReweightedNPMLE.gaussianPaperAugmentedDimension d n))))
+                                      (And (Membership.mem.{0, 0} (ReweightedNPMLE.positiveVectors n) p.2)
+                                        (∃ (μ : MeasureTheory.ProbabilityMeasure.{0} ↑K),
+                                          And
+                                            (Eq.{1}
+                                              (ReweightedNPMLE.gaussianProbabilityOptimizerSet.{0} (fun (a : ↑K) => ↑a)
+                                                p)
+                                              (singleton.{0, 0} μ))
+                                            (And (Set.Finite.{0} (MeasureTheory.Measure.support.{0} ↑μ))
+                                              (And
+                                                (LE.le.{0} (↑(Set.ncard.{0} (MeasureTheory.Measure.support.{0} ↑μ)))
+                                                  (HMul.hMul.{0, 0, 0} C
+                                                    (ReweightedNPMLE.gaussianPaperAugmentedDimension d n)))
+                                                (And
+                                                  (∀ (μ₀ : MeasureTheory.ProbabilityMeasure.{0} ↑K),
+                                                    Membership.mem.{0, 0}
+                                                        (ReweightedNPMLE.gaussianProbabilityOptimizerSet.{0}
+                                                          (fun (a : ↑K) => ↑a) (Prod.mk.{0, 0} p.1 1))
+                                                        μ₀ →
+                                                      And
+                                                        (LE.le.{0} 0
+                                                          (ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{0}
+                                                            (fun (a : ↑K) => ↑a)
+                                                            (Prod.mk.{0, 0} p (Prod.mk.{0, 0} μ μ₀))))
+                                                        (And
+                                                          (LE.le.{0}
+                                                            (ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{0}
+                                                              (fun (a : ↑K) => ↑a)
+                                                              (Prod.mk.{0, 0} p (Prod.mk.{0, 0} μ μ₀)))
+                                                            (HDiv.hDiv.{0, 0, 0} C (Real.log ↑n)))
+                                                          (LE.le.{0}
+                                                            (ReweightedNPMLE.gaussianSquaredLogRatioGap.{0}
+                                                              (fun (a : ↑K) => ↑a)
+                                                              (Prod.mk.{0, 0} p (Prod.mk.{0, 0} μ μ₀)))
+                                                            (HDiv.hDiv.{0, 0, 0} C (Real.log ↑n)))))
+                                                  (LE.le.{0}
+                                                    (ReweightedNPMLE.hellingerSq.{0} MeasureTheory.volume.{0}
+                                                      (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                      (ReweightedNPMLE.compactGaussianMixtureDensity Gstar))
+                                                    (HMul.hMul.{0, 0, 0} C
+                                                      (ReweightedNPMLE.gaussianPaperRiskScale d n)))))))))))
+theorem ReweightedNPMLE.gaussian_exact_regularization_main : ∀ {d : Nat},
+  LT.lt.{0} 0 d →
+    ∀ (K : Set.{0} (ReweightedNPMLE.Point d)),
+      IsCompact.{0} K →
+        Set.Nonempty.{0} K →
+          ∀ {S b : Real},
+            LE.le.{0} 0 S →
+              LT.lt.{0} 0 b →
+                (∀ (u : ReweightedNPMLE.Point d), Membership.mem.{0, 0} K u → LE.le.{0} (norm.{0} u) S) →
+                  ∃ (C : Real),
+                    And (LT.lt.{0} 0 C)
+                      (∀ᶠ (n : Nat) in Filter.atTop.{0},
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure.{0} ↑K),
+                          ∃ (G : Set.{0} (ReweightedNPMLE.GaussianDataWeight d n)),
+                            And (MeasurableSet.{0} G)
+                              (And
+                                (LE.le.{0}
+                                  (MeasureTheory.Measure.real.{0}
+                                    (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                      (ReweightedNPMLE.gaussianPaperBalancedShape d n))
+                                    (compl.{0} G))
+                                  (HMul.hMul.{0, 0, 0} C (HPow.hPow.{0, 0, 0} (↑n) (Neg.neg.{0} b))))
+                                (∀ (p : ReweightedNPMLE.GaussianDataWeight d n),
+                                  Membership.mem.{0, 0} G p →
+                                    And
+                                      (∀ (i : Fin n),
+                                        LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} (p.2 i) 1))
+                                          (HDiv.hDiv.{0, 0, 0} C
+                                            (Real.sqrt (ReweightedNPMLE.gaussianPaperAugmentedDimension d n))))
+                                      (And (Membership.mem.{0, 0} (ReweightedNPMLE.positiveVectors n) p.2)
+                                        (∃ (μ : MeasureTheory.ProbabilityMeasure.{0} ↑K),
+                                          And
+                                            (Eq.{1}
+                                              (ReweightedNPMLE.gaussianProbabilityOptimizerSet.{0} (fun (a : ↑K) => ↑a)
+                                                p)
+                                              (singleton.{0, 0} μ))
+                                            (And (Set.Finite.{0} (MeasureTheory.Measure.support.{0} ↑μ))
+                                              (And
+                                                (LE.le.{0} (↑(Set.ncard.{0} (MeasureTheory.Measure.support.{0} ↑μ)))
+                                                  (HMul.hMul.{0, 0, 0} C
+                                                    (ReweightedNPMLE.gaussianPaperAugmentedDimension d n)))
+                                                (And
+                                                  (∀ (μ₀ : MeasureTheory.ProbabilityMeasure.{0} ↑K),
+                                                    Membership.mem.{0, 0}
+                                                        (ReweightedNPMLE.gaussianProbabilityOptimizerSet.{0}
+                                                          (fun (a : ↑K) => ↑a) (Prod.mk.{0, 0} p.1 1))
+                                                        μ₀ →
+                                                      And
+                                                        (LE.le.{0} 0
+                                                          (ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{0}
+                                                            (fun (a : ↑K) => ↑a)
+                                                            (Prod.mk.{0, 0} p (Prod.mk.{0, 0} μ μ₀))))
+                                                        (And
+                                                          (LE.le.{0}
+                                                            (ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{0}
+                                                              (fun (a : ↑K) => ↑a)
+                                                              (Prod.mk.{0, 0} p (Prod.mk.{0, 0} μ μ₀)))
+                                                            (HDiv.hDiv.{0, 0, 0} C (Real.log ↑n)))
+                                                          (LE.le.{0}
+                                                            (ReweightedNPMLE.gaussianSquaredLogRatioGap.{0}
+                                                              (fun (a : ↑K) => ↑a)
+                                                              (Prod.mk.{0, 0} p (Prod.mk.{0, 0} μ μ₀)))
+                                                            (HDiv.hDiv.{0, 0, 0} C (Real.log ↑n)))))
+                                                  (LE.le.{0}
+                                                    (ReweightedNPMLE.hellingerSq.{0} MeasureTheory.volume.{0}
+                                                      (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                      (ReweightedNPMLE.compactGaussianMixtureDensity Gstar))
+                                                    (HMul.hMul.{0, 0, 0} C
+                                                      (ReweightedNPMLE.gaussianPaperRiskScale d n))))))))))) :=
+⋯
+'ReweightedNPMLE.gaussian_exact_regularization_main' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+'ReweightedNPMLE.gaussian_exact_regularization_joint_balanced_explicit' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+def ReweightedNPMLE.gaussianPaperJointConstant : Nat → Real → Real :=
+fun (d : Nat) (b : Real) =>
+  HAdd.hAdd.{0, 0, 0}
+    (HAdd.hAdd.{0, 0, 0}
+      (HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} 1 (ReweightedNPMLE.gaussianPaperSupportConstant d 40 b))
+        (HMul.hMul.{0, 0, 0} 2 (Real.sqrt (HAdd.hAdd.{0, 0, 0} b 4))))
+      (ReweightedNPMLE.gaussianPaperRateConstant d b))
+    (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 ↑d) 5)
+def ReweightedNPMLE.gaussianPaperSupportConstant : Nat → Real → Real → Real :=
+fun (d : Nat) (C b : Real) =>
+  HMul.hMul.{0, 0, 0} 10000000
+    (HAdd.hAdd.{0, 0, 0}
+      (HAdd.hAdd.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 C) 1) d))
+      (HAdd.hAdd.{0, 0, 0} b 4))
+def ReweightedNPMLE.gaussianPaperRateConstant : Nat → Real → Real :=
+fun (d : Nat) (b : Real) =>
+  HAdd.hAdd.{0, 0, 0} 22
+    (HMul.hMul.{0, 0, 0} 4
+      (HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (ReweightedNPMLE.gaussianPaperEntropyConstant d) b) 4))
+def ReweightedNPMLE.gaussianPaperEntropyConstant : Nat → Real :=
+fun (d : Nat) =>
+  HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 17 (HAdd.hAdd.{0, 0, 0} (↑d) 1))
+    (HAdd.hAdd.{0, 0, 0} (HPow.hPow.{0, 0, 0} 1025 d) 1)
+/private/tmp/npmle-statement-audit/StatementAudit.lean:15:7: error(lean.unknownIdentifier): Unknown constant `ReweightedNPMLE.gaussianPaperDegreeConstant`
+/private/tmp/npmle-statement-audit/StatementAudit.lean:16:7: error(lean.unknownIdentifier): Unknown constant `ReweightedNPMLE.gaussianPaperDegree`

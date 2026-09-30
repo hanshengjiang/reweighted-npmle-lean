@@ -1,0 +1,2098 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=1.05in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{newtxtext,newtxmath}
+\usepackage{bm}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage[round,authoryear]{natbib}
+\usepackage{xcolor}
+\usepackage{aliascnt}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=blue!45!black,
+  urlcolor=blue!45!black,
+  pdftitle={Exact Sparsity without Penalization},
+  pdfauthor={Hansheng Jiang}
+}
+\setstretch{1.03}
+\setlength{\parskip}{0.25em}
+\setlength{\parindent}{1.5em}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.15em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.15em,topsep=0.3em}
+\allowdisplaybreaks[2]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Exact sparsity by random reweighting}
+\fancyhead[R]{\small \thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{14pt}
+
+\newtheorem{theorem}{Theorem}[section]
+% Share theorem numbering while retaining distinct cleveref reference types.
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\newaliascnt{assumption}{theorem}
+\newtheorem{assumption}[assumption]{Assumption}
+\aliascntresetthe{assumption}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\KL}{KL}
+\DeclareMathOperator{\TV}{TV}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ccal}{\mathcal C}
+\newcommand{\Acal}{\mathcal A}
+\newcommand{\Ucal}{\mathcal U}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\one}{\bm 1}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\vhat}{\widehat v}
+\newcommand{\Ghat}{\widehat G}
+\newcommand{\Gtil}{\widetilde G}
+\newcommand{\vtil}{\widetilde v}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,d}
+
+\title{\bfseries Exact Sparsity without Penalization:\\
+Randomly Reweighted NPMLEs for Gaussian Mixtures}
+\author{Hansheng Jiang\\
+\small Preliminary draft --- September 2026\\
+\small Not for circulation}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The nonparametric maximum likelihood estimator (NPMLE) for a Gaussian
+location mixture optimizes over all mixing distributions.  Although this
+formulation is convex in the induced density, a maximizing mixing law can be
+nonunique and the classical finite-sample support bound is linear in the
+sample size.  We study a randomly reweighted NPMLE obtained from a single
+weighted likelihood maximization with independent
+$W_i\sim\mathrm{Gamma}(\alpha_n,\alpha_n)$ weights.  Normalizing the weights
+produces a Dirichlet perturbation of the empirical distribution, but we use
+the perturbation as an estimator-design device rather than as a bootstrap
+sample.  For a fixed compact $d$-dimensional Gaussian location-mixture model,
+let
+\[
+ r_n=\left(\frac{\log n}{\log\log n}\right)^d,
+ \qquad \bar r_n=r_n+\log n,
+ \qquad \alpha_n=\bar r_n\log n.
+\]
+We prove that, with polynomially high probability, the reweighted NPMLE is
+unique and has at most $O(\bar r_n)$ atoms.  At the same time,
+$\max_i\abs{W_i-1}=O(\bar r_n^{-1/2})$, its ordinary log-likelihood is within
+$O(1/\log n)$ of the unweighted optimum, and its fitted log-likelihood vector
+is equally close in squared Euclidean norm.  Under correct specification, its
+mixture density satisfies
+\[
+ H^2(f_{\Ghat_W},f_{G^*})
+ =O_{\PP}\!\left(\frac{(\log n)^{d+1}}
+ {n(\log\log n)^d}\right).
+\]
+Thus, vanishing randomization yields exact polylogarithmic sparsity without
+an explicit support penalty and without sacrificing global density
+estimation.  In simulations in one and two dimensions, the balanced
+estimator's mean Hellinger risk is within $2.1\%$ of that of the ordinary
+NPMLE across all designs, while an inverse-polynomial perturbation produces
+fits that are numerically indistinguishable from the ordinary fit.  The proof
+develops an effective-dimension principle for positive kernel mixtures:
+low-dimensional variation of fitted values controls the support of every
+extreme optimizer through Hessian sensitivity and an injective Gamma change
+of variables.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Bayesian bootstrap; Gaussian mixtures; Hellinger
+distance; nonparametric maximum likelihood; random regularization; sparsity;
+weighted likelihood.
+
+\section{Introduction}\label{sec:introduction}
+
+Let $X_1,\ldots,X_n\in\RR^d$ be observations from a Gaussian location
+mixture.  For a mixing distribution $G$ and the standard Gaussian density
+$\phi_d$, write
+\[
+  f_G(x)=\int \phi_d(x-\theta)\,dG(\theta).
+\]
+The Kiefer--Wolfowitz NPMLE \citep{kieferwolfowitz1956} maximizes
+$\sum_i\log f_G(X_i)$ over a convex class of probability measures.  It is attractive precisely because it does
+not specify the number of mixture components.  The same infinite-dimensional
+formulation, however, leaves a structural question: how complicated must an
+exact maximizing mixing law be?
+
+Classical convex geometry guarantees the existence of a maximizer with at
+most $n$ atoms, and all maximizers have the same fitted values at the sample
+points; see \citet{lindsay1983geometry} and the subsequent mixture-likelihood
+literature.  This deterministic $n$-point bound does not explain the much
+smaller models often returned in practice.  In one dimension,
+\citet{polyanskiywu2020} proved that the ordinary Gaussian-mixture NPMLE has
+$O(\log n)$ atoms with high probability under sub-Gaussian sampling, a
+phenomenon they called self-regularization.  In several dimensions,
+quantitative polylogarithmic support control for the ordinary NPMLE remains
+substantially more difficult.  Recent work of \citet{wang2026} establishes
+qualitative finite support for every finite-data multivariate Gaussian NPMLE,
+but does not give a polylogarithmic cardinality bound or generic uniqueness.
+
+Beyond support size, Gaussian-mixture NPMLEs have been studied extensively as
+estimators of mixing distributions, marginal densities, and empirical Bayes
+rules; see, among others, \citet{laird1978}, \citet{koenkermizera2014},
+\citet{zhang2009}, \citet{sahaguntuboyina2020}, and
+\citet{soloffetal2025}.  The resulting density-estimation theory can be nearly
+parametric up to logarithmic factors, and recent entropy characterizations
+clarify the minimax benchmark \citep{jiaetal2023}.  These results establish the
+statistical value of the NPMLE, but they do not provide a unique exact mixing
+representation with polylogarithmic support in several dimensions.
+
+This paper takes a different route.  Rather than forcing the equal-weight
+NPMLE to reveal a sparse representation, we introduce an asymptotically
+negligible random tilt of the likelihood and analyze the optimizer selected by
+that tilt.  Given a concentration parameter $\alpha_n$, draw independently
+\[
+ W_i\sim\mathrm{Gamma}(\alpha_n,\alpha_n),
+ \qquad i=1,\ldots,n,
+\]
+where shape and rate are both $\alpha_n$, and define
+\begin{equation}\label{eq:rrnpmle-intro}
+ \Ghat_W\in\argmax_{G\in\Pcal(K)}
+       \sum_{i=1}^n W_i\log f_G(X_i).
+\end{equation}
+The weights have mean one and variance $1/\alpha_n$.  After normalization,
+$(W_i/\sum_jW_j)_i$ is Dirichlet with common parameter $\alpha_n$.
+Dirichlet-weighted likelihoods are classical in the Bayesian bootstrap of
+\citet{rubin1981} and the weighted likelihood bootstrap of
+\citet{newtonraftery1994}.  Their customary role is to generate a distribution
+of bootstrap or approximate posterior draws.  Here a single, increasingly
+concentrated draw is used as a point estimator.  The concentration is chosen
+to expose a sparse extreme point while keeping the statistical criterion
+asymptotically indistinguishable from ordinary likelihood.
+
+The main result shows that this randomization acts as an exact regularizer.
+For a fixed compact parameter set and fixed dimension, choose
+\[
+ \alpha_n=\left\{\left(\frac{\log n}{\log\log n}\right)^d
+                 +\log n\right\}\log n.
+\]
+Then, with probability at least $1-Cn^{-b}$ for every fixed $b>0$, the
+weighted optimizer is unique and has polylogarithmic support.  Its total
+ordinary log-likelihood loss is $O(1/\log n)$, while its mixture density has
+the same near-parametric Hellinger accuracy established here for all
+one-unit near-maximizers.  The perturbation itself vanishes:
+$\max_i\abs{W_i-1}=O_{\PP}(\bar r_n^{-1/2})$.  Moreover, for any prescribed
+$L>0$, one may instead take $\alpha_n=n^{2L+2}$; the perturbation is then at
+most $n^{-L}$ with overwhelming probability, yet the same exact support and
+Hellinger conclusions continue to hold.
+
+The contribution is therefore not random weighting per se.  It is the joint
+estimator theorem: a single reweighted NPMLE is simultaneously
+\emph{unique}, \emph{exactly sparse}, \emph{near-optimal in ordinary
+likelihood}, and \emph{globally accurate in Hellinger distance}.  Randomness
+resolves degeneracy, but the support theorem is not a generic tie-breaking
+statement.  Its cardinality is controlled by an analytic effective dimension
+of the Gaussian fitted-value set.
+
+A numerical study makes the proximity statement operational.  Along a
+regularization path, weight dispersion decays at the expected
+$\alpha^{-1/2}$ scale, whereas the ordinary-likelihood loss and distance
+between fitted densities decay approximately as $\alpha^{-1}$.  Across
+three data-generating mechanisms and eleven sample-size--design combinations,
+the balanced estimator has essentially the same Hellinger risk and support
+size as the ordinary NPMLE.  By contrast, Dirichlet parameter one---the
+Bayesian-bootstrap scale---does reduce support slightly in some experiments,
+but incurs a substantial likelihood and risk loss.  Concentration of the
+weights, rather than random weighting alone, is therefore essential.
+
+The proof has four ingredients.  First, an extreme optimizing measure with
+$k$ atoms creates a $(k-1)$-dimensional family of feasible mass perturbations.
+This forces at least $k-1$ unit eigenvalues in a scaled Hessian of the weighted
+value function.  Second, if all relative fitted vectors are well approximated
+by an $r$-dimensional subspace, concentrated weights localize the optimizer to
+that subspace.  Third, the injective map
+$w_i\mapsto w_i\{1+\log(\vhat_i(w)/\vhat_i(\one))\}$ converts the Hessian
+lower bound into a Jacobian determinant.  Integrating this determinant under
+the Gamma density yields an exponential moment bound for exact support.
+Fourth, Gaussian analyticity gives an $r=O(r_n)$ approximation by truncated
+multivariate exponentials, and a generic evaluation-independence argument
+turns sparse extreme points into a unique mixing law.  A finite likelihood
+net then transfers the $o(1)$ ordinary likelihood gap into a global Hellinger
+bound.
+
+The rest of the paper is organized as follows.  \Cref{sec:model} defines the
+estimator and states the main statistical results.  \Cref{sec:effective}
+gives the abstract effective-dimension theorem.  \Cref{sec:gaussian}
+specializes the geometry to Gaussian mixtures and proves uniqueness.
+\Cref{sec:hellinger} develops the near-MLE Hellinger transfer.
+\Cref{sec:numerics} studies finite-sample sparsity and proximity to the
+ordinary NPMLE.  \Cref{sec:discussion} discusses interpretation and
+limitations.  Complete proofs of the geometric, analytic, and entropy lemmas
+are collected in the appendices.
+
+\section{Model, reweighted estimator, and main results}\label{sec:model}
+
+\subsection{Gaussian location mixtures}
+
+Fix an integer $d\ge1$ and a nonempty compact set
+$K\subset B(0,S)\subset\RR^d$, where $S<\infty$.  Let $\Pcal(K)$ denote the
+Borel probability measures supported on $K$, and define
+\[
+ \phi_d(x)=(2\pi)^{-d/2}\exp(-\norm{x}^2/2),
+ \qquad f_G(x)=\int_K\phi_d(x-\theta)\,dG(\theta).
+\]
+The data are generated according to
+\begin{equation}\label{eq:model}
+ X_i=\Theta_i+Z_i,\qquad
+ \Theta_i\stackrel{\mathrm{iid}}\sim G^*,\quad
+ Z_i\stackrel{\mathrm{iid}}\sim N(0,I_d),
+\end{equation}
+with the two sequences independent.  Correct specification means
+$G^*\in\Pcal(K)$.  We use total log-likelihood
+\[
+ L_n(G)=\sum_{i=1}^n\log f_G(X_i)
+\]
+and squared Hellinger distance
+\[
+ H^2(p,q)=\int_{\RR^d}(\sqrt p-\sqrt q)^2\,dx.
+\]
+An ordinary NPMLE is any $\Ghat_0\in\argmax_{G\in\Pcal(K)}L_n(G)$.
+Compactness and positivity of the Gaussian kernel guarantee existence.
+Although the maximizing mixing law need not be unique, its fitted vector
+$(f_{\Ghat_0}(X_i))_{i=1}^n$ is unique.
+
+\subsection{The randomly reweighted NPMLE}
+
+For $a>0$, let $\mathrm{Gamma}(a,a)$ denote the Gamma law with shape and
+rate $a$.  Independently of the data, draw
+\begin{equation}\label{eq:weights}
+ W_1,\ldots,W_n\stackrel{\mathrm{iid}}\sim\mathrm{Gamma}(\alpha_n,\alpha_n)
+\end{equation}
+and define the reweighted NPMLE by
+\begin{equation}\label{eq:rrnpmle}
+ \Ghat_W\in\Mcal_X(W):=
+ \argmax_{G\in\Pcal(K)}\sum_{i=1}^nW_i\log f_G(X_i).
+\end{equation}
+The fitted vector of all members of $\Mcal_X(W)$ is unique.  When the
+maximizing measure is unique, we use $\Ghat_W$ for that measure.
+
+Set $T_W=\sum_iW_i$, $P_i=W_i/T_W$, and
+$F_n^{(\alpha_n)}=\sum_iP_i\delta_{X_i}$.  Multiplication of an objective by
+the positive scalar $T_W$ does not change its maximizers, so
+\[
+ \Mcal_X(W)=\argmax_{G\in\Pcal(K)}
+ \int\log f_G\,dF_n^{(\alpha_n)}.
+\]
+The next proposition records why this remains a centered perturbation of
+ordinary likelihood.
+
+\begin{proposition}[Dirichlet representation and unchanged target]
+\label{prop:dirichlet}
+Conditional on the data,
+$(P_1,\ldots,P_n)\sim\mathrm{Dirichlet}(\alpha_n,\ldots,\alpha_n)$ and is
+independent of $T_W\sim\mathrm{Gamma}(n\alpha_n,\alpha_n)$.  For every real
+function $h$ on the sample points,
+\[
+ \EE(F_n^{(\alpha_n)}h\mid X)=F_nh,
+ \qquad
+ \operatorname{Var}(F_n^{(\alpha_n)}h\mid X)
+ =\frac{F_nh^2-(F_nh)^2}{n\alpha_n+1},
+\]
+where $F_n=n^{-1}\sum_i\delta_{X_i}$.  Moreover,
+\[
+ \EE\bigl(\norm{F_n^{(\alpha_n)}-F_n}_{\TV}\mid X\bigr)
+ \le \frac12\sqrt{\frac{n-1}{n\alpha_n+1}}.
+\]
+If $X_i\stackrel{\mathrm{iid}}\sim f_{G^*}$ and
+$\EE_{G^*}\abs{\log f_G(X_1)}<\infty$, then
+\[
+ \EE_{X,W}\frac1n\sum_iW_i\log f_G(X_i)
+ =\EE_{G^*}\log f_G(X_1)
+ =\EE_{X,W}\sum_iP_i\log f_G(X_i).
+\]
+Under correct specification, the population criterion gap between $G^*$ and
+$G$ is $\KL(f_{G^*}\|f_G)$.  Thus the reweighting introduces no population
+support penalty and does not change the density target.
+\end{proposition}
+
+The proof is given in \Cref{app:dirichlet}.  The distinction from the
+Bayesian bootstrap is quantitative and inferential.  The Bayesian bootstrap
+uses common Dirichlet parameter one and treats repeated weighted optima as a
+distribution.  Here $\alpha_n\to\infty$, the empirical perturbation vanishes,
+and one draw defines the estimator.
+
+\subsection{A joint sparsity and accuracy theorem}
+
+For all sufficiently large $n$, define
+\begin{equation}\label{eq:scales}
+ r_n=\left(\frac{\log n}{\log\log n}\right)^d,
+ \qquad \bar r_n=r_n+\log n,
+ \qquad \alpha_n=\bar r_n\log n.
+\end{equation}
+The additional $\log n$ in $\bar r_n$ is the probability-tail cost.  It is
+asymptotically absorbed by $r_n$ whenever $d\ge2$.
+
+\begin{theorem}[Exact regularization by random reweighting]
+\label{thm:main}
+Assume \eqref{eq:model} with fixed $d$, fixed compact
+$K\subset B(0,S)$, and $G^*\in\Pcal(K)$.  Let the weights satisfy
+\eqref{eq:weights} with the concentration in \eqref{eq:scales}.  For every
+$b>0$, there are constants $C_b<\infty$ and $n_0$ depending only on
+$d,K,S,b$ such that, uniformly over $G^*\in\Pcal(K)$, the following event has
+probability at least $1-C_bn^{-b}$ for every $n\ge n_0$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The weighted NPMLE is unique and
+\[
+  \#\supp(\Ghat_W)\le C_b\bar r_n.
+\]
+\item The perturbation is uniformly small:
+\[
+  \max_{1\le i\le n}\abs{W_i-1}\le \frac{C_b}{\sqrt{\bar r_n}}.
+\]
+\item For every ordinary NPMLE $\Ghat_0$,
+\[
+  0\le L_n(\Ghat_0)-L_n(\Ghat_W)\le\frac{C_b}{\log n},
+\]
+and
+\[
+ \sum_{i=1}^n
+ \left\{\log\frac{f_{\Ghat_W}(X_i)}{f_{\Ghat_0}(X_i)}\right\}^2
+ \le\frac{C_b}{\log n}.
+\]
+\item The fitted density obeys the global risk bound
+\[
+ H^2(f_{\Ghat_W},f_{G^*})
+ \le C_b\frac{(\log n)^{d+1}}
+ {n(\log\log n)^d}.
+\]
+\end{enumerate}
+For $d\ge2$, the support bound in part \textup{(i)} is
+$O\{(\log n/\log\log n)^d\}$; for $d=1$, it is $O(\log n)$.
+\end{theorem}
+
+The theorem separates a conditional structural statement from its statistical
+consequence.  Parts (i)--(iii), conditional on the mild radius condition
+$\max_i\norm{X_i}=O(\sqrt{\log n})$, do not require correct specification.
+Part (iv) uses $G^*\in\Pcal(K)$ to compare likelihood with the truth.
+
+The chosen concentration $\alpha_n=\bar r_n\log n$ is a convenient balanced
+regime.  The next result shows that exact sparsity does not require a
+perturbation of this magnitude.
+
+\begin{corollary}[Arbitrarily small perturbations]
+\label{cor:tiny}
+Under the assumptions of \Cref{thm:main}, fix any $L>0$ and instead take
+$\alpha_n=n^{2L+2}$.  For every $b>0$, with probability at least
+$1-C_bn^{-b}$ for all sufficiently large $n$, the weighted NPMLE is unique,
+\[
+ \#\supp(\Ghat_W)\le C_{b,L}\bar r_n,
+ \qquad
+ \max_i\abs{W_i-1}\le n^{-L},
+\]
+and the Hellinger conclusion of \Cref{thm:main}(iv) holds.  Hence an
+inverse-polynomially small perturbation can induce exact polylogarithmic
+sparsity.
+\end{corollary}
+
+Hellinger convergence also identifies the mixing distribution on a compact
+parameter space.
+
+\begin{corollary}[Weak consistency of the mixing law]
+\label{cor:weak}
+Under \Cref{thm:main}, $\Ghat_W\Rightarrow G^*$ in probability in the weak
+topology on $\Pcal(K)$.
+\end{corollary}
+
+\begin{proof}
+By \Cref{thm:main}(iv), $H(f_{\Ghat_W},f_{G^*})\to0$ in probability.  Every
+subsequence has a further subsequence along which this convergence holds
+almost surely.  Compactness of $\Pcal(K)$ gives a further weakly convergent
+subsequence, say $\Ghat_W\Rightarrow G$.  Pointwise continuity of the
+Gaussian kernel implies $f_{\Ghat_W}(x)\to f_G(x)$ for every $x$, while
+Hellinger convergence implies $L^1$ convergence to $f_{G^*}$.  Thus
+$f_G=f_{G^*}$ almost everywhere.  Characteristic functions satisfy
+$\widehat f_G(t)=e^{-\norm{t}^2/2}\widehat G(t)$; the Gaussian factor is
+nonzero, so $G=G^*$.  Every subsequential limit is therefore $G^*$.
+\end{proof}
+
+\paragraph{Proof roadmap.}
+\Cref{thm:main} is the main statistical result; its proof combines three
+ingredients developed in the next three sections.  First,
+\Cref{thm:effective} in \Cref{sec:effective} gives an abstract
+effective-dimension principle that bounds the support of exact extreme
+optimizers and their ordinary likelihood loss.  Its geometric proof is given
+in Appendix~\ref{app:effective}.  Second, \Cref{sec:gaussian} verifies the required
+Gaussian approximation through \Cref{prop:gaussian-width}, yielding the
+conditional bounds in \Cref{cor:conditional}.  The separate generic
+evaluation-independence result, \Cref{prop:generic}, turns the support bound
+for extreme optimizers into uniqueness of the mixing measure.  Together,
+these results establish parts (i)--(iii) of \Cref{thm:main}.  Third,
+\Cref{thm:near-mle} in \Cref{sec:hellinger} independently converts
+near-maximal ordinary likelihood into global Hellinger accuracy, completing
+part (iv).  \Cref{cor:tiny} uses the same ingredients with a larger weight
+concentration, while \Cref{cor:weak} follows from part (iv), compactness, and
+Gaussian identifiability.
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\captionsetup{hypcap=false}
+\begin{tikzpicture}[
+  font=\small,
+  result/.style={draw=black!55, rounded corners=2pt, align=center,
+    text width=4.15cm, minimum height=1.05cm, inner sep=6pt},
+  dependency/.style={-{Stealth[length=2mm]}, draw=black!65, line width=0.65pt}
+]
+\node[result, fill=black!3] (geometry) at (-2.65,0)
+  {\textbf{Appendix~\ref{app:effective}}\\Geometric lemmas};
+\node[result, minimum height=1.5cm] (effective) at (-2.65,-1.8)
+  {\textbf{\Cref{thm:effective} (\Cref{sec:effective})}\\
+   General sparsity and\\likelihood bounds};
+\node[result, minimum height=1.5cm] (approximation) at (2.65,-1.8)
+  {\textbf{\Cref{prop:gaussian-width} (\Cref{sec:gaussian})}\\
+   Gaussian approximation};
+\node[result, text width=4.7cm] (conditional) at (0,-3.75)
+  {\textbf{\Cref{cor:conditional}}\\Conditional Gaussian\\
+   sparsity and likelihood bounds};
+\node[result, minimum height=1.5cm] (uniqueness) at (-5.2,-5.8)
+  {\textbf{\Cref{prop:generic}}\\Generic uniqueness};
+\node[result, text width=3.8cm, minimum height=1.5cm,
+  draw=blue!45!black, fill=blue!5, line width=0.8pt] (main) at (0,-5.8)
+  {\textbf{\Cref{thm:main}}\\Unique, sparse,\\accurate estimator};
+\node[result, minimum height=1.5cm] (accuracy) at (5.2,-5.8)
+  {\textbf{\Cref{thm:near-mle} (\Cref{sec:hellinger})}\\
+   Likelihood-to-Hellinger\\transfer};
+\draw[dependency] (geometry.south) -- (effective.north);
+\draw[dependency] (effective.south) -- (conditional.north west);
+\draw[dependency] (approximation.south) -- (conditional.north east);
+\draw[dependency] (conditional.south) -- (main.north);
+\draw[dependency] (uniqueness.east) -- (main.west);
+\draw[dependency] (accuracy.west) -- (main.east);
+\end{tikzpicture}
+\captionof{figure}{Proof roadmap for \Cref{thm:main}.  Arrows indicate
+inputs to subsequent results.  The conditional Gaussian bounds and generic
+uniqueness establish parts (i)--(iii); the likelihood-to-Hellinger transfer
+completes part (iv).}
+\label{fig:proof-roadmap}
+\end{minipage}
+\end{center}
+
+\section{An effective-dimension principle for exact sparsity}
+\label{sec:effective}
+
+The support phenomenon is not specific to Gaussian kernels.  This section
+states an abstract theorem for any positive continuous kernel whose fitted
+vectors have small linear approximation width.  The Gaussian structure enters
+only later, through a sharp bound on that width.
+
+\subsection{Positive kernel hulls and optimizer fibers}
+
+Let $\Theta$ be a nonempty compact metric space and let
+$A:\Theta\to(0,\infty)^n$ be continuous.  Write
+\[
+ \Acal=A(\Theta),\qquad \Ccal=\conv(\Acal).
+\]
+The set $\Ccal$ is exactly the set of fitted vectors
+$\int A(\theta)\,dG(\theta)$ with $G\in\Pcal(\Theta)$.  For
+$w\in(0,\infty)^n$, define
+\begin{equation}\label{eq:value}
+ \Psi(w)=\max_{v\in\Ccal}w^\top\log v,
+ \qquad
+ \vhat(w)=\argmax_{v\in\Ccal}w^\top\log v,
+ \qquad z(w)=\log\vhat(w),
+\end{equation}
+where logarithms and vector division are coordinatewise.  Strict concavity in
+$v$ makes $\vhat(w)$ unique.  The corresponding optimizer fiber is
+\begin{equation}\label{eq:fiber}
+ \Mcal_A(w)=\left\{G\in\Pcal(\Theta):
+       \int A(\theta)\,dG(\theta)=\vhat(w)\right\}.
+\end{equation}
+This fiber is the full set of maximizing mixing measures.
+
+A member of a convex set is \emph{extreme} if it is not a nontrivial convex
+combination of two other members.  Let
+\begin{equation}\label{eq:sext}
+ s_{\mathrm{ext}}(w)=
+ \max\left\{\#\supp(G):G\text{ is an extreme point of }\Mcal_A(w)\right\}.
+\end{equation}
+The maximum is well defined and lies in $\{1,\ldots,n\}$.  Indeed, as shown in
+\Cref{lem:extreme}, an optimizer is extreme exactly when it is finitely
+supported and its evaluation vectors are linearly independent.
+
+Take the equal-weight fitted vector $v_0=\vhat(\one)$ and define the relative
+fitted-value set
+\begin{equation}\label{eq:relative-set}
+ \Ucal=\{v/v_0-\one:v\in\Ccal\}.
+\end{equation}
+Suppose that a rank-$r$ orthogonal projection $P$ satisfies
+\begin{equation}\label{eq:width}
+ \sup_{u\in\Ucal}\norm{(I-P)u}_2\le\eta.
+\end{equation}
+Thus $r$ is an effective linear dimension and $\eta$ is the residual width.
+Both may depend on the fixed data and kernel dictionary, but not on the random
+weights.
+
+For $\tau\ge0$, call $\vtil\in\Ccal$ a \emph{$\tau$-optimal weighted fit} if
+\begin{equation}\label{eq:tau-opt}
+ w^\top\log\vtil\ge\Psi(w)-\tau.
+\end{equation}
+The tolerance is measured in total weighted log-likelihood units.
+
+\begin{theorem}[Effective-dimension exact sparsification]
+\label{thm:effective}
+There are universal constants $C,c>0$ such that the following holds.  Fix
+$q\ge1$, put $Q=q+\log(2n)$, and suppose
+\begin{equation}\label{eq:effective-conditions}
+ \alpha\ge C(r+Q),
+ \qquad
+ \eta\sqrt{\alpha nQ}\le1.
+\end{equation}
+Let $W_i\stackrel{\mathrm{iid}}\sim\mathrm{Gamma}(\alpha,\alpha)$.  With
+probability at least $1-3e^{-q}$,
+\begin{equation}\label{eq:effective-support}
+ s_{\mathrm{ext}}(W)\le C(r+q),
+\end{equation}
+\begin{equation}\label{eq:effective-exact-fit}
+ 0\le \one^\top\log v_0-\one^\top\log\vhat(W)
+ \le\frac{C(r+q)}{\alpha},
+ \qquad
+ \norm{\log\{\vhat(W)/v_0\}}_2^2
+ \le\frac{C(r+q)}{\alpha}.
+\end{equation}
+On the same event, simultaneously for every $0\le\tau<c$ and every
+$\tau$-optimal fit $\vtil$,
+\begin{equation}\label{eq:effective-approx-fit}
+ 0\le \one^\top\log v_0-\one^\top\log\vtil
+ \le C\left\{\frac{r+q}{\alpha}+\tau\right\},
+ \qquad
+ \norm{\log(\vtil/v_0)}_2^2
+ \le C\left\{\frac{r+q}{\alpha}+\tau\right\}.
+\end{equation}
+The support conclusion concerns exact extreme optimizers.  No support bound is
+asserted for arbitrary approximate fitted measures.
+\end{theorem}
+
+The theorem reveals the scale of the randomization.  The shape parameter need
+only dominate the effective dimension and the logarithmic tail cost.  Larger
+$\alpha$ makes the objective closer to equal weighting, but the residual
+width must then be approximated more accurately.  Gaussian analyticity allows
+both conditions to hold even for polynomially large $\alpha$.
+
+\subsection{Why support is visible to the Hessian}
+
+We summarize the geometric mechanism; full proofs appear in
+\Cref{app:effective}.  The value function $\Psi$ is convex and continuously
+differentiable with $\nabla\Psi=z$, and $z$ is locally Lipschitz.  Hence the
+Hessian exists almost everywhere.  If an extreme optimizer has $k$ atoms,
+then changing its $k$ masses while preserving their sum creates a
+$(k-1)$-dimensional space of two-sided feasible perturbations of the fitted
+vector.  A second-order comparison gives the following matrix inequality.
+
+\begin{lemma}[Support--sensitivity inequality]
+\label{lem:hessian-summary}
+For almost every $w\in(0,\infty)^n$, there is an orthogonal projection
+$P_*(w)$ of rank $s_{\mathrm{ext}}(w)-1$ such that
+\begin{equation}\label{eq:hessian-summary}
+ \diag(w)^{1/2}\nabla^2\Psi(w)\diag(w)^{1/2}\succeq P_*(w).
+\end{equation}
+The exceptional set depends only on the dictionary and not on a selected
+optimizer.
+\end{lemma}
+
+The matrix inequality is stronger than a trace bound.  It yields a determinant
+factor exponential in support size.  Let
+\[
+ t(w)=z(w)-z(\one),
+ \qquad Z(w)=(w-\one)^\top t(w),
+\]
+and consider the locally Lipschitz map
+\begin{equation}\label{eq:change-map}
+ \mathcal F_i(w)=w_i\{1+t_i(w)\}.
+\end{equation}
+On the event where the weighted fit is close to $v_0$, this map is injective.
+The determinant of its derivative contains a factor
+$(17/9)^{s_{\mathrm{ext}}(w)-1}$.  Comparing the Gamma density at
+$\mathcal F(w)$ and $w$, then applying the injective area formula
+\citep{evansgariepy2015}, gives
+\begin{equation}\label{eq:moment-summary}
+ \EE\left[\bm 1_{\{W\in E\}}
+ \left(\frac{17}{9}\right)^{s_{\mathrm{ext}}(W)-1}
+ e^{-\alpha\{Z(W)+\norm{t(W)}_2^2\}}\right]\le1
+\end{equation}
+for a suitable localization event $E$.  The width condition
+\eqref{eq:width} bounds the exponential cost in \eqref{eq:moment-summary} by
+$O(r+q)$, and Markov's inequality then proves
+\eqref{eq:effective-support}.  This change-of-variables step is the source of
+\emph{exact} sparsity: it controls cardinality itself, rather than the size of
+small mixture weights or an approximation error.
+
+\section{Gaussian effective dimension and generic uniqueness}
+\label{sec:gaussian}
+
+We now specialize \Cref{thm:effective} to the Gaussian evaluation dictionary
+\[
+ A(\theta)=\bigl(\phi_d(x_1-\theta),\ldots,
+                    \phi_d(x_n-\theta)\bigr),
+ \qquad \theta\in K.
+\]
+Throughout this section, the dataset $x=(x_1,\ldots,x_n)$ is fixed and
+$T=\max_i\norm{x_i}$.
+
+\subsection{Analytic low-rank approximation}
+
+The Gaussian identity
+\[
+ \phi_d(x_i-\theta)=\phi_d(x_i)
+ \exp\{x_i^\top\theta-\norm{\theta}^2/2\}
+\]
+reduces the fitted-value geometry to multivariate exponential functions.
+Truncating their Taylor series gives the required effective dimension.
+
+\begin{proposition}[Gaussian relative-width bound]
+\label{prop:gaussian-width}
+Let $K\subset B(0,S)$ and let $G_0\in\Pcal(K)$ be arbitrary.  Put
+$v_{0,i}=f_{G_0}(x_i)$.  For every integer $m\ge0$, there is an orthogonal
+projection $P_m$ of rank at most
+\begin{equation}\label{eq:rank-m}
+ 1+\binom{m+d}{d}
+\end{equation}
+whose range contains $\one$ and such that
+\begin{equation}\label{eq:eta-m}
+ \sup_{G\in\Pcal(K)}
+ \norm{(I-P_m)\{f_G(x)/v_0-\one\}}_2
+ \le \eta_m:=\sqrt n\,\eps_m,
+\end{equation}
+where
+\begin{equation}\label{eq:eps-m}
+ \eps_m=\exp(2ST+S^2/2)\frac{(ST)^{m+1}}{(m+1)!}.
+\end{equation}
+When $ST=0$, one may take $\eps_m=0$.
+\end{proposition}
+
+If $T\le C_0\sqrt{\log n}$ and
+$m\asymp\log n/\log\log n$, then the rank in \eqref{eq:rank-m} is
+$O(r_n)$, while $\eps_m$ is smaller than any prescribed inverse power of
+$n$ after increasing the constant in $m$.  Thus the width condition in
+\Cref{thm:effective} holds for a wide range of $\alpha$.
+
+\begin{corollary}[Conditional structural and likelihood bounds]
+\label{cor:conditional}
+Fix $d,S,C_0<\infty$, a nonempty compact $K\subset B(0,S)$, and a dataset
+with $T\le C_0\sqrt{\log n}$.  Let $r_n,\bar r_n$ be as in
+\eqref{eq:scales}, set $\alpha_n=\bar r_n\log n$, and draw independent
+$\mathrm{Gamma}(\alpha_n,\alpha_n)$ weights.  For every $b>0$, with
+conditional probability at least $1-C_bn^{-b}$,
+\[
+ s_{\mathrm{ext}}(W)\le C_b\bar r_n,
+ \qquad
+ \max_i\abs{W_i-1}\le C_b\bar r_n^{-1/2},
+\]
+and every exact weighted maximizer satisfies the two bounds in
+\Cref{thm:main}(iii).  These conclusions are deterministic in the data and
+make no sampling or correct-specification assumption.
+\end{corollary}
+
+\subsection{From sparse extreme points to a unique measure}
+
+A support bound on extreme points does not by itself imply that every
+optimizer is sparse: a nontrivial convex combination of extreme optimizers
+can have a larger or even infinite support.  For Gaussian evaluations,
+generic data rule out this possibility once all extreme optimizers are
+sufficiently small.
+
+\begin{proposition}[Generic evaluation independence]
+\label{prop:generic}
+For each $n,d$, there is a Borel set $\mathcal X_{n,d}\subset(\RR^d)^n$ whose
+complement has Lebesgue measure zero such that the following holds
+simultaneously for every $x\in\mathcal X_{n,d}$.  If
+$k(d+1)\le n$ and $\theta_1,\ldots,\theta_k\in\RR^d$ are distinct, then the
+$n\times k$ matrix
+\begin{equation}\label{eq:evaluation-matrix}
+ \bigl(\phi_d(x_i-\theta_j)\bigr)_{i\le n,j\le k}
+\end{equation}
+has linearly independent columns.  The locations may depend on the data.
+Consequently, if every extreme point of a Gaussian optimizer fiber has at
+most $m$ atoms and $2m(d+1)\le n$, then that fiber is a singleton and its
+unique member has at most $m$ atoms.
+\end{proposition}
+
+The key point is simultaneity over the uncountable collection of possible
+locations.  The proof treats a linear dependence as an analytic incidence
+set with $k(d+1)-1$ nuisance parameters.  Since this dimension is below the
+number $n$ of sample equations, its projection onto the $nd$ data coordinates
+has Lebesgue measure zero.  The uniqueness conclusion follows by comparing
+two extreme optimizers and applying Krein--Milman; details are in
+\Cref{app:generic}.
+
+\begin{proof}[Proof of the structural parts of \Cref{thm:main}]
+Under \eqref{eq:model}, the joint distribution of
+$(X_1,\ldots,X_n)$ has a density, so the generic event in
+\Cref{prop:generic} has probability one.  A Gaussian union bound gives
+$\max_i\norm{X_i}\le C_b\sqrt{\log n}$ outside an event of probability
+$O(n^{-b-2})$, uniformly over $G^*\in\Pcal(K)$.  Conditional on this radius
+event, \Cref{cor:conditional} bounds every extreme optimizer by
+$C_b\bar r_n$ atoms.  Since $\bar r_n=o(n)$, eventually
+$2C_b\bar r_n(d+1)\le n$.  The second part of \Cref{prop:generic} then makes
+the weighted optimizer fiber a singleton, proving \Cref{thm:main}(i).
+The weight, likelihood, and fitted-vector bounds are exactly those of
+\Cref{cor:conditional}.  Integrating the conditional probability bound and
+combining the exceptional events proves parts (ii)--(iii).
+\end{proof}
+
+\begin{proof}[Proof of \Cref{cor:tiny} except for Hellinger accuracy]
+Take $\alpha_n=n^{2L+2}$.  In \Cref{prop:gaussian-width}, choose
+$m=\lceil C_L\log n/\log\log n\rceil$ with $C_L$ sufficiently large.  On
+the same data-radius event as above,
+$\rank(P_m)=O_L(r_n)$ and $\eps_m\le n^{-L-3}$.  With
+$q=(b+2)\log n$, the two conditions in \eqref{eq:effective-conditions} hold
+for all large $n$.  Hence every extreme optimizer has
+$O_{b,L}(\bar r_n)$ atoms.  Generic evaluation independence again gives
+uniqueness.  The Gamma concentration inequality
+\[
+ \PP\{\max_i\abs{W_i-1}>t\}\le2n\exp(-\alpha_nt^2/4),
+ \qquad 0<t\le1,
+\]
+with $t=n^{-L}$ yields a bound $2ne^{-n^2/4}$.
+\end{proof}
+
+\section{Hellinger accuracy from near-maximal likelihood}
+\label{sec:hellinger}
+
+The geometric theorem gives a total ordinary likelihood gap of order
+$1/\log n$.  This section converts that deterministic near-optimality into a
+global density guarantee.  The argument is deliberately uniform: one data
+event controls every candidate whose total log-likelihood is within one unit
+of the truth.
+
+\begin{theorem}[Uniform Hellinger control for near-MLEs]
+\label{thm:near-mle}
+Fix $d\ge1$ and a nonempty compact $K\subset B(0,S)$.  For every $b>0$,
+there are constants $C_b,n_0$ such that, uniformly over
+$G^*\in\Pcal(K)$, with probability at least $1-C_bn^{-b}$ the following
+holds simultaneously for all $G\in\Pcal(K)$:
+\begin{equation}\label{eq:near-truth}
+ L_n(G)\ge L_n(G^*)-1
+ \quad\Longrightarrow\quad
+ H^2(f_G,f_{G^*})
+ \le C_b\frac{(\log n)^{d+1}}
+ {n(\log\log n)^d}.
+\end{equation}
+\end{theorem}
+
+The proof uses a deterministic finite net $\Ncal_n$ of the compact Gaussian
+mixture class.  It simultaneously approximates Hellinger distance globally
+and log densities on the sample-radius ball, with
+\begin{equation}\label{eq:net-entropy-summary}
+ \log\abs{\Ncal_n}
+ \le C\frac{(\log n)^{d+1}}{(\log\log n)^d}.
+\end{equation}
+For a fixed net density $p$, the square-root likelihood ratio satisfies
+\[
+ \EE_{G^*}\exp\left\{\frac12\sum_{i=1}^n
+          \log\frac{p(X_i)}{f_{G^*}(X_i)}\right\}
+ =\left(1-\frac12H^2(p,f_{G^*})\right)^n.
+\]
+A union bound over the net therefore excludes every Hellinger-distant
+candidate with likelihood ratio above $-2$.  The complete construction and
+proof appear in \Cref{app:hellinger}.
+
+\begin{proof}[Completion of the proof of \Cref{thm:main}]
+On the event of \Cref{thm:main}(iii), for all sufficiently large $n$,
+\[
+ L_n(\Ghat_W)\ge L_n(\Ghat_0)-1\ge L_n(G^*)-1,
+\]
+because $G^*$ is feasible for the ordinary likelihood.  Intersect this event
+with the common data event in \Cref{thm:near-mle}.  The implication
+\eqref{eq:near-truth} then applies to the weighted optimizer and proves part
+(iv).  A union bound preserves probability $1-C_bn^{-b}$ uniformly over
+$G^*\in\Pcal(K)$.
+\end{proof}
+
+\begin{proof}[Completion of the proof of \Cref{cor:tiny}]
+The effective-dimension theorem also gives an ordinary total likelihood gap
+$C_{b,L}\bar r_n/n^{2L+2}=o(1)$.  Hence the weighted optimizer satisfies
+\eqref{eq:near-truth} for all sufficiently large $n$.  Apply
+\Cref{thm:near-mle} and combine the exceptional events.
+\end{proof}
+
+The approximate-fit part of \Cref{thm:effective} has a direct statistical
+interpretation.
+
+\begin{corollary}[Robustness to numerical optimization]
+\label{cor:approx}
+Under the setting and weighting of \Cref{thm:main}, suppose a fitted vector
+$\vtil$ is attainable by a mixing law $\Gtil\in\Pcal(K)$ and has total
+weighted log-likelihood gap $\tau_n\le c_0/\log n$, where $c_0$ is a fixed
+sufficiently small constant.  Then, with probability at least $1-C_bn^{-b}$,
+\[
+ 0\le L_n(\Ghat_0)-L_n(\Gtil)\le C_b/\log n,
+ \qquad
+ \sum_i\left\{\log\frac{f_{\Gtil}(X_i)}
+ {f_{\Ghat_0}(X_i)}\right\}^2\le C_b/\log n,
+\]
+and $\Gtil$ obeys the Hellinger bound in \Cref{thm:main}(iv).  This result
+does not assert exact sparsity of an arbitrary approximate optimizer.
+\end{corollary}
+
+\begin{proof}
+Apply \eqref{eq:effective-approx-fit} with the Gaussian width construction
+used in \Cref{cor:conditional}.  The ordinary likelihood gap is eventually
+below one, so \Cref{thm:near-mle} applies.
+\end{proof}
+
+
+\section{Numerical evidence: sparsity and proximity to the ordinary NPMLE}
+\label{sec:numerics}
+
+The theory is asymptotic and its principal conclusion is structural.  The
+purpose of this section is therefore not to establish a new empirical risk
+advantage over the ordinary NPMLE.  Instead, we examine the finite-sample
+consequences that make the reweighted estimator useful: whether it retains the
+ordinary estimator's density accuracy and support complexity, how quickly it
+approaches the ordinary fit as the reweighting vanishes, and whether the
+concentration of the weights is essential.  All comparisons are paired on the
+same simulated dataset.
+
+Numerical means, standard errors, percentages, quantiles, and regression
+coefficients are reported at the displayed precision.  Range endpoints
+described below as rounded extrema are the rounded minimum and maximum cell
+summaries, not literal enclosing bounds on the unrounded values.
+
+\subsection{Design and certified computation}
+
+We use three correctly specified Gaussian location-mixture models.  The first
+is the one-dimensional discrete mixture
+\[
+ G^*=0.25\delta_{-2.5}+0.50\delta_0+0.25\delta_{2.5},
+ \qquad K=[-4,4].
+\]
+The second has $G^*=\operatorname{Unif}[-2.5,2.5]$ on the same parameter
+space; this design checks that the conclusions are not tied to finite true
+support.  The third is two-dimensional, with equal mass at the four corners
+$(\pm1.75,\pm1.75)$ and $K=[-3.5,3.5]^2$.  We use
+$n\in\{200,500,1000,2000\}$ and 100 replications for each one-dimensional
+design, and $n\in\{250,500,1000\}$ and 40 replications for the
+two-dimensional design.
+
+Four estimators are compared.  ``Ordinary'' is the equal-weight NPMLE.
+``Balanced'' uses the concentration in \eqref{eq:scales},
+``Tiny'' uses $\alpha_n=n^3$, corresponding to \Cref{cor:tiny} with
+$L=1/2$, and ``BB-scale'' uses $\alpha=1$ as a deliberately noisy control.
+The last procedure is not proposed as a point estimator; it isolates what
+happens when random weighting is used without increasing concentration.  We
+normalize every realization to
+\[
+ \widetilde W_i=\frac{W_i}{n^{-1}\sum_jW_j}=nP_i,
+\]
+which leaves the optimizer unchanged and removes irrelevant common scaling.
+
+We report numerical support size, squared Hellinger risk
+$H^2(f_{\widehat G},f_{G^*})$, squared Hellinger distance to the ordinary fit,
+total ordinary-likelihood loss
+$L_n(\widehat G_0)-L_n(\widehat G_W)$, and
+\[
+ \sum_{i=1}^n\left\{
+ \log f_{\widehat G_W}(X_i)-\log f_{\widehat G_0}(X_i)
+ \right\}^2.
+\]
+Hellinger integrals are computed on $[-10,10]$ using 6001 points in one
+dimension and on $[-8,8]^2$ using a $141\times141$ grid in two dimensions.
+For descriptive support counts, atoms separated by less than $0.01$ in one
+dimension or $0.05$ in two dimensions are treated as numerically unresolved.
+This convention affects only reporting, not optimization.
+
+The estimator is computed by fully corrective column generation.  Given a
+current mixing law $G$, the global optimality residual is
+\begin{equation}\label{eq:numerical-kkt}
+ \mathcal R_w(G)=
+ \sup_{\theta\in K}\left[
+ \frac{1}{\sum_iw_i}\sum_{i=1}^n
+ w_i\frac{\phi_d(X_i-\theta)}{f_G(X_i)}-1
+ \right].
+\end{equation}
+At an exact optimum this quantity is nonpositive.  We globally search the
+one-dimensional oracle on a dense mesh followed by local refinement; in two
+dimensions we use a rectangular mesh and multistart continuous refinement.
+After column generation, we jointly polish all atom locations and masses and
+then reevaluate \eqref{eq:numerical-kkt}.  Across the 4160 fitted optimization
+problems reported below, the largest recorded residual was at most
+$1.86\times10^{-6}$, a conservatively upward-rounded bound; the
+one-dimensional maximum rounded to $4.84\times10^{-7}$.  As a separate
+optimization check, ten dispersed random
+initializations on representative one- and two-dimensional datasets converged
+to the same resolved support.  The largest squared Hellinger discrepancy from
+the reference solution was respectively $7.9\times10^{-16}$ and
+$3.7\times10^{-13}$.  These diagnostics validate the numerical comparison;
+they are not used as a substitute for the theoretical uniqueness result.
+
+\subsection{A regularization path}
+
+We first hold fixed one sample of size $n=500$ from the three-point mixture and
+vary $\alpha$ from 1 to $n^3$.  At each value we use 30 independent weight
+draws.  \Cref{fig:path} reports medians and 10--90\% intervals.  The balanced
+value is $\alpha_n=59.76$ for this experiment.
+
+\begin{figure}[t]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/path_weight_deviation.pdf}
+  \par\vspace{-0.2em}\centerline{\small (a) Weight perturbation}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/path_hellinger_to_ordinary.pdf}
+  \par\vspace{-0.2em}\centerline{\small (b) Distance to the ordinary fit}
+\end{minipage}
+
+\par\medskip
+\begin{minipage}[t]{0.48\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/path_likelihood_gap.pdf}
+  \par\vspace{-0.2em}\centerline{\small (c) Ordinary-likelihood loss}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/path_support.pdf}
+  \par\vspace{-0.2em}\centerline{\small (d) Numerical support}
+\end{minipage}
+\caption{Regularization path on a fixed $n=500$ sample from the three-point
+mixture.  Curves show medians across 30 independent Gamma-weight draws and
+bands show the 10th and 90th percentiles.  The dashed and dotted vertical
+lines mark the balanced concentration and $n^3$, respectively.}
+\label{fig:path}
+\end{figure}
+
+The path displays two distinct scales.  A log--log regression of the medians
+for $\alpha\ge10$ gives slope $-0.503$ for
+$\max_i|\widetilde W_i-1|$, matching the $\alpha^{-1/2}$ dispersion of Gamma
+weights.  The slopes are $-1.016$ for squared Hellinger distance to the
+ordinary fit, $-1.016$ for ordinary-likelihood loss, and $-1.012$ for the
+squared fitted-log discrepancy.  Thus the fitted vector moves at first order
+in the weight perturbation while likelihood and squared density discrepancies
+are locally second order.
+
+At the balanced concentration, the median squared Hellinger distance to the
+ordinary fit is $4.40\times10^{-5}$ and the median total ordinary-likelihood
+loss is $0.0453$.  The ordinary fitted density has squared Hellinger risk
+$0.002662$ in this sample, compared with median risk $0.002664$ for the
+balanced estimator.  At $\alpha=n^3$, the corresponding distance and
+likelihood loss fall to $1.52\times10^{-11}$ and $1.65\times10^{-8}$, and the
+risk agrees with the ordinary risk to the displayed precision.  The median
+resolved support is three atoms at both concentrations.  At the balanced
+value, 28 of the 30 draws have three atoms and two have four; every tiny-regime
+draw has three atoms.  By comparison, $\alpha=1$ yields median distance
+$1.95\times10^{-3}$ and median likelihood loss $2.03$, with a 90th-percentile
+support of four atoms.
+
+\begin{figure}[t]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/representative_density.pdf}
+  \par\vspace{-0.2em}\centerline{\small (a) Fitted densities}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/representative_support.pdf}
+  \par\vspace{-0.2em}\centerline{\small (b) Mixing measures}
+\end{minipage}
+\caption{Representative fits from the regularization-path experiment.  The
+ordinary, balanced, and tiny fitted densities are visually indistinguishable,
+although their atom locations and masses need not coincide exactly.  The
+BB-scale fit exhibits a visible displacement.}
+\label{fig:representative}
+\end{figure}
+
+\Cref{fig:representative} also illustrates why proximity should be judged
+primarily through the induced density, fitted vector, and likelihood.  At the
+balanced concentration, the median one-dimensional Wasserstein distance
+between the mixing laws is $0.0308$, visibly larger than the discrepancy
+between the convolved densities.  Gaussian deconvolution is an ill-posed
+inverse problem, so a small density perturbation need not imply comparable
+finite-sample atom-by-atom stability.  This is consistent with the quantities
+controlled by \Cref{thm:main}.
+
+\subsection{Monte Carlo risk, support, and likelihood}
+
+\Cref{tab:numerical-summary} reports the largest sample size in each design;
+entries are means with Monte Carlo standard errors in parentheses.  The full
+sample-size trajectories are shown in \Cref{fig:risk}.
+
+\begin{table}[t]
+\centering
+\caption{Finite-sample comparison with the ordinary NPMLE.  ``Balanced'' uses
+\eqref{eq:scales}, ``Tiny'' uses $\alpha_n=n^3$, and ``BB-scale'' uses
+$\alpha=1$.  Entries are Monte Carlo means with standard errors in
+parentheses.  Here $\Delta L_n=L_n(\widehat G_0)-L_n(\widehat G_W)$.}
+\label{tab:numerical-summary}
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\input{results/numerical_summary.tex}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{minipage}[t]{0.32\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/risk_three_point.pdf}
+  \par\vspace{-0.2em}\centerline{\small (a) Three-point, $d=1$}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/risk_uniform.pdf}
+  \par\vspace{-0.2em}\centerline{\small (b) Uniform mixing, $d=1$}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+  \centering\includegraphics[width=\linewidth]{figures/risk_square_2d.pdf}
+  \par\vspace{-0.2em}\centerline{\small (c) Four-point square, $d=2$}
+\end{minipage}
+\caption{Mean squared Hellinger risk as a function of sample size.  Shaded
+bands are pointwise 95\% Monte Carlo intervals.}
+\label{fig:risk}
+\end{figure}
+
+The balanced estimator tracks the ordinary NPMLE closely in every design.
+Across all eleven design--sample-size cells, the ratio of mean Hellinger risks
+has rounded minimum $1.001$ and rounded maximum $1.020$; its average across
+cells is $1.013$.  The mean squared Hellinger distance between the two fitted
+densities has rounded minimum $8.31\times10^{-6}$ and rounded maximum
+$1.76\times10^{-4}$.  The balanced and ordinary
+resolved support counts agree in $90.3\%$ of the 920 paired replications, and
+the mean support difference in every cell lies between $-0.125$ and $0.025$
+atoms.  Thus the reweighting does not create a larger fitted model in finite
+samples, but neither should it be interpreted as a device whose purpose is to
+use fewer atoms than an ordinary NPMLE that happens already to be sparse.
+Its contribution is to provide a generic unique sparse selection with a
+quantitative guarantee.
+
+The ordinary-likelihood comparison agrees with the scale of
+\Cref{thm:main}(iii).  The balanced mean total loss has rounded minimum
+$0.0345$ and rounded maximum $0.0964$.  Multiplying the cell means by $\log n$
+gives rounded minimum $0.253$ and rounded maximum $0.532$; the corresponding
+values for the squared fitted-log discrepancy have rounded minimum $0.479$
+and rounded maximum $0.928$.  These constants are stable across sample sizes
+and dimensions over the range studied.
+
+The tiny regime gives a sharper finite-sample approximation.  Its ratio of
+mean Hellinger risks to ordinary risk has rounded minimum $0.999985$ and
+rounded maximum $1.000018$, and its mean squared Hellinger distance to the
+ordinary fit has rounded minimum $1.43\times10^{-13}$ and rounded maximum
+$9.60\times10^{-10}$.  It has exactly the same
+resolved support count as the ordinary estimator in every one of the 920
+paired replications.  This is direct numerical evidence for the central
+interpretation of \Cref{cor:tiny}: exact sparse selection can persist while
+the objective and fitted density become essentially indistinguishable from
+their equal-weight counterparts.
+
+The BB-scale control behaves differently.  Its ratio of mean Hellinger risk
+to ordinary risk has rounded minimum $1.60$ and rounded maximum $2.19$, and
+its mean total ordinary-likelihood loss has rounded minimum $2.14$ and
+rounded maximum $7.86$.  It sometimes uses slightly
+fewer atoms, but this reduction is accompanied by a material statistical
+cost.  Randomization alone is therefore not the relevant regularizer; the
+key is a continuous perturbation whose concentration increases sufficiently
+quickly with $n$.
+
+Taken together, the experiments support three conclusions.  First, the
+balanced estimator retains the finite-sample density accuracy and support
+complexity of the ordinary NPMLE.  Second, the inverse-polynomial regime can
+make the two estimators operationally indistinguishable while retaining the
+theoretical exact-sparsity conclusion.  Third, the proximity is naturally a
+statement about fitted densities and likelihoods, not exact agreement of atom
+locations in a finite-sample deconvolution problem.
+
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{The main discovery.}
+The central result is best viewed as an estimator theorem rather than a
+perturbation lemma.  Random reweighting constructs a new point estimator of
+the mixing law with four simultaneous properties: exact polylogarithmic
+support, generic uniqueness, asymptotically negligible ordinary likelihood
+loss, and global Hellinger convergence.  Each part matters.  Sparsity alone
+could select a poor density; Hellinger consistency alone would not resolve the
+nonuniqueness and computational burden of the mixing representation.  Their
+combination is what makes the reweighted estimator statistically meaningful.
+
+\paragraph{Regularization without a penalty.}
+No term depending on $\#\supp(G)$ appears in either the sample objective or
+the population target.  The regularization is geometric.  A small continuous
+random tilt makes high-support optimizer fibers occupy little Gamma volume,
+and the analytic effective dimension of Gaussian evaluations determines the
+remaining cardinality.  In this sense, randomization behaves like an exact
+support regularizer without introducing an explicit regularization bias.
+
+\paragraph{Auxiliary randomness.}
+The guarantee requires only one draw of the weights; repeated bootstrap
+optimization is neither part of the definition nor needed for the theory.
+The auxiliary seed can therefore be fixed and recorded.  Different successful
+draws may select different sparse mixing laws, but every such draw is close to
+the ordinary fitted vector and lies in the same shrinking Hellinger
+neighborhood of the truth.  The randomization is thus a reproducible
+regularization device rather than an uncertainty-quantification procedure.
+
+\paragraph{Relation to self-regularization.}
+The one-dimensional ordinary NPMLE is already known to have logarithmic
+support under broad sampling conditions \citep{polyanskiywu2020}.  Our result
+does not prove the analogous statement for the equal-weight multivariate
+NPMLE\@.  Instead, it shows that an arbitrarily close objective possesses a
+unique optimizer with a quantitative polylogarithmic support bound in every
+fixed dimension.  The distinction is substantive: the upper support bounds
+proved here do not pass to the equal-weight limit by lower semicontinuity.
+
+\paragraph{Statistical rate.}
+The Hellinger bound is near parametric up to logarithmic factors, but it is not
+claimed to be sharp.  For compact or sub-Gaussian Gaussian mixtures, known
+lower bounds are of order $(\log n)^d/n$ under squared Hellinger loss
+\citep{kimguntuboyina2022}, and local-entropy results sharpen the broader
+minimax picture \citep{jiaetal2023}.  Improving the finite-net argument while
+preserving a simultaneous guarantee for all near-MLE candidates is an
+important direction.
+
+\paragraph{Computation.}
+The theory is structural, not an algorithmic convergence theorem.  It implies
+that an exact extreme optimum has only polylogarithmically many atoms and that
+small objective error preserves fitted-value and Hellinger accuracy.  The
+numerical study shows that a fully corrective column-generation method,
+followed by joint location--mass polishing, can attain small global
+Kiefer--Wolfowitz residuals while maintaining the predicted sparse
+representation.  This supports exchange, vertex-direction, and adaptive
+discretization methods, but does not establish a general complexity bound for
+them.  Exploiting the Hessian response directions to obtain such a bound
+remains an important algorithmic question.
+
+\paragraph{Extensions.}
+The effective-dimension theorem applies to general positive kernels.  To
+extend the full result, one needs (i) a low-rank approximation of relative
+fitted values, (ii) generic evaluation independence or another uniqueness
+mechanism, and (iii) a likelihood-to-risk transfer for the induced density
+class.  Exponential families and heteroscedastic Gaussian mixtures are natural
+candidates.  Derandomization, data-adaptive choice of $\alpha_n$, and the use
+of multiple sparse draws for uncertainty quantification are also open.
+
+\appendix
+
+\section{Proof of the effective-dimension theorem}
+\label{app:effective}
+
+\subsection{Basic convex geometry}
+
+\begin{lemma}[Regularity of the fitted-vector problem]
+\label{lem:regularity}
+In the setup of \eqref{eq:value}, $\Ccal$ is compact,
+$\Psi$ is convex and continuously differentiable on $(0,\infty)^n$, and
+\[
+ \nabla\Psi(w)=z(w)=\log\vhat(w).
+\]
+The maps $w\mapsto\vhat(w)$ and $w\mapsto z(w)$ are locally Lipschitz.
+All optimizing measures have fitted vector $\vhat(w)$.
+\end{lemma}
+
+\begin{proof}
+Since $\Acal$ is compact in $\RR^n$, Carath\'eodory's theorem expresses
+every point of $\conv(\Acal)$ as a convex combination of at most $n+1$
+points of $\Acal$.  Hence $\Ccal$ is compact.  Positivity and compactness give
+constants $0<c_0\le C_0<\infty$ such that
+$c_0\le v_i\le C_0$ for all $v\in\Ccal$ and every $i$.  The objective
+$v\mapsto\sum_iw_i\log v_i$ is continuous and strictly concave, so it has a
+unique maximizing fitted vector.
+
+Fix a compact box of weights in the positive orthant and let $a_0>0$ be a
+common lower bound on its coordinates.  Put
+$v=\vhat(w)$ and $v'=\vhat(w')$.  Adding the two variational inequalities at
+$v$ and $v'$ gives
+\[
+ 0\le\{\nabla f_w(v)-\nabla f_{w'}(v')\}^\top(v-v'),
+ \qquad f_w(u)=\sum_iw_i\log u_i.
+\]
+Strong concavity of $f_w$ on $[c_0,C_0]^n$ and
+$\nabla f_w(v')-\nabla f_{w'}(v')=(w-w')/v'$ imply
+\[
+ 0\le-\frac{a_0}{C_0^2}\norm{v-v'}_2^2
+       +\frac1{c_0}\norm{w-w'}_2\norm{v-v'}_2.
+\]
+Thus $\vhat$ is locally Lipschitz, and so is its coordinatewise logarithm.
+
+The maximum of linear functions of $w$ is convex.  For small $h$, optimality
+at $w$ and $w+h$ gives
+\[
+ h^\top z(w)\le\Psi(w+h)-\Psi(w)\le h^\top z(w+h).
+\]
+Local continuity of $z$ yields differentiability of $\Psi$ with gradient
+$z$.  Finally, optimizing over measures depends on a measure only through its
+attainable fitted vector in $\Ccal$, proving the last assertion.
+\end{proof}
+
+\begin{lemma}[Extreme optimizer characterization]
+\label{lem:extreme}
+For every $w>0$, the fiber $\Mcal_A(w)$ in \eqref{eq:fiber} is nonempty,
+compact, and convex.  A measure $G\in\Mcal_A(w)$ is extreme if and only if
+\[
+ G=\sum_{j=1}^kp_j\delta_{\theta_j},\qquad p_j>0,
+\]
+for finitely many distinct points whose evaluation vectors
+$A(\theta_1),\ldots,A(\theta_k)$ are linearly independent.  Consequently,
+every extreme optimizer has at most $n$ atoms.  The function
+$s_{\mathrm{ext}}$ in \eqref{eq:sext} is Borel measurable.
+\end{lemma}
+
+\begin{proof}
+Probability measures on compact $\Theta$ form a compact convex set under weak
+convergence, and the continuous moment constraints defining
+$\Mcal_A(w)$ are closed.  Nonemptiness follows from the representation of
+$\vhat(w)\in\Ccal$ by a finite convex combination.
+
+Let $\widehat v=\vhat(w)$ and define
+\[
+ b_i=\frac{w_i}{\widehat v_i\sum_{\ell=1}^nw_\ell},
+ \qquad q(\theta)=b^\top A(\theta).
+\]
+The directional derivative from $\widehat v$ toward $A(\theta)$ gives
+$q(\theta)\le1$.  If $G$ is in the fiber, then
+$\int q\,dG=b^\top\widehat v=1$; hence $q=1$ on $\supp(G)$.  Therefore, on
+an optimizing support, linear dependence and affine dependence of the
+evaluation vectors are equivalent: applying $b^\top$ to a linear relation
+shows that its coefficients sum to zero.
+
+Suppose first that $G$ has at least $n+1$ support points, including the case of
+infinite support.  Choose $n+1$ disjoint Borel neighborhoods
+$E_1,\ldots,E_{n+1}$ of positive $G$-mass.  The vectors
+$v_j=\int_{E_j}A\,dG\in\RR^n$ are linearly dependent.  For nonzero
+coefficients $c_j$ with $\sum_jc_jv_j=0$, define
+$dH=\sum_jc_j\bm 1_{E_j}\,dG$.  Then $\int A\,dH=0$ and, because $q=1$
+$G$-almost surely,
+$H(\Theta)=\int q\,dH=0$.  For sufficiently small $t>0$, both $G+tH$ and
+$G-tH$ are distinct probability measures in the same fiber, so $G$ is not
+extreme.
+
+If $G$ has finite support but the evaluation vectors are dependent, take a
+nonzero relation $\sum_jc_jA(\theta_j)=0$.  The contact identity implies
+$\sum_jc_j=0$.  Small perturbations $p_j\pm tc_j$ again decompose $G$ inside
+the fiber.  Conversely, if the evaluation vectors are linearly independent
+and $G=tG_1+(1-t)G_2$ with $G_1,G_2$ in the fiber, nonnegativity forces both
+measures to be supported on $\supp(G)$.  Their masses solve the same full-rank
+linear system, so $G_1=G_2=G$.  This proves the characterization and the
+$n$-atom bound.
+
+For measurability, let $E_k$ be the weights admitting an extreme optimizer
+with exactly $k$ atoms.  For integers $j\ge2$, consider the compact set of
+$(w,\theta_1,\ldots,\theta_k,p)$ in
+$[1/j,j]^n\times\Theta^k\times\Delta_k$ satisfying
+\[
+ p_\ell\ge1/j,\qquad
+ \sum_{\ell=1}^kp_\ell A(\theta_\ell)=\vhat(w),
+ \qquad \det(V^\top V)\ge1/j,
+\]
+where $V$ has columns $A(\theta_\ell)$.  Its projection onto $w$ is compact.
+Taking the countable union over $j$ gives $E_k$.  Hence
+$\{w:s_{\mathrm{ext}}(w)\ge k\}=\bigcup_{\ell=k}^nE_\ell$ is Borel for
+each $k$.
+\end{proof}
+
+\subsection{Support directions and radial localization}
+
+\begin{lemma}[Matrix sensitivity]
+\label{lem:matrix-sensitivity}
+At almost every $w>0$, the Hessian $H(w)=\nabla^2\Psi(w)$ exists.  At each
+such point and for every extreme optimizer with $k$ atoms, there is an
+orthogonal projection $Q$ of rank $k-1$ such that
+\[
+ \diag(w)^{1/2}H(w)\diag(w)^{1/2}\succeq Q.
+\]
+Consequently \eqref{eq:hessian-summary} holds with rank
+$s_{\mathrm{ext}}(w)-1$.
+\end{lemma}
+
+\begin{proof}
+By \Cref{lem:regularity}, $z=\nabla\Psi$ is locally Lipschitz, so Rademacher's
+theorem gives differentiability almost everywhere.  At those points its
+derivative is the symmetric positive semidefinite Hessian of the convex
+function $\Psi$.
+
+Fix such a point and an extreme optimizer
+$G=\sum_{j=1}^kp_j\delta_{\theta_j}$.  Write
+$A_j=A(\theta_j)$ and $\widehat v=\vhat(w)$.  Varying the masses while
+preserving their sum generates the relative fitted-vector subspace
+\[
+ \mathcal S=\left\{
+ \left(\frac{\sum_jc_jA_{ij}}{\widehat v_i}\right)_{i=1}^n:
+ \sum_jc_j=0\right\}.
+\]
+The evaluation vectors are linearly, hence affinely, independent by
+\Cref{lem:extreme}; therefore $\dim(\mathcal S)=k-1$.  Every sufficiently
+small element of $\mathcal S$ is feasible in both signs by changing only the
+positive masses.  First-order optimality gives $w^\top u=0$ for
+$u\in\mathcal S$.
+
+Let $Q$ be the orthogonal projection onto
+$\diag(w)^{1/2}\mathcal S$.  For small $h$, choose the feasible relative
+variation
+$u=\diag(w)^{-1/2}Q\diag(w)^{-1/2}h$.  Expanding the candidate objective at
+weight $w+h$ gives
+\[
+ \Psi(w+h)\ge\Psi(w)+h^\top z(w)
+ +h^\top u-\frac12u^\top\diag(w)u+o(\norm{h}_2^2).
+\]
+Because $w^\top u=0$, the last two displayed quadratic terms reduce to
+\[
+ \frac12h^\top\diag(w)^{-1/2}Q\diag(w)^{-1/2}h.
+\]
+Comparison with the second-order expansion of $\Psi$ yields
+$H(w)\succeq\diag(w)^{-1/2}Q\diag(w)^{-1/2}$.  Conjugation proves the claim.
+The exceptional set is the differentiability set of $z$ and is independent
+of the optimizer.  Choose an extreme optimizer attaining
+$s_{\mathrm{ext}}(w)$.
+\end{proof}
+
+For the localization argument, retain \eqref{eq:relative-set}--\eqref{eq:width}
+and write
+\[
+ \xi=w-\one,\quad A_0=\norm{P\xi}_2,\quad B_0=\norm{\xi}_2,
+ \quad \rho=\frac1{16}.
+\]
+For $u\in\Ucal$, let $t(u)=\log(\one+u)$ and
+$F_w(u)=w^\top t(u)$.  For the exact fit, write
+$\widehat u(w)=\vhat(w)/v_0-\one$, $t(w)=t(\widehat u(w))$, and
+$Z(w)=\xi^\top t(w)$.
+
+\begin{lemma}[Radial localization]
+\label{lem:radial}
+Let
+\begin{equation}\label{eq:localization-event}
+ E=\left\{w>0:
+\norm{w-\one}_\infty\le\frac1{16},\quad
+ A_0\le\frac{\rho}{24},\quad \eta B_0\le\frac{\rho^2}{24}\right\}.
+\end{equation}
+For $w\in E$, every $0\le\tau<\rho^2/12$ and every $\tau$-optimal fit with
+relative vector $u=\vtil/v_0-\one$ satisfy $\norm{u}_2<\rho$ and
+\begin{align}
+ \norm{u}_2^2&\le36A_0^2+12\eta B_0+12\tau,\label{eq:radial-u}\\
+ 0\le-\one^\top\log(\one+u)
+ &\le37A_0^2+13\eta B_0+13\tau,\label{eq:radial-loss}\\
+ \norm{\log(\one+u)}_2^2
+ &\le72A_0^2+24\eta B_0+24\tau.\label{eq:radial-log}
+\end{align}
+For the exact fit, $0\le Z(w)\le37A_0^2+13\eta B_0$.  The set $E$ is
+compact and $\norm{t(w)}_\infty<1/8$ on $E$.
+\end{lemma}
+
+\begin{proof}
+Equal-weight optimality at $v_0$ implies
+$\one^\top u\le0$ for every $u\in\Ucal$.  If $\norm{u}_2\le1/4$, then
+$\log(1+s)\le s-s^2/3$ coordinatewise.  On $E$, every $w_i\ge15/16$, and
+therefore
+\[
+ F_w(u)\le \xi^\top u-\frac16\norm{u}_2^2
+ \le A_0\norm{u}_2+\eta B_0-\frac16\norm{u}_2^2.
+\]
+Every feasible $u$ on the sphere $\norm{u}_2=\rho$ consequently satisfies
+$F_w(u)\le-\rho^2/12$.  A $\tau$-optimal fit has
+$F_w(u)\ge-\tau$ because zero is feasible.  If $\norm{u}_2\ge\rho$, convexity
+of $\Ucal$ and concavity of $F_w$ allow radial contraction to the sphere,
+contradicting $\tau<\rho^2/12$.  Hence $\norm{u}_2<\rho$.
+
+Let $x=\norm{u}_2$.  The preceding objective inequality gives
+$x^2\le6(A_0x+\eta B_0+\tau)$.  The bound
+$6A_0x\le x^2/2+18A_0^2$ proves \eqref{eq:radial-u}.  For
+$\abs{u_i}<\rho$,
+\[
+ \abs{\log(1+u_i)}\le\frac{\abs{u_i}}{1-\rho},
+ \qquad
+ \abs{\log(1+u_i)-u_i}\le\frac{u_i^2}{2(1-\rho)}\le u_i^2.
+\]
+This proves \eqref{eq:radial-log}.  Moreover,
+\[
+ \xi^\top\log(\one+u)
+ \le A_0x+\eta B_0+\frac1{16}x^2
+ \le37A_0^2+13\eta B_0+12\tau,
+\]
+where constants are enlarged after applying Young's inequality and
+\eqref{eq:radial-u}.  Since
+$F_w(u)=\one^\top\log(\one+u)+\xi^\top\log(\one+u)\ge-\tau$, and equal-weight
+optimality gives $-\one^\top\log(\one+u)\ge0$, we obtain
+\eqref{eq:radial-loss}.  For the exact fit, $F_w(\widehat u)\ge0$ gives
+$Z(w)\ge-\one^\top t(w)\ge0$ and the stated upper bound.
+
+The set $E$ is closed inside $[15/16,17/16]^n$, hence compact.  For the exact
+fit, $\norm{t(w)}_\infty\le\norm{\widehat u(w)}_2/(1-\rho)<1/15<1/8$.
+\end{proof}
+
+\subsection{The Gamma change of variables}
+
+\begin{lemma}[Determinant moment]
+\label{lem:determinant-moment}
+Let $E$ be the event in \eqref{eq:localization-event}.  For independent
+$W_i\sim\mathrm{Gamma}(\alpha,\alpha)$,
+\begin{equation}\label{eq:determinant-moment}
+ \EE\left[\bm 1_{\{W\in E\}}
+ \left(\frac{17}{9}\right)^{s_{\mathrm{ext}}(W)-1}
+ \exp\{-\alpha[Z(W)+\norm{t(W)}_2^2]\}\right]\le1.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On the open set
+$U=\{w>0:1+t_i(w)>0\ \text{for all }i\}$, define the map in
+\eqref{eq:change-map}.  It is locally Lipschitz by \Cref{lem:regularity}.
+Suppose $\mathcal F(w)=\mathcal F(w')=y$.  Then
+$w_i=y_i/\{1+t_i(w)\}$ and
+\[
+ (w-w')^\top\{z(w)-z(w')\}
+ =-\sum_i\frac{y_i\{t_i(w)-t_i(w')\}^2}
+ {[1+t_i(w)][1+t_i(w')]}\le0.
+\]
+The gradient of the convex function $\Psi$ is monotone, so the left side is
+nonnegative.  Hence $t(w)=t(w')$, and the displayed formula gives $w=w'$.
+Thus $\mathcal F$ is injective on $U$.
+
+At a Hessian point, let
+\[
+ A_t=\diag(\one+t(w)),\qquad
+ R_w=\diag(w)^{1/2}\nabla^2\Psi(w)\diag(w)^{1/2}.
+\]
+The derivative $D\mathcal F=A_t+\diag(w)\nabla^2\Psi(w)$ is similar to
+$A_t+R_w$.  By \Cref{lem:matrix-sensitivity},
+$R_w\succeq P_*$ for an orthogonal projection of rank
+$s_{\mathrm{ext}}(w)-1$.  On $E$, \Cref{lem:radial} gives
+$7I/8\preceq A_t\preceq9I/8$.  If $P_*=VV^\top$ with orthonormal columns,
+then $V^\top A_t^{-1}V\succeq8I/9$.  Positive-definite determinant
+monotonicity and the identity between the nonzero eigenvalues of
+$A_t^{-1/2}VV^\top A_t^{-1/2}$ and $V^\top A_t^{-1}V$ yield
+\begin{equation}\label{eq:jacobian-lower}
+ \det D\mathcal F(w)
+ \ge\prod_i\{1+t_i(w)\}
+ \left(\frac{17}{9}\right)^{s_{\mathrm{ext}}(w)-1}>0.
+\end{equation}
+
+Let $p_\alpha$ be the product Gamma density.  Since
+$\mathcal F_i(w)=w_i\{1+t_i(w)\}$,
+\[
+ \frac{p_\alpha(\mathcal F(w))}{p_\alpha(w)}
+ =\prod_i\{1+t_i(w)\}^{\alpha-1}
+   \exp\left\{-\alpha\sum_iw_it_i(w)\right\}.
+\]
+Multiplying by \eqref{eq:jacobian-lower} and using
+$\log(1+t)\ge t-t^2$ for $\abs{t}\le1/8$ gives, almost everywhere on $E$,
+\[
+ \frac{p_\alpha(\mathcal F(w))\det D\mathcal F(w)}{p_\alpha(w)}
+ \ge\left(\frac{17}{9}\right)^{s_{\mathrm{ext}}(w)-1}
+ e^{-\alpha\{Z(w)+\norm{t(w)}_2^2\}}.
+\]
+The set $E$ is compact and lies inside $U$.  The injective area formula for Lipschitz maps
+\citep[Chapter 3]{evansgariepy2015} therefore gives
+\[
+ \int_Ep_\alpha(\mathcal F(w))\abs{\det D\mathcal F(w)}\,dw
+ =\int_{\mathcal F(E)}p_\alpha(y)\,dy\le1.
+\]
+The determinant is positive almost everywhere on $E$.  Integrating the
+previous lower bound proves \eqref{eq:determinant-moment}.
+\end{proof}
+
+\subsection{Proof of the effective-dimension theorem}
+
+\begin{proof}[Proof of \Cref{thm:effective}]
+Let $\xi=W-\one$ and put $N_q=r\log5+q$.  The Gamma moment-generating
+function implies that, for every deterministic unit vector $v$ and
+$\abs{\lambda}\le\sqrt\alpha/2$,
+\[
+ \log\EE e^{\lambda\sqrt\alpha\,v^\top\xi}
+ =\alpha\sum_i\left[-\log\left(1-\frac{\lambda v_i}{\sqrt\alpha}\right)
+ -\frac{\lambda v_i}{\sqrt\alpha}\right]\le\lambda^2.
+\]
+Consequently,
+$\PP\{\sqrt\alpha\,v^\top\xi>u\}\le e^{-u^2/4}$ for
+$0\le u\le\sqrt\alpha$.  A $1/2$-net of the unit sphere in an
+$r$-dimensional subspace has at most $5^r$ points and satisfies
+$\norm{y}_2\le2\max_v v^\top y$.  Hence
+\begin{equation}\label{eq:proj-concentration}
+ \PP\{\alpha\norm{P\xi}_2^2>16N_q\}\le e^{-q}
+\end{equation}
+provided $\alpha\ge4N_q$.
+
+The scalar Gamma Chernoff bound gives
+\[
+ \PP\{\norm{\xi}_\infty>2\sqrt{Q/\alpha}\}
+ \le2n e^{-Q}=e^{-q}
+\]
+when $\alpha\ge4Q$.  Let $E_q$ be the intersection of these two events.
+Then $\PP(E_q^c)\le2e^{-q}$ and, on $E_q$,
+\[
+ A_0\le4\sqrt{N_q/\alpha},\qquad
+ B_0\le2\sqrt{nQ/\alpha},\qquad
+ \eta B_0\le2/\alpha,
+\]
+where the last inequality uses \eqref{eq:effective-conditions}.  Taking the
+universal constant in \eqref{eq:effective-conditions} sufficiently large
+ensures $E_q\subset E$ in \eqref{eq:localization-event}.
+
+Apply \Cref{lem:radial}.  Since $N_q\le C(r+q)$, its exact-fit bounds yield
+\[
+ 0\le\one^\top\log v_0-\one^\top\log\vhat(W)
+ \le C\frac{r+q}{\alpha},
+ \qquad
+ \norm{\log\{\vhat(W)/v_0\}}_2^2
+ \le C\frac{r+q}{\alpha}.
+\]
+The same lemma gives \eqref{eq:effective-approx-fit} simultaneously for all
+$\tau<c$, after taking $c=\rho^2/12$ and enlarging $C$.
+
+For the support bound, \Cref{lem:radial} also implies on $E_q$
+\[
+ \alpha\{Z(W)+\norm{t(W)}_2^2\}
+ \le109\alpha A_0^2+37\alpha\eta B_0
+ \le1744N_q+74=:H_q.
+\]
+Set $\kappa=\log(17/9)$.  By \Cref{lem:determinant-moment} and Markov's
+inequality,
+\[
+ \PP\{E_q,\ (s_{\mathrm{ext}}(W)-1)\kappa>H_q+q\}\le e^{-q}.
+\]
+Adding $\PP(E_q^c)$ shows that, outside probability $3e^{-q}$,
+\[
+ s_{\mathrm{ext}}(W)
+ \le1+\frac{1744N_q+74+q}{\kappa}
+ \le C(r+q).
+\]
+All conclusions hold on the same event.
+\end{proof}
+
+\section{Gaussian approximation and uniqueness}
+\label{app:gaussian}
+
+\subsection{Proof of the Gaussian relative-width bound}
+
+\begin{proof}[Proof of \Cref{prop:gaussian-width}]
+Set $b_i=\phi_d(x_i)/v_{0,i}$.  The Gaussian identity gives
+\begin{equation}\label{eq:gaussian-ratio}
+ \frac{\phi_d(x_i-\theta)}{v_{0,i}}
+ =b_i e^{-\norm{\theta}^2/2}e^{x_i^\top\theta}.
+\end{equation}
+Because
+\[
+ \frac{v_{0,i}}{\phi_d(x_i)}
+ =\int e^{x_i^\top\vartheta-\norm{\vartheta}^2/2}\,dG_0(\vartheta)
+ \ge e^{-ST-S^2/2},
+\]
+we have $b_i\le e^{ST+S^2/2}$.  For $\abs{t}\le ST$, Taylor's theorem yields
+\[
+ \left|e^t-\sum_{j=0}^m\frac{t^j}{j!}\right|
+ \le e^{ST}\frac{(ST)^{m+1}}{(m+1)!}.
+\]
+Multiplying by the remaining factors in \eqref{eq:gaussian-ratio} shows that
+\[
+ b_i e^{-\norm{\theta}^2/2}
+ \sum_{j=0}^m\frac{(x_i^\top\theta)^j}{j!}
+\]
+approximates $\phi_d(x_i-\theta)/v_{0,i}$ with coordinatewise error at most
+$\eps_m$ in \eqref{eq:eps-m}, uniformly over $i$ and $\theta\in K$.
+
+The multinomial expansion of $(x_i^\top\theta)^j$ uses only monomials
+$x_i^\beta$ with multi-index $\abs{\beta}\le m$.  Hence every truncated vector
+lies in the span of
+\[
+ \left\{(b_ix_i^\beta)_{i=1}^n:\abs{\beta}\le m\right\},
+\]
+whose dimension is at most $\binom{m+d}{d}$.  Adjoin $\one$ to this span and
+let $P_m$ be the orthogonal projection onto the resulting subspace.  Its rank
+obeys \eqref{eq:rank-m}.  Integrating the coordinatewise approximation under
+any $G\in\Pcal(K)$ preserves its error, and orthogonal projection minimizes
+Euclidean distance to the subspace.  This proves \eqref{eq:eta-m}.  If
+$ST=0$, the exponential term is constant in the relevant inner product and
+the expansion is exact.
+\end{proof}
+
+\subsection{Proof of the conditional Gaussian corollary}
+
+\begin{proof}[Proof of \Cref{cor:conditional}]
+Choose any ordinary NPMLE $\Ghat_0$ and let
+$v_0=(f_{\Ghat_0}(x_i))_{i=1}^n$.  This vector is independent of the chosen
+maximizing representation by \Cref{lem:regularity}.  Apply
+\Cref{prop:gaussian-width} with
+\[
+ m=\left\lceil C_m\frac{\log n}{\log\log n}\right\rceil,
+\]
+where $C_m>8$ is a sufficiently large constant depending only on the fixed
+parameters.  The factorial inequality $(m+1)!\ge\{(m+1)/e\}^{m+1}$ and
+$T\le C_0\sqrt{\log n}$ give
+\begin{align*}
+ \log\eps_m
+ &\le 2ST+S^2/2+(m+1)\log\frac{eST}{m+1}\\
+ &\le-3\log n
+\end{align*}
+for all sufficiently large $n$.  Indeed,
+$\log(ST)\le\tfrac12\log\log n+O(1)$, whereas
+$\log(m+1)=\log\log n-\log\log\log n+O(1)$.  If $ST=0$, the error is zero.
+Thus
+\[
+ r:=\rank(P_m)=O(r_n),\qquad
+ \eta:=\eta_m\le n^{-5/2}.
+\]
+
+Take $q=(b+2)\log n$ and $Q=q+\log(2n)$.  Then
+$r+Q=O_b(\bar r_n)$ and
+\[
+ \frac{\alpha_n}{r+Q}\asymp_b\log n\to\infty.
+\]
+Moreover,
+\[
+ \eta\sqrt{\alpha_n nQ}
+ \le n^{-5/2}\sqrt{\bar r_n\log n\cdot nQ}=o(1).
+\]
+The hypotheses of \Cref{thm:effective} therefore hold.  Its failure
+probability is at most $3n^{-b-2}$, and it yields
+$s_{\mathrm{ext}}(W)\le C_b\bar r_n$ together with the likelihood and
+fitted-vector conclusions.
+
+For the coordinate weights, the Gamma Chernoff inequality
+\begin{equation}\label{eq:gamma-coordinate}
+ \PP\{\abs{W_i-1}>t\}\le2e^{-\alpha_nt^2/4},
+ \qquad 0<t\le1,
+\end{equation}
+follows from the Gamma moment-generating function.  Choose
+$t=C_b'/\sqrt{\bar r_n}$ with $(C_b')^2/4\ge b+3$.  Since
+$\alpha_nt^2=(C_b')^2\log n$, a union bound gives
+\[
+ \PP\{\max_i\abs{W_i-1}>t\}
+ \le2n^{1-(C_b')^2/4}\le2n^{-b-2}.
+\]
+Intersect the events and enlarge constants.
+\end{proof}
+
+\subsection{Proof of generic evaluation independence}
+\label{app:generic}
+
+\begin{proof}[Proof of \Cref{prop:generic}]
+Fix an integer $k$ satisfying $k(d+1)\le n$.  A nonzero linear dependence
+among $k$ Gaussian evaluation columns has a coefficient vector with at least
+one nonzero coordinate.  Normalize that coordinate to one; there are only
+$k$ possible choices.  In one such chart, collect the $kd$ location
+coordinates and the remaining $k-1$ coefficients in a parameter
+$\eta\in U\subset\RR^p$, where
+\[
+ p=kd+k-1=k(d+1)-1<n.
+\]
+The domain $U$ is open after imposing distinctness of the locations.  For the
+normalized coefficient vector $(c_1,\ldots,c_k)$, define
+\[
+ F_\eta(y)=\sum_{j=1}^kc_j\phi_d(y-\theta_j).
+\]
+This function is jointly real analytic in $(\eta,y)$.
+
+For every admissible $\eta$, $F_\eta$ is not identically zero.  Choose
+$v\in\RR^d$ such that the scalars $v^\top\theta_j$ are distinct; the excluded
+$v$ lie in finitely many proper hyperplanes.  If $F_\eta(tv)=0$ for every
+$t$, then after division by the positive common Gaussian factor,
+\[
+ \sum_{j=1}^kc_j e^{-\norm{\theta_j}^2/2}e^{t v^\top\theta_j}=0
+ \qquad\text{for all }t.
+\]
+Differentiating at zero for orders $0,\ldots,k-1$ gives a Vandermonde system
+with distinct nodes $v^\top\theta_j$, forcing every coefficient to vanish.
+This contradicts the normalization.
+
+Consider the incidence set
+\[
+ I=\{(\eta,x_1,\ldots,x_n)\in U\times(\RR^d)^n:
+        F_\eta(x_i)=0\text{ for all }i\}.
+\]
+At an incidence point, analyticity and nontriviality imply that for each $i$
+there is a multi-index $\alpha_i$ of minimal total order with
+$\partial_y^{\alpha_i}F_\eta(x_i)\ne0$.  Its order is at least one because
+$F_\eta(x_i)=0$.  Choose a coordinate $\ell_i$ with
+$\alpha_{i,\ell_i}>0$ and put $\beta_i=\alpha_i-e_{\ell_i}$.  By minimality,
+\[
+ H_i(\eta,x_i):=\partial_y^{\beta_i}F_\eta(x_i)=0,
+ \qquad
+ \partial_{x_{i,\ell_i}}H_i(\eta,x_i)\ne0.
+\]
+For each fixed choice of the countably many derivative indices, restrict to
+the open region on which the displayed derivatives are nonzero.  The
+Jacobian of $(H_1,\ldots,H_n)$ with respect to the selected data coordinates
+$(x_{1,\ell_1},\ldots,x_{n,\ell_n})$ is diagonal and nonsingular.  The
+implicit-function theorem therefore places the corresponding part of $I$ in
+a smooth submanifold of codimension $n$ in
+$U\times\RR^{nd}$.  Its dimension is
+\[
+ nd+p-n<nd.
+\]
+Each such submanifold has a countable atlas.  On compact subsets of a chart,
+projection to the $nd$ data coordinates is Lipschitz; the image of a
+$q$-dimensional bounded set under a Lipschitz map has zero
+$nd$-dimensional Lebesgue measure whenever $q<nd$.  Thus the projection of
+$I$ is contained in a countable union of null sets.
+
+Taking the finite union over coefficient normalizations and over admissible
+$k$ produces a Borel null set $N_{n,d}$.  Let
+$\mathcal X_{n,d}=(\RR^d)^n\setminus N_{n,d}$.  This proves the simultaneous
+column-independence assertion.
+
+For the final statement, suppose every extreme optimizer has at most $m$
+atoms and $2m(d+1)\le n$.  If two distinct extreme optimizers existed, their
+difference would be a nonzero signed measure on at most $2m$ distinct
+locations and would have zero Gaussian evaluation vector.  After deleting
+zero coefficients, this would contradict the established independence.
+Hence the compact convex optimizer fiber has at most one extreme point.  By
+the Krein--Milman theorem it is the closed convex hull of its nonempty set of
+extreme points, so it must be a singleton.  Its unique member is extreme and
+has at most $m$ atoms.
+\end{proof}
+
+\section{Likelihood nets and Hellinger transfer}
+\label{app:hellinger}
+
+\subsection{A finite Gaussian-mixture likelihood net}
+
+\begin{lemma}[Simultaneous Hellinger and log-likelihood net]
+\label{lem:finite-net}
+Fix $d\ge1$, a nonempty compact $K\subset B(0,S)$, and $b>0$.  For all
+sufficiently large $n$, there are a deterministic finite set
+$\Ncal_n\subset\{f_G:G\in\Pcal(K)\}$ and a deterministic
+$T_n=O(\sqrt{\log n})$ such that
+\begin{equation}\label{eq:net-size}
+ \log\abs{\Ncal_n}
+ \le C\frac{(\log n)^{d+1}}{(\log\log n)^d},
+\end{equation}
+\begin{equation}\label{eq:radius-prob}
+ \sup_{G^*\in\Pcal(K)}
+ \PP_{G^*}\left\{\max_{i\le n}\norm{X_i}>T_n\right\}
+ \le n^{-b-2},
+\end{equation}
+and every $G\in\Pcal(K)$ admits $p\in\Ncal_n$ satisfying
+\begin{equation}\label{eq:net-approx}
+ H(p,f_G)\le n^{-3},
+ \qquad
+ \sup_{\norm{x}\le T_n}\abs{\log p(x)-\log f_G(x)}\le n^{-3}.
+\end{equation}
+Constants are uniform over $G$ and $G^*$.
+\end{lemma}
+
+\begin{proof}
+For $n\ge3$, take
+\[
+ T_n=S+\sqrt{2d\log(2d n^{b+3})}.
+\]
+Under any $G^*\in\Pcal(K)$, $X_i=\Theta_i+Z_i$ with
+$\norm{\Theta_i}\le S$.  The standard Gaussian coordinate bound and a union
+bound over $nd$ coordinates prove \eqref{eq:radius-prob}.  If $S=0$, the class
+contains only $\phi_d$, so assume $S>0$.
+
+Let
+\[
+ m=\left\lceil C_0\frac{\log n}{\log\log n}\right\rceil,
+ \qquad k=\binom{2m+d}{d},
+\]
+with fixed $C_0>16$.  Consider the vector of all nonconstant monomials in
+$\theta$ of total degree at most $2m$.  Its image of $K$ is compact, and the
+vector of its integrals under any $G\in\Pcal(K)$ lies in the corresponding
+convex hull.  Carath\'eodory's theorem gives a measure $G_m$ with at most $k$
+atoms that matches every moment of total degree at most $2m$.
+
+For $\norm{x}\le T_n$, set $L=ST_n+S^2/2$.  The exponent
+$x^\top\theta-\norm{\theta}^2/2$ has absolute value at most $L$ on $K$, and
+$f_G(x)/\phi_d(x)\ge e^{-L}$.  Its Taylor polynomial through order $m$ has
+total degree at most $2m$ in $\theta$, so its integrals under $G$ and $G_m$
+coincide.  Bounding both remainders yields
+\begin{equation}\label{eq:relative-approx}
+ \sup_{\norm{x}\le T_n}
+ \left|\frac{f_{G_m}(x)}{f_G(x)}-1\right|
+ \le2e^{2L}\frac{L^{m+1}}{(m+1)!}\le n^{-8}
+\end{equation}
+for all large $n$.  The last inequality follows because
+$L=O(\sqrt{\log n})$ and
+$(m+1)!\ge\{(m+1)/e\}^{m+1}$.
+
+Moment matching also gives a global approximation.  Let
+$\Delta=G-G_m$.  Completing the square shows
+\[
+ \int_{\RR^d}
+ \frac{\phi_d(x-\theta)\phi_d(x-\eta)}{\phi_d(x)}\,dx
+ =e^{\theta^\top\eta}.
+\]
+The exponential series is uniformly convergent on $K\times K$.  Every term
+of degree at most $2m$ integrates to zero against $\Delta\otimes\Delta$, and
+$\norm{\Delta}_{\TV}\le2$.  Therefore
+\begin{align}
+ Q_m:=\int\frac{(f_G-f_{G_m})^2}{\phi_d}
+ &=\iint e^{\theta^\top\eta}\,d\Delta(\theta)d\Delta(\eta)\notag\\
+ &\le4\sum_{j>2m}\frac{S^{2j}}{j!}
+ \le4e^{S^2}\frac{S^{4m+2}}{(2m+1)!}\le n^{-32}.
+ \label{eq:Qm}
+\end{align}
+By Cauchy--Schwarz,
+$H^2(f_G,f_{G_m})\le\norm{f_G-f_{G_m}}_1\le Q_m^{1/2}$, so
+$H(f_G,f_{G_m})\le n^{-8}$.
+
+It remains to discretize the locations and masses.  Put $\eps=n^{-16}$.
+Partition a fixed bounding cube into cells of diameter at most $\eps$ and
+choose one point of $K$ from every cell that meets $K$.  The resulting
+location net has size $J_n\le C_Kn^{16d}$.  Write
+$G_m=\sum_{j=1}^k\lambda_j\delta_{\theta_j}$, padding with zero masses if
+needed, and round every location to the net.  Let
+$M=\lceil kn^{16}\rceil$.  For $j<k$, put
+$\lambda_j'=\lfloor M\lambda_j\rfloor/M$, and let
+$\lambda_k'=1-\sum_{j<k}\lambda_j'$.  Then
+$\sum_j\abs{\lambda_j'-\lambda_j}\le2\eps$.  Let $G'$ be the resulting
+discrete measure and $p=f_{G'}$.
+
+Moving a location by at most $\eps$ changes its Gaussian log kernel on
+$\{\norm{x}\le T_n\}$ by at most $(T_n+S)\eps$.  Weight rounding changes the
+mixture by relative amount at most $2\eps e^{2L}$.  Combining these estimates
+with \eqref{eq:relative-approx}, and using
+$\abs{\log(1+u)}\le2\abs{u}$ for $\abs{u}\le1/2$, gives
+\[
+ \sup_{\norm{x}\le T_n}\abs{\log p(x)-\log f_G(x)}\le n^{-3}
+\]
+for all large $n$.  Globally, the fundamental theorem of calculus and
+$\int\norm{\nabla\phi_d(x)}\,dx<\infty$ give an $L^1$ error $O_d(\eps)$ from
+location rounding; weight rounding adds at most $2\eps$.  The Hellinger
+triangle inequality therefore gives $H(p,f_G)\le n^{-3}$.
+
+Let $\Ncal_n$ contain the densities generated by every ordered list of $k$
+location-net points and every simplex-grid mass vector with denominator $M$.
+Then each $G$ has a point satisfying \eqref{eq:net-approx}, and
+\[
+ \log\abs{\Ncal_n}
+ \le k\{\log J_n+\log(M+1)\}
+ =O(k\log n)
+ =O\left\{\frac{(\log n)^{d+1}}{(\log\log n)^d}\right\}.
+\]
+This proves \eqref{eq:net-size}.
+\end{proof}
+
+\subsection{Proof of the near-MLE theorem}
+
+\begin{proof}[Proof of \Cref{thm:near-mle}]
+Fix $G^*\in\Pcal(K)$ and write $p_*=f_{G^*}$.  Let $\Ncal_n,T_n$ be from
+\Cref{lem:finite-net}, and let
+$E_n=\{\max_i\norm{X_i}\le T_n\}$.  On $E_n$, for any candidate satisfying
+\eqref{eq:near-truth}, choose $p\in\Ncal_n$ as in
+\eqref{eq:net-approx}.  Then
+\begin{equation}\label{eq:net-lr-lower}
+ \sum_{i=1}^n\log\frac{p(X_i)}{p_*(X_i)}
+ \ge-1-n^{-2}\ge-2.
+\end{equation}
+
+For deterministic $p\in\Ncal_n$, independence gives
+\begin{align*}
+ \EE_{p_*}\exp\left\{\frac12\sum_{i=1}^n
+       \log\frac{p(X_i)}{p_*(X_i)}\right\}
+ &=\left(\int\sqrt{pp_*}\right)^n\\
+ &=\left\{1-\frac12H^2(p,p_*)\right\}^n
+ \le e^{-nH^2(p,p_*)/2}.
+\end{align*}
+Markov's inequality therefore yields
+\begin{equation}\label{eq:fixed-net-test}
+ \PP_{p_*}\left\{\sum_i\log\frac{p(X_i)}{p_*(X_i)}\ge-2\right\}
+ \le\exp\left\{1-\frac n2H^2(p,p_*)\right\}.
+\end{equation}
+Set
+\[
+ A_n=\log\abs{\Ncal_n}+(b+2)\log n+2,
+ \qquad t_n=\sqrt{2A_n/n}.
+\]
+Summing \eqref{eq:fixed-net-test} over all net points with
+$H(p,p_*)\ge t_n$ shows that, outside an event of probability at most
+$e^{-1}n^{-b-2}$, every such point has log-likelihood ratio below $-2$.
+
+Intersect this event with $E_n$.  The net point associated with any candidate
+in \eqref{eq:near-truth} satisfies \eqref{eq:net-lr-lower}, so it must obey
+$H(p,p_*)<t_n$.  Hence, simultaneously over all candidates,
+\[
+ H^2(f_G,p_*)\le(t_n+n^{-3})^2
+ \le\frac{4A_n}{n}+2n^{-6}.
+\]
+The entropy bound \eqref{eq:net-size} gives the claimed rate.  The radius and
+likelihood-test exceptional probabilities are uniform over
+$G^*\in\Pcal(K)$, completing the proof.
+\end{proof}
+
+\section{Dirichlet representation and auxiliary concentration}
+\label{app:dirichlet}
+
+\begin{proof}[Proof of \Cref{prop:dirichlet}]
+The standard Gamma--Dirichlet change of variables gives
+\[
+ (P_1,\ldots,P_n)\sim\mathrm{Dirichlet}(\alpha_n,\ldots,\alpha_n),
+ \qquad T_W\sim\mathrm{Gamma}(n\alpha_n,\alpha_n),
+\]
+and independence between $P$ and $T_W$.  The Dirichlet moments are
+\[
+ \EE P_i=\frac1n,
+ \quad
+ \operatorname{Var}(P_i)=\frac{n-1}{n^2(n\alpha_n+1)},
+ \quad
+ \operatorname{Cov}(P_i,P_j)=-\frac1{n^2(n\alpha_n+1)}\quad(i\ne j).
+\]
+Substitution gives the conditional mean and variance of
+$F_n^{(\alpha_n)}h=\sum_iP_ih(X_i)$.  Also,
+\[
+ \norm{F_n^{(\alpha_n)}-F_n}_{\TV}
+ \le\frac12\sum_i\abs{P_i-1/n}.
+\]
+Cauchy--Schwarz and the marginal Dirichlet variance therefore imply
+\[
+ \EE\bigl(\norm{F_n^{(\alpha_n)}-F_n}_{\TV}\mid X\bigr)
+ \le\frac n2\sqrt{\operatorname{Var}(P_1)}
+ =\frac12\sqrt{\frac{n-1}{n\alpha_n+1}}.
+\]
+
+Because $\EE W_i=1$ and $\EE(P_i\mid X)=1/n$, independence and
+integrability give
+\[
+ \EE_{X,W}\frac1n\sum_iW_i\log f_G(X_i)
+ =\EE_{G^*}\log f_G(X_1)
+ =\EE_{X,W}\sum_iP_i\log f_G(X_i).
+\]
+For compact $K\subset B(0,S)$,
+\[
+ e^{-S\norm{x}-S^2/2}
+ \le\frac{f_G(x)}{\phi_d(x)}\le e^{S\norm{x}},
+\]
+so all displayed log densities are integrable under a compactly supported
+Gaussian mixture.  Their population difference at $G^*$ and $G$ is
+\[
+ \int f_{G^*}(x)\log\frac{f_{G^*}(x)}{f_G(x)}\,dx
+ =\KL(f_{G^*}\|f_G).
+\]
+\end{proof}
+
+\begin{lemma}[Gamma coordinate concentration]
+\label{lem:gamma-concentration}
+If $W\sim\mathrm{Gamma}(a,a)$, then for $0<t\le1$,
+\[
+ \PP\{\abs{W-1}>t\}\le2e^{-at^2/4}.
+\]
+\end{lemma}
+
+\begin{proof}
+For $0<\lambda<a$,
+$\EE e^{\lambda(W-1)}=e^{-\lambda}(1-\lambda/a)^{-a}$.  Optimizing the
+Chernoff bound gives
+$\PP(W\ge1+t)\le\exp\{-a(t-\log(1+t))\}$.  Since
+$t-\log(1+t)\ge t^2/4$ for $0\le t\le1$, this is at most $e^{-at^2/4}$.
+Similarly,
+$\PP(W\le1-t)\le\exp\{-a(-t-\log(1-t))\}\le e^{-at^2/2}$.
+Adding the two tails proves the claim.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem[Evans and Gariepy(2015)]{evansgariepy2015}
+Evans, L. C. and Gariepy, R. F. (2015).
+\newblock \emph{Measure Theory and Fine Properties of Functions}, revised ed.
+\newblock Boca Raton: CRC Press.
+
+\bibitem[Jia et al.(2023)Jia, Polyanskiy and Wu]{jiaetal2023}
+Jia, Z., Polyanskiy, Y. and Wu, Y. (2023).
+\newblock Entropic characterization of optimal rates for learning Gaussian
+mixtures.
+\newblock In \emph{Proceedings of the 36th Conference on Learning Theory},
+PMLR 195, 4296--4335.
+
+\bibitem[Kiefer and Wolfowitz(1956)]{kieferwolfowitz1956}
+Kiefer, J. and Wolfowitz, J. (1956).
+\newblock Consistency of the maximum likelihood estimator in the presence of
+infinitely many incidental parameters.
+\newblock \emph{Annals of Mathematical Statistics}, \textbf{27}, 887--906.
+
+\bibitem[Kim and Guntuboyina(2022)]{kimguntuboyina2022}
+Kim, A. K. H. and Guntuboyina, A. (2022).
+\newblock Minimax bounds for estimating multivariate Gaussian location
+mixtures.
+\newblock \emph{Electronic Journal of Statistics}, \textbf{16}, 1461--1484.
+
+\bibitem[Koenker and Mizera(2014)]{koenkermizera2014}
+Koenker, R. and Mizera, I. (2014).
+\newblock Convex optimization, shape constraints, compound decisions, and
+empirical Bayes rules.
+\newblock \emph{Journal of the American Statistical Association},
+\textbf{109}, 674--685.
+
+\bibitem[Laird(1978)]{laird1978}
+Laird, N. (1978).
+\newblock Nonparametric maximum likelihood estimation of a mixing
+distribution.
+\newblock \emph{Journal of the American Statistical Association},
+\textbf{73}, 805--811.
+
+\bibitem[Lindsay(1983)]{lindsay1983geometry}
+Lindsay, B. G. (1983).
+\newblock The geometry of mixture likelihoods: a general theory.
+\newblock \emph{Annals of Statistics}, \textbf{11}, 86--94.
+
+\bibitem[Newton and Raftery(1994)]{newtonraftery1994}
+Newton, M. A. and Raftery, A. E. (1994).
+\newblock Approximate Bayesian inference with the weighted likelihood
+bootstrap.
+\newblock \emph{Journal of the Royal Statistical Society, Series B},
+\textbf{56}, 3--26.
+
+\bibitem[Polyanskiy and Wu(2020)]{polyanskiywu2020}
+Polyanskiy, Y. and Wu, Y. (2020).
+\newblock Self-regularizing property of nonparametric maximum likelihood
+estimator in mixture models.
+\newblock arXiv:2008.08244.
+
+\bibitem[Rubin(1981)]{rubin1981}
+Rubin, D. B. (1981).
+\newblock The Bayesian bootstrap.
+\newblock \emph{Annals of Statistics}, \textbf{9}, 130--134.
+
+\bibitem[Saha and Guntuboyina(2020)]{sahaguntuboyina2020}
+Saha, S. and Guntuboyina, A. (2020).
+\newblock On the nonparametric maximum likelihood estimator for Gaussian
+location mixture densities with application to Gaussian denoising.
+\newblock \emph{Annals of Statistics}, \textbf{48}, 738--762.
+
+\bibitem[Soloff et al.(2025)Soloff, Guntuboyina and Sen]{soloffetal2025}
+Soloff, J. A., Guntuboyina, A. and Sen, B. (2025).
+\newblock Multivariate, heteroscedastic empirical Bayes via nonparametric
+maximum likelihood.
+\newblock \emph{Journal of the Royal Statistical Society, Series B},
+\textbf{87}, 1--32.
+
+\bibitem[Wang(2026)]{wang2026}
+Wang, H. (2026).
+\newblock On finite Gaussian mixtures: finiteness of the number of modes and
+an application to NPMLE.
+\newblock arXiv:2608.16675.
+
+\bibitem[Zhang(2009)]{zhang2009}
+Zhang, C.-H. (2009).
+\newblock Generalized maximum likelihood estimation of normal mixture
+densities.
+\newblock \emph{Statistica Sinica}, \textbf{19}, 1297--1318.
+
+\end{thebibliography}
+
+\end{document}

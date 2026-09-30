@@ -1,0 +1,3 @@
+git diff --exit-code -- paper/exact_sparsity_reweighted_npmle_numerical_study/formalization
+Exit status: 0; output: empty
+All 120 original source/config/reference fingerprints remain unchanged.

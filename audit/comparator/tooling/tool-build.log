@@ -1,0 +1,23 @@
+info: lean4export: cloning https://github.com/leanprover/lean4export
+info: lean4export: checking out revision 'a3e35a584f59b390667db7269cd37fca8575e4bf'
+info: Lean4Checker: cloning https://github.com/leanprover/lean4checker
+info: Lean4Checker: checking out revision 'b7398199245524275543dec6113229c9bb4902e5'
+✔ [2/25] Built Comparator.Util (211ms)
+✔ [3/25] Built Comparator.Util:c.o (197ms)
+✔ [6/25] Built Lean4Checker.Replay (324ms)
+✔ [7/25] Built Lean4Checker.Replay:c.o (177ms)
+✔ [12/25] Built Main:c.o (77ms)
+✔ [13/25] Built Export.Parse (754ms)
+✔ [14/25] Built Export:c.o (896ms)
+✔ [15/25] Built Comparator.Axioms (256ms)
+✔ [16/25] Built Comparator.Axioms:c.o (110ms)
+✔ [17/25] Built Comparator.Compare (284ms)
+✔ [18/25] Built Comparator (195ms)
+✔ [19/25] Built Comparator.Compare:c.o (149ms)
+✔ [20/25] Built Comparator:c.o (31ms)
+✔ [21/25] Built lean4export:exe (913ms)
+✔ [22/25] Built Export.Parse:c.o (1.3s)
+✔ [23/25] Built Main (781ms)
+✔ [24/25] Built Main:c.o (193ms)
+✔ [25/25] Built comparator:exe (341ms)
+Build completed successfully (25 jobs).

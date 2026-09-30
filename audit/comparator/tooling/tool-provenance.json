@@ -1,0 +1,164 @@
+{
+  "date": "2026-09-29",
+  "platform": "macOS 26.5.2 arm64",
+  "command_checks": [
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "1cfc5d8ad183bf65efe7accd0efc175b6b8f25b6\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator/.lake/packages/lean4export",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "a3e35a584f59b390667db7269cd37fca8575e4bf\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator/.lake/packages/lean4export",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator/.lake/packages/Lean4Checker",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "b7398199245524275543dec6113229c9bb4902e5\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator/.lake/packages/Lean4Checker",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/nanoda_lib",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "3a2407216ee84a75f9e1aead6803d0578be06ae7\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/nanoda_lib",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "Lean (version 4.30.0, arm64-apple-darwin24.6.0, commit d024af099ca4bf2c86f649261ebf59565dc8c622, Release)\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools/comparator",
+      "command": [
+        "lake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "Lake version 5.0.0-src+d024af0 (Lean version 4.30.0)\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools",
+      "environment": {
+        "RUSTUP_HOME": "/private/tmp/npmle-comparator-tools/rustup",
+        "CARGO_HOME": "/private/tmp/npmle-comparator-tools/cargo"
+      },
+      "command": [
+        "/private/tmp/npmle-comparator-tools/cargo/bin/cargo",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo 1.90.0 (840b83a10 2025-07-30)\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/private/tmp/npmle-comparator-tools",
+      "environment": {
+        "RUSTUP_HOME": "/private/tmp/npmle-comparator-tools/rustup",
+        "CARGO_HOME": "/private/tmp/npmle-comparator-tools/cargo"
+      },
+      "command": [
+        "/private/tmp/npmle-comparator-tools/cargo/bin/rustc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "rustc 1.90.0 (1159e78c4 2025-09-14)\n",
+      "stderr": ""
+    }
+  ],
+  "sha256": [
+    {
+      "path": "comparator/.lake/build/bin/comparator",
+      "sha256": "d0d9ceccafba3f87cfba763e0ce6b65eee4141e24dccffbea9e113968278b5ee"
+    },
+    {
+      "path": "comparator/.lake/packages/lean4export/.lake/build/bin/lean4export",
+      "sha256": "2363864b90c11d4b6e39f1f6678605405f52d489c6877004af3bad5e7a35b9d8"
+    },
+    {
+      "path": "comparator/scripts/fake-landrun.sh",
+      "sha256": "167507c89d8b3c7667ad78b50df7b19f89883751a01efd1457404fa34a994e8b"
+    },
+    {
+      "path": "nanoda_lib/target/release/nanoda_bin",
+      "sha256": "fcbfcc1f751d31630b20c04822caea6a31749fe1dc3f91bdccda5c8567c48134"
+    },
+    {
+      "path": "nanoda_lib/Cargo.lock",
+      "sha256": "9b921e794ce5ed515eb31db9ada0c2f34df999b6c9b5135ad308a412872e42be"
+    }
+  ]
+}

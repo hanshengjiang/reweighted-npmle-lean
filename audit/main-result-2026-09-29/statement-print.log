@@ -1,0 +1,106 @@
+@ReweightedNPMLE.gaussian_exact_regularization_main : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ (C : ℝ),
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in Filter.atTop,
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                          ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                            MeasurableSet G ∧
+                              (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                        (ReweightedNPMLE.gaussianPaperBalancedShape d n)).real
+                                    Gᶜ ≤
+                                  C * ↑n ^ (-b) ∧
+                                ∀ p ∈ G,
+                                  (∀ (i : Fin n),
+                                      |p.2 i - 1| ≤ C / √(ReweightedNPMLE.gaussianPaperAugmentedDimension d n)) ∧
+                                    p.2 ∈ ReweightedNPMLE.positiveVectors n ∧
+                                      ∃ (μ : MeasureTheory.ProbabilityMeasure ↑K),
+                                        ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p = {μ} ∧
+                                          (↑μ).support.Finite ∧
+                                            ↑(↑μ).support.ncard ≤
+                                                C * ReweightedNPMLE.gaussianPaperAugmentedDimension d n ∧
+                                              (∀
+                                                  μ₀ ∈
+                                                    ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a)
+                                                      (p.1, 1),
+                                                  0 ≤
+                                                      ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                        (p, μ, μ₀) ∧
+                                                    ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                          (p, μ, μ₀) ≤
+                                                        C / Real.log ↑n ∧
+                                                      ReweightedNPMLE.gaussianSquaredLogRatioGap (fun (a : ↑K) => ↑a)
+                                                          (p, μ, μ₀) ≤
+                                                        C / Real.log ↑n) ∧
+                                                ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                                  C * ReweightedNPMLE.gaussianPaperRiskScale d n
+theorem ReweightedNPMLE.gaussian_exact_regularization_main : ∀ {d : ℕ},
+  0 < d →
+    ∀ (K : Set (ReweightedNPMLE.Point d)),
+      IsCompact K →
+        K.Nonempty →
+          ∀ {S b : ℝ},
+            0 ≤ S →
+              0 < b →
+                (∀ u ∈ K, ‖u‖ ≤ S) →
+                  ∃ (C : ℝ),
+                    0 < C ∧
+                      ∀ᶠ (n : ℕ) in Filter.atTop,
+                        ∀ (Gstar : MeasureTheory.ProbabilityMeasure ↑K),
+                          ∃ (G : Set (ReweightedNPMLE.GaussianDataWeight d n)),
+                            MeasurableSet G ∧
+                              (ReweightedNPMLE.gaussianDataWeightMeasure Gstar n
+                                        (ReweightedNPMLE.gaussianPaperBalancedShape d n)).real
+                                    Gᶜ ≤
+                                  C * ↑n ^ (-b) ∧
+                                ∀ p ∈ G,
+                                  (∀ (i : Fin n),
+                                      |p.2 i - 1| ≤ C / √(ReweightedNPMLE.gaussianPaperAugmentedDimension d n)) ∧
+                                    p.2 ∈ ReweightedNPMLE.positiveVectors n ∧
+                                      ∃ (μ : MeasureTheory.ProbabilityMeasure ↑K),
+                                        ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a) p = {μ} ∧
+                                          (↑μ).support.Finite ∧
+                                            ↑(↑μ).support.ncard ≤
+                                                C * ReweightedNPMLE.gaussianPaperAugmentedDimension d n ∧
+                                              (∀
+                                                  μ₀ ∈
+                                                    ReweightedNPMLE.gaussianProbabilityOptimizerSet (fun (a : ↑K) => ↑a)
+                                                      (p.1, 1),
+                                                  0 ≤
+                                                      ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                        (p, μ, μ₀) ∧
+                                                    ReweightedNPMLE.gaussianOrdinaryLikelihoodGap (fun (a : ↑K) => ↑a)
+                                                          (p, μ, μ₀) ≤
+                                                        C / Real.log ↑n ∧
+                                                      ReweightedNPMLE.gaussianSquaredLogRatioGap (fun (a : ↑K) => ↑a)
+                                                          (p, μ, μ₀) ≤
+                                                        C / Real.log ↑n) ∧
+                                                ReweightedNPMLE.hellingerSq MeasureTheory.volume
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity μ)
+                                                    (ReweightedNPMLE.compactGaussianMixtureDensity Gstar) ≤
+                                                  C * ReweightedNPMLE.gaussianPaperRiskScale d n :=
+⋯
+'ReweightedNPMLE.gaussian_exact_regularization_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReweightedNPMLE.gaussian_exact_regularization_joint_balanced_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+def ReweightedNPMLE.gaussianPaperJointConstant : ℕ → ℝ → ℝ :=
+fun (d : ℕ) (b : ℝ) =>
+  1 + ReweightedNPMLE.gaussianPaperSupportConstant d 40 b + 2 * √(b + 4) +
+      ReweightedNPMLE.gaussianPaperRateConstant d b +
+    (4 * ↑d + 5)
+def ReweightedNPMLE.gaussianPaperSupportConstant : ℕ → ℝ → ℝ → ℝ :=
+fun (d : ℕ) (C b : ℝ) => 10000000 * (1 + (4 * C + 1) ^ d + (b + 4))
+def ReweightedNPMLE.gaussianPaperRateConstant : ℕ → ℝ → ℝ :=
+fun (d : ℕ) (b : ℝ) => 22 + 4 * (ReweightedNPMLE.gaussianPaperEntropyConstant d + b + 4)
+def ReweightedNPMLE.gaussianPaperEntropyConstant : ℕ → ℝ :=
+fun (d : ℕ) => 17 * (↑d + 1) * (1025 ^ d + 1)

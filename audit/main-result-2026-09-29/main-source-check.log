@@ -1,0 +1,8 @@
+ReweightedNPMLE/GaussianMainTheorem.lean:21:60: warning: This simp argument is unused:
+  div_pow
+
+Hint: Omit it from the simp argument list.
+  simp only [gaussianPaperRiskScale, gaussianPaperLogScale, d̵i̵v̵_̵pow,̵ ̵p̵o̵w̵_succ,
+  ̵  ̵ ̵ ̵div_eq_mul_inv, mul_inv_rev]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

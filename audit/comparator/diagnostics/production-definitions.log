@@ -1,0 +1,500 @@
+@[reducible] def ReweightedNPMLE.Point : (d : Nat) → Type :=
+fun (d : Nat) => EuclideanSpace.{0, 0} Real (Fin d)
+def ReweightedNPMLE.gaussianConstant : (d : Nat) → Real :=
+fun (d : Nat) =>
+  @HPow.hPow.{0, 0, 0} Real Real Real (@instHPow.{0, 0} Real Real Real.instPow)
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast ReweightedNPMLE.gaussianScore._proof_1))
+      Real.pi)
+    (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+      (@Neg.neg.{0} Real Real.instNeg (@Nat.cast.{0} Real Real.instNatCast d))
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast ReweightedNPMLE.gaussianScore._proof_1)))
+def ReweightedNPMLE.gaussianKernel : (d : Nat) → (x θ : ReweightedNPMLE.Point d) → Real :=
+fun (d : Nat) (x θ : ReweightedNPMLE.Point d) =>
+  @HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) (ReweightedNPMLE.gaussianConstant d)
+    (Real.exp
+      (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+        (@Neg.neg.{0} Real Real.instNeg
+          (@HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid))
+            (@Norm.norm.{0} (ReweightedNPMLE.Point d)
+              (@PiLp.instNorm.{0, 0}
+                (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                  (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                    (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                      (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                    PiLp.innerProductSpace._proof_1))
+                (Fin d) (fun (x : Fin d) => Real) (Fin.fintype d) fun (i : Fin d) => Real.norm)
+              (@HSub.hSub.{0, 0, 0} (ReweightedNPMLE.Point d) (ReweightedNPMLE.Point d) (ReweightedNPMLE.Point d)
+                (@instHSub.{0} (ReweightedNPMLE.Point d)
+                  (@SubNegMonoid.toSub.{0} (ReweightedNPMLE.Point d)
+                    (@AddGroup.toSubNegMonoid.{0} (ReweightedNPMLE.Point d)
+                      (@AddCommGroup.toAddGroup.{0} (ReweightedNPMLE.Point d)
+                        (@WithLp.instAddCommGroup.{0}
+                          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                              PiLp.innerProductSpace._proof_1))
+                          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                          (@Pi.addCommGroup.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (i : Fin d) =>
+                            Real.instAddCommGroup))))))
+                x θ))
+            (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+        (@OfNat.ofNat.{0} Real (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast ReweightedNPMLE.gaussianScore._proof_1))))
+def ReweightedNPMLE.gaussianMixture.{u_1} : {d : Nat} →
+  {Θ : Type u_1} →
+    [inst : MeasurableSpace.{u_1} Θ] →
+      (μ : @MeasureTheory.Measure.{u_1} Θ inst) →
+        (θ : Θ → ReweightedNPMLE.Point d) → (x : ReweightedNPMLE.Point d) → Real :=
+fun {d : Nat} {Θ : Type u_1} [inst : MeasurableSpace.{u_1} Θ] (μ : @MeasureTheory.Measure.{u_1} Θ inst)
+    (θ : Θ → ReweightedNPMLE.Point d) (x : ReweightedNPMLE.Point d) =>
+  @MeasureTheory.integral.{u_1, 0} Θ Real Real.normedAddCommGroup
+    (@InnerProductSpace.toNormedSpace.{0, 0} Real Real Real.instRCLike
+      (@NormedAddCommGroup.toSeminormedAddCommGroup.{0} Real Real.normedAddCommGroup)
+      (@RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike))
+    inst μ fun (a : Θ) => ReweightedNPMLE.gaussianKernel d x (θ a)
+def ReweightedNPMLE.compactGaussianMixtureDensity : {d : Nat} →
+  {K : Set.{0} (ReweightedNPMLE.Point d)} →
+    (G :
+        @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+          (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+            (fun (x : ReweightedNPMLE.Point d) =>
+              @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+                (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+            (@WithLp.measurableSpace.{0}
+              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                  PiLp.innerProductSpace._proof_1))
+              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                Real.measurableSpace)))) →
+      ReweightedNPMLE.Point d → Real :=
+fun {d : Nat} {K : Set.{0} (ReweightedNPMLE.Point d)}
+    (G :
+      @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+        (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+          (fun (x : ReweightedNPMLE.Point d) =>
+            @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+              (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+          (@WithLp.measurableSpace.{0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            ((i : Fin d) → (fun (x : Fin d) => Real) i)
+            (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace)))) =>
+  @ReweightedNPMLE.gaussianMixture.{0} d (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+    (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+      (fun (x : ReweightedNPMLE.Point d) =>
+        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+      (@WithLp.measurableSpace.{0}
+        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+            PiLp.innerProductSpace._proof_1))
+        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace)))
+    (@MeasureTheory.ProbabilityMeasure.toMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+      (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+        (fun (x : ReweightedNPMLE.Point d) =>
+          @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+            (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+        (@WithLp.measurableSpace.{0}
+          (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+              (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+              PiLp.innerProductSpace._proof_1))
+          ((i : Fin d) → (fun (x : Fin d) => Real) i)
+          (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace)))
+      G)
+    fun (θ : @Set.Elem.{0} (ReweightedNPMLE.Point d) K) =>
+    @Subtype.val.{1} (ReweightedNPMLE.Point d)
+      (fun (x : ReweightedNPMLE.Point d) =>
+        @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+          (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+      θ
+def ReweightedNPMLE.weightedLogLikelihood : {n : Nat} → (w v : Fin n → Real) → Real :=
+fun {n : Nat} (w v : Fin n → Real) =>
+  @Finset.sum.{0, 0} (Fin n) Real Real.instAddCommMonoid (@Finset.univ.{0} (Fin n) (Fin.fintype n)) fun (i : Fin n) =>
+    @HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) (w i) (Real.log (v i))
+def ReweightedNPMLE.IsMaxOn.{u_1} : {E : Type u_1} → (C : Set.{u_1} E) → (f : E → Real) → (v : E) → Prop :=
+fun {E : Type u_1} (C : Set.{u_1} E) (f : E → Real) (v : E) =>
+  And (@Membership.mem.{u_1, u_1} E (Set.{u_1} E) (@Set.instMembership.{u_1} E) C v)
+    (∀ (u : E),
+      @Membership.mem.{u_1, u_1} E (Set.{u_1} E) (@Set.instMembership.{u_1} E) C u →
+        @LE.le.{0} Real Real.instLE (f u) (f v))
+def ReweightedNPMLE.positiveVectors : (n : Nat) → Set.{0} (Fin n → Real) :=
+fun (n : Nat) =>
+  @setOf.{0} (Fin n → Real) fun (v : Fin n → Real) =>
+    ∀ (i : Fin n),
+      @LT.lt.{0} Real Real.instLT (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)) (v i)
+def ReweightedNPMLE.probabilityMixtureValue.{u_1} : {Θ : Type u_1} →
+  [inst : MeasurableSpace.{u_1} Θ] →
+    {n : Nat} → (A : Θ → Fin n → Real) → (μ : @MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) → Fin n → Real :=
+fun {Θ : Type u_1} [inst : MeasurableSpace.{u_1} Θ] {n : Nat} (A : Θ → Fin n → Real)
+    (μ : @MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) (i : Fin n) =>
+  @MeasureTheory.integral.{u_1, 0} Θ Real Real.normedAddCommGroup
+    (@InnerProductSpace.toNormedSpace.{0, 0} Real Real Real.instRCLike
+      (@NormedAddCommGroup.toSeminormedAddCommGroup.{0} Real Real.normedAddCommGroup)
+      (@RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike))
+    inst (@MeasureTheory.ProbabilityMeasure.toMeasure.{u_1} Θ inst μ) fun (θ : Θ) => A θ i
+@[reducible] def ReweightedNPMLE.GaussianDataWeight : (d n : Nat) → Type :=
+fun (d n : Nat) => Prod.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+def ReweightedNPMLE.gaussianProbabilityLogLikelihood.{u_1} : {Θ : Type u_1} →
+  [inst : MeasurableSpace.{u_1} Θ] →
+    {d n : Nat} →
+      (θ : Θ → ReweightedNPMLE.Point d) →
+        (p : Prod.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)) →
+          Real :=
+fun {Θ : Type u_1} [inst : MeasurableSpace.{u_1} Θ] {d n : Nat} (θ : Θ → ReweightedNPMLE.Point d)
+    (p : Prod.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)) =>
+  @ReweightedNPMLE.weightedLogLikelihood n
+    (@Prod.snd.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+      (@Prod.fst.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) p))
+    (@ReweightedNPMLE.probabilityMixtureValue.{u_1} Θ inst n
+      (fun (a : Θ) (i : Fin n) =>
+        ReweightedNPMLE.gaussianKernel d
+          (@Prod.fst.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+            (@Prod.fst.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+              (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) p)
+            i)
+          (θ a))
+      (@Prod.snd.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) p))
+def ReweightedNPMLE.gaussianProbabilityOptimizerSet.{u_1} : {Θ : Type u_1} →
+  [inst : MeasurableSpace.{u_1} Θ] →
+    {d n : Nat} →
+      (θ : Θ → ReweightedNPMLE.Point d) →
+        (p : ReweightedNPMLE.GaussianDataWeight d n) → Set.{u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) :=
+fun {Θ : Type u_1} [inst : MeasurableSpace.{u_1} Θ] {d n : Nat} (θ : Θ → ReweightedNPMLE.Point d)
+    (p : ReweightedNPMLE.GaussianDataWeight d n) =>
+  @setOf.{u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+    fun (μ : @MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) =>
+    @ReweightedNPMLE.IsMaxOn.{u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+      (@Set.univ.{u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+      (fun (ν : @MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) =>
+        @ReweightedNPMLE.gaussianProbabilityLogLikelihood.{u_1} Θ inst d n θ
+          (@Prod.mk.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst) p
+            ν))
+      μ
+def ReweightedNPMLE.gaussianOrdinaryLikelihoodGap.{u_1} : {Θ : Type u_1} →
+  [inst : MeasurableSpace.{u_1} Θ] →
+    {d n : Nat} →
+      (θ : Θ → ReweightedNPMLE.Point d) →
+        (p :
+            Prod.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+              (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))) →
+          Real :=
+fun {Θ : Type u_1} [inst : MeasurableSpace.{u_1} Θ] {d n : Nat} (θ : Θ → ReweightedNPMLE.Point d)
+    (p :
+      Prod.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+        (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+          (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))) =>
+  @HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+    (@ReweightedNPMLE.gaussianProbabilityLogLikelihood.{u_1} Θ inst d n θ
+      (@Prod.mk.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+        (@Prod.mk.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+          (@Prod.fst.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+            (@Prod.fst.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+              (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+              p))
+          (@OfNat.ofNat.{0} (Fin n → Real) (nat_lit 1)
+            (@One.toOfNat1.{0} (Fin n → Real)
+              (@Pi.instOne.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (i : Fin n) => Real.instOne))))
+        (@Prod.snd.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+          (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+          (@Prod.snd.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+            (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+              (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+            p))))
+    (@ReweightedNPMLE.gaussianProbabilityLogLikelihood.{u_1} Θ inst d n θ
+      (@Prod.mk.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n) (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+        (@Prod.mk.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+          (@Prod.fst.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+            (@Prod.fst.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+              (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+              p))
+          (@OfNat.ofNat.{0} (Fin n → Real) (nat_lit 1)
+            (@One.toOfNat1.{0} (Fin n → Real)
+              (@Pi.instOne.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (i : Fin n) => Real.instOne))))
+        (@Prod.fst.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+          (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+          (@Prod.snd.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+            (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+              (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+            p))))
+def ReweightedNPMLE.gaussianSquaredLogRatioGap.{u_1} : {Θ : Type u_1} →
+  [inst : MeasurableSpace.{u_1} Θ] →
+    {d n : Nat} →
+      (θ : Θ → ReweightedNPMLE.Point d) →
+        (p :
+            Prod.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+              (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))) →
+          Real :=
+fun {Θ : Type u_1} [inst : MeasurableSpace.{u_1} Θ] {d n : Nat} (θ : Θ → ReweightedNPMLE.Point d)
+    (p :
+      Prod.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+        (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+          (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))) =>
+  @Finset.sum.{0, 0} (Fin n) Real Real.instAddCommMonoid (@Finset.univ.{0} (Fin n) (Fin.fintype n)) fun (i : Fin n) =>
+    @HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid))
+      (Real.log
+        (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+          (@ReweightedNPMLE.probabilityMixtureValue.{u_1} Θ inst n
+            (fun (a : Θ) (j : Fin n) =>
+              ReweightedNPMLE.gaussianKernel d
+                (@Prod.fst.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+                  (@Prod.fst.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+                    (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                      (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+                    p)
+                  j)
+                (θ a))
+            (@Prod.fst.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+              (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+              (@Prod.snd.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+                (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                  (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+                p))
+            i)
+          (@ReweightedNPMLE.probabilityMixtureValue.{u_1} Θ inst n
+            (fun (a : Θ) (j : Fin n) =>
+              ReweightedNPMLE.gaussianKernel d
+                (@Prod.fst.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+                  (@Prod.fst.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+                    (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                      (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+                    p)
+                  j)
+                (θ a))
+            (@Prod.snd.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+              (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+              (@Prod.snd.{0, u_1} (ReweightedNPMLE.GaussianDataWeight d n)
+                (Prod.{u_1, u_1} (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst)
+                  (@MeasureTheory.ProbabilityMeasure.{u_1} Θ inst))
+                p))
+            i)))
+      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))
+def ReweightedNPMLE.gaussianPaperLogScale : (n : Nat) → Real :=
+fun (n : Nat) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (Real.log (@Nat.cast.{0} Real Real.instNatCast n)) (Real.log (Real.log (@Nat.cast.{0} Real Real.instNatCast n)))
+def ReweightedNPMLE.gaussianPaperEffectiveDimension : (d n : Nat) → Real :=
+fun (d n : Nat) =>
+  @HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid))
+    (ReweightedNPMLE.gaussianPaperLogScale n) d
+def ReweightedNPMLE.gaussianPaperAugmentedDimension : (d n : Nat) → Real :=
+fun (d n : Nat) =>
+  @HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+    (ReweightedNPMLE.gaussianPaperEffectiveDimension d n) (Real.log (@Nat.cast.{0} Real Real.instNatCast n))
+def ReweightedNPMLE.gaussianPaperBalancedShape : (d n : Nat) → Real :=
+fun (d n : Nat) =>
+  @HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+    (ReweightedNPMLE.gaussianPaperAugmentedDimension d n) (Real.log (@Nat.cast.{0} Real Real.instNatCast n))
+def ReweightedNPMLE.gaussianPaperRiskScale : (d n : Nat) → Real :=
+fun (d n : Nat) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid))
+        (ReweightedNPMLE.gaussianPaperLogScale n) d)
+      (Real.log (@Nat.cast.{0} Real Real.instNatCast n)))
+    (@Nat.cast.{0} Real Real.instNatCast n)
+def ReweightedNPMLE.compactGaussianSampleMeasure : {d : Nat} →
+  {K : Set.{0} (ReweightedNPMLE.Point d)} →
+    (Gstar :
+        @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+          (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+            (fun (x : ReweightedNPMLE.Point d) =>
+              @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+                (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+            (@WithLp.measurableSpace.{0}
+              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                  PiLp.innerProductSpace._proof_1))
+              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                Real.measurableSpace)))) →
+      (n : Nat) →
+        @MeasureTheory.Measure.{0} (Fin n → ReweightedNPMLE.Point d)
+          (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => ReweightedNPMLE.Point d) fun (a : Fin n) =>
+            @WithLp.measurableSpace.{0}
+              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                  PiLp.innerProductSpace._proof_1))
+              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace)) :=
+fun {d : Nat} {K : Set.{0} (ReweightedNPMLE.Point d)}
+    (Gstar :
+      @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+        (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+          (fun (x : ReweightedNPMLE.Point d) =>
+            @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+              (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+          (@WithLp.measurableSpace.{0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            ((i : Fin d) → (fun (x : Fin d) => Real) i)
+            (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace))))
+    (n : Nat) =>
+  @MeasureTheory.Measure.pi.{0, 0} (Fin n) (fun (a : Fin n) => ReweightedNPMLE.Point d) (Fin.fintype n)
+    (fun (a : Fin n) =>
+      @WithLp.measurableSpace.{0}
+        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+            PiLp.innerProductSpace._proof_1))
+        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace))
+    fun (x : Fin n) =>
+    @MeasureTheory.Measure.withDensity.{0} (ReweightedNPMLE.Point d)
+      (@MeasureTheory.MeasureSpace.toMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+        (@measureSpaceOfInnerProductSpace.{0} (ReweightedNPMLE.Point d)
+          (@PiLp.normedAddCommGroup.{0, 0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            (Fin d) (fun (x : Fin d) => Real) fact_one_le_two_ennreal (Fin.fintype d) fun (i : Fin d) =>
+            Real.normedAddCommGroup)
+          (@PiLp.innerProductSpace.{0, 0, 0} Real Real.instRCLike (Fin d) (Fin.fintype d) (fun (x : Fin d) => Real)
+            (fun (i : Fin d) => Real.normedAddCommGroup) fun (i : Fin d) =>
+            @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+          (@ReweightedNPMLE.compactGaussianSampleMeasure._proof_1 d)
+          (@WithLp.measurableSpace.{0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            ((i : Fin d) → (fun (x : Fin d) => Real) i)
+            (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace))
+          (@ReweightedNPMLE.compactGaussianSampleMeasure._proof_2 d)))
+      (@MeasureTheory.MeasureSpace.volume.{0} (ReweightedNPMLE.Point d)
+        (@measureSpaceOfInnerProductSpace.{0} (ReweightedNPMLE.Point d)
+          (@PiLp.normedAddCommGroup.{0, 0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            (Fin d) (fun (x : Fin d) => Real) fact_one_le_two_ennreal (Fin.fintype d) fun (i : Fin d) =>
+            Real.normedAddCommGroup)
+          (@PiLp.innerProductSpace.{0, 0, 0} Real Real.instRCLike (Fin d) (Fin.fintype d) (fun (x : Fin d) => Real)
+            (fun (i : Fin d) => Real.normedAddCommGroup) fun (i : Fin d) =>
+            @RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike)
+          (@ReweightedNPMLE.compactGaussianSampleMeasure._proof_1 d)
+          (@WithLp.measurableSpace.{0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            ((i : Fin d) → (fun (x : Fin d) => Real) i)
+            (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace))
+          (@ReweightedNPMLE.compactGaussianSampleMeasure._proof_2 d)))
+      fun (y : ReweightedNPMLE.Point d) => ENNReal.ofReal (@ReweightedNPMLE.compactGaussianMixtureDensity d K Gstar y)
+def ReweightedNPMLE.gammaProductMeasure : (n : Nat) →
+  (a r : Real) →
+    @MeasureTheory.Measure.{0} (Fin n → Real)
+      (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (a : Fin n) => Real.measurableSpace) :=
+fun (n : Nat) (a r : Real) =>
+  @MeasureTheory.Measure.pi.{0, 0} (Fin n) (fun (a : Fin n) => Real) (Fin.fintype n)
+    (fun (a : Fin n) => Real.measurableSpace) fun (x : Fin n) => ProbabilityTheory.gammaMeasure a r
+def ReweightedNPMLE.gaussianDataWeightMeasure : {d : Nat} →
+  {K : Set.{0} (ReweightedNPMLE.Point d)} →
+    (Gstar :
+        @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+          (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+            (fun (x : ReweightedNPMLE.Point d) =>
+              @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+                (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+            (@WithLp.measurableSpace.{0}
+              (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                  (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                    (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                  PiLp.innerProductSpace._proof_1))
+              ((i : Fin d) → (fun (x : Fin d) => Real) i)
+              (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                Real.measurableSpace)))) →
+      (n : Nat) →
+        (α : Real) →
+          @MeasureTheory.Measure.{0} (ReweightedNPMLE.GaussianDataWeight d n)
+            (@Prod.instMeasurableSpace.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+              (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => ReweightedNPMLE.Point d) fun (a : Fin n) =>
+                @WithLp.measurableSpace.{0}
+                  (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+                    (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                      (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                        (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                      PiLp.innerProductSpace._proof_1))
+                  ((i : Fin d) → (fun (x : Fin d) => Real) i)
+                  (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) =>
+                    Real.measurableSpace))
+              (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (a : Fin n) => Real.measurableSpace)) :=
+fun {d : Nat} {K : Set.{0} (ReweightedNPMLE.Point d)}
+    (Gstar :
+      @MeasureTheory.ProbabilityMeasure.{0} (@Set.Elem.{0} (ReweightedNPMLE.Point d) K)
+        (@Subtype.instMeasurableSpace.{0} (ReweightedNPMLE.Point d)
+          (fun (x : ReweightedNPMLE.Point d) =>
+            @Membership.mem.{0, 0} (ReweightedNPMLE.Point d) (Set.{0} (ReweightedNPMLE.Point d))
+              (@Set.instMembership.{0} (ReweightedNPMLE.Point d)) K x)
+          (@WithLp.measurableSpace.{0}
+            (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{0} ENNReal
+                  (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+                PiLp.innerProductSpace._proof_1))
+            ((i : Fin d) → (fun (x : Fin d) => Real) i)
+            (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace))))
+    (n : Nat) (α : Real) =>
+  @MeasureTheory.Measure.prod.{0, 0} (Fin n → ReweightedNPMLE.Point d) (Fin n → Real)
+    (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => ReweightedNPMLE.Point d) fun (a : Fin n) =>
+      @WithLp.measurableSpace.{0}
+        (@OfNat.ofNat.{0} ENNReal (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} ENNReal (nat_lit 2)
+            (@AddMonoidWithOne.toNatCast.{0} ENNReal
+              (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+            PiLp.innerProductSpace._proof_1))
+        ((i : Fin d) → (fun (x : Fin d) => Real) i)
+        (@MeasurableSpace.pi.{0, 0} (Fin d) (fun (x : Fin d) => Real) fun (a : Fin d) => Real.measurableSpace))
+    (@MeasurableSpace.pi.{0, 0} (Fin n) (fun (a : Fin n) => Real) fun (a : Fin n) => Real.measurableSpace)
+    (@ReweightedNPMLE.compactGaussianSampleMeasure d K Gstar n) (ReweightedNPMLE.gammaProductMeasure n α α)
+def ReweightedNPMLE.hellingerSq.{u_1} : {Ω : Type u_1} →
+  [inst : MeasurableSpace.{u_1} Ω] → (μ : @MeasureTheory.Measure.{u_1} Ω inst) → (p q : Ω → Real) → Real :=
+fun {Ω : Type u_1} [inst : MeasurableSpace.{u_1} Ω] (μ : @MeasureTheory.Measure.{u_1} Ω inst) (p q : Ω → Real) =>
+  @MeasureTheory.integral.{u_1, 0} Ω Real Real.normedAddCommGroup
+    (@InnerProductSpace.toNormedSpace.{0, 0} Real Real Real.instRCLike
+      (@NormedAddCommGroup.toSeminormedAddCommGroup.{0} Real Real.normedAddCommGroup)
+      (@RCLike.toInnerProductSpaceReal.{0} Real Real.instRCLike))
+    inst μ fun (x : Ω) =>
+    @HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid))
+      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) (Real.sqrt (p x)) (Real.sqrt (q x)))
+      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))
+theorem ReweightedNPMLE.gaussianScore._proof_1 : Nat.AtLeastTwo
+  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat)
+    (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+    (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) :=
+@Nat.instAtLeastTwoHAddOfNat (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+  (@Nat.instNeZeroSucc (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))

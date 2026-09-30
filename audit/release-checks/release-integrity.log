@@ -1,0 +1,3 @@
+PASS: 112 production Lean source hashes match the original snapshot
+PASS: 3 frozen manuscript hashes match SHA256SUMS
+PASS: required audit and license files; 188 local links in 14 Markdown files

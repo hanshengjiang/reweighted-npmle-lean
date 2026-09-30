@@ -1,0 +1,29 @@
+import audit.comparator.Challenge
+import Lean
+set_option pp.all true
+set_option pp.proofs true
+set_option format.width 120
+#print ReweightedNPMLE.Point
+#print ReweightedNPMLE.gaussianConstant
+#print ReweightedNPMLE.gaussianKernel
+#print ReweightedNPMLE.gaussianMixture
+#print ReweightedNPMLE.compactGaussianMixtureDensity
+#print ReweightedNPMLE.weightedLogLikelihood
+#print ReweightedNPMLE.IsMaxOn
+#print ReweightedNPMLE.positiveVectors
+#print ReweightedNPMLE.probabilityMixtureValue
+#print ReweightedNPMLE.GaussianDataWeight
+#print ReweightedNPMLE.gaussianProbabilityLogLikelihood
+#print ReweightedNPMLE.gaussianProbabilityOptimizerSet
+#print ReweightedNPMLE.gaussianOrdinaryLikelihoodGap
+#print ReweightedNPMLE.gaussianSquaredLogRatioGap
+#print ReweightedNPMLE.gaussianPaperLogScale
+#print ReweightedNPMLE.gaussianPaperEffectiveDimension
+#print ReweightedNPMLE.gaussianPaperAugmentedDimension
+#print ReweightedNPMLE.gaussianPaperBalancedShape
+#print ReweightedNPMLE.gaussianPaperRiskScale
+#print ReweightedNPMLE.compactGaussianSampleMeasure
+#print ReweightedNPMLE.gammaProductMeasure
+#print ReweightedNPMLE.gaussianDataWeightMeasure
+#print ReweightedNPMLE.hellingerSq
+#print ReweightedNPMLE.gaussianScore._proof_1

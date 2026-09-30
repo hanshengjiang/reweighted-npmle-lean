@@ -1,0 +1,2 @@
+PASS: 40 distinct coverage interfaces have exactly the allowed axiom reports.
+40 declarations: ['Classical.choice', 'Quot.sound', 'propext']

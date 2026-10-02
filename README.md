@@ -1,8 +1,8 @@
 # Reweighted Gaussian-mixture NPMLE: Lean 4 companion
 
-The primary document is **[`paper.tex`](docs/manuscript/paper.tex)**. This
-package contains Lean 4 proofs of its main exact-regularization theorem and
-supporting results.
+The primary document is **[`paper.tex`](docs/manuscript/paper.tex)**. An updated version is available on **[arXiv](https://arxiv.org/abs/2610.01088)**.
+
+This package contains Lean 4 proofs of its main exact-regularization theorem and supporting results.
 
 The main declaration is
 [`ReweightedNPMLE.gaussian_exact_regularization_main`](ReweightedNPMLE/GaussianMainTheorem.lean#L56).
